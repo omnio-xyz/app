@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EncryptedData",
+  "type": "object",
+  "properties": {
+    "encryptedStringBase64": {
+      "type": "string"
+    },
+    "encryptedSymmetricKeyBase64": {
+      "type": "string"
+    },
+    "accessControlConditions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "chain": {
+      "type": "string"
+    }
+  }
+}
