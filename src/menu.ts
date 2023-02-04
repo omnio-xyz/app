@@ -27,7 +27,7 @@ export const userMenu = {
 export const demoMenu = {
   demo: {
 		id: 'demo',
-		text: 'Data Hub',
+		text: 'Consumer Data',
 		icon: 'Extension',
 	},
   dashboardBdooking: {
@@ -90,26 +90,6 @@ export const demoPagesMenu = {
 				icon: 'LinearScale',
 			},
 		},
-	},
-	singlePages: {
-		id: 'singlePages',
-		text: 'Single Pages',
-		path: 'single-pages',
-		icon: 'Article',
-		subMenu: {
-			fluidSingle: {
-				id: 'fluidSingle',
-				text: 'Fluid',
-				path: 'single-pages/fluid',
-				icon: 'ViewDay',
-			},
-		},
-	},
-	pricingTable: {
-		id: 'pricingTable',
-		text: 'Pricing Table',
-		path: 'pricing-table',
-		icon: 'Local Offer',
 	},
 
 	app: {

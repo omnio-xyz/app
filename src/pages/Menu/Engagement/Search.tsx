@@ -122,7 +122,7 @@ const SingleFluidPage = () => {
 	);
 
 	return (
-		<PageWrapper title={demoPagesMenu.singlePages.subMenu.fluidSingle.text}>
+		<PageWrapper>
 			<Page container='fluid'>
 				<div className='row'>
 					<div className='col-xxl-4 col-xl-6'>

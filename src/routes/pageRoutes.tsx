@@ -6,56 +6,53 @@ import {
 	gettingStartedPagesMenu,
   demoMenu,
 } from '../menu';
-import Login from '../pages/console/auth/Login';
+import Login from '../pages/Menu/auth/Login';
 
 const LANDING = {
-	DASHBOARD: lazy(() => import('../pages/console/dashboard/DashboardPage')),
-	DASHBOARD_BOOKING: lazy(() => import('../pages/console/dashboard/DashboardBookingPage')),
+	DASHBOARD: lazy(() => import('../pages/Menu/Consumer/ConsumerProfle')),
+	DASHBOARD_BOOKING: lazy(() => import('../pages/Menu/Consumer/PurchaseHistory')),
 };
 const SINGLE = {
-	FLUID: lazy(() => import('../pages/console/single-pages/SingleFluidPage')),
+	FLUID: lazy(() => import('../pages/Menu/Engagement/Search')),
 };
 const EDIT = {
-	MODERN: lazy(() => import('../pages/console/demo-pages/EditModernPage')),
-	FLUID: lazy(() => import('../pages/console/demo-pages/EditFluidPage')),
-	WIZARD: lazy(() => import('../pages/console/demo-pages/EditWizardPage')),
-};
-const PRICING = {
-	PRICING_TABLE: lazy(() => import('../pages/console/pricing/PricingTablePage')),
+	MODERN: lazy(() => import('../pages/Menu/demo-pages/EditModernPage')),
+	FLUID: lazy(() => import('../pages/Menu/demo-pages/EditFluidPage')),
+	WIZARD: lazy(() => import('../pages/Menu/demo-pages/EditWizardPage')),
 };
 
 const AUTH = {
-	PAGE_404: lazy(() => import('../pages/console/auth/Page404')),
+	PAGE_404: lazy(() => import('../pages/Menu/auth/Page404')),
 };
 const APP = {
 	PROJECT_MANAGEMENT: {
 		PROJECTS_LIST: lazy(
-			() => import('../pages/console/project-management/ProjectManagementsList'),
+			() => import('../pages/Menu/project-management/ProjectManagementsList'),
 		),
 		PROJECT: lazy(
-			() => import('../pages/console/project-management/ProjectManagementsProject'),
+			() => import('../pages/Menu/project-management/ProjectManagementsProject'),
 		),
 	},
 	KNOWLEDGE: {
-		GRID: lazy(() => import('../pages/console/knowledge/KnowledgeGridPage')),
-		VIEW: lazy(() => import('../pages/console/knowledge/KnowledgeViewPage')),
+		GRID: lazy(() => import('../pages/Menu/knowledge/KnowledgeGridPage')),
+		VIEW: lazy(() => import('../pages/Menu/knowledge/KnowledgeViewPage')),
 	},
 	SALES: {
-		TRANSACTIONS: lazy(() => import('../pages/console/sales/TransActionsPage')),
-		PRODUCTS: lazy(() => import('../pages/console/sales/SalesListPage')),
-		PRODUCTS_GRID: lazy(() => import('../pages/console/sales/ProductsGridPage')),
-		PRODUCTS_VIEW: lazy(() => import('../pages/console/sales/ProductViewPage')),
+		TRANSACTIONS: lazy(() => import('../pages/Menu/sales/TransActionsPage')),
+		PRODUCTS: lazy(() => import('../pages/Menu/sales/SalesListPage')),
+		PRODUCTS_GRID: lazy(() => import('../pages/Menu/sales/ProductsGridPage')),
+		PRODUCTS_VIEW: lazy(() => import('../pages/Menu/sales/ProductViewPage')),
 	},
 	APPOINTMENT: {
-		CALENDAR: lazy(() => import('../pages/console/appointment/CalendarPage')),
-		EMPLOYEE_LIST: lazy(() => import('../pages/console/appointment/EmployeeList')),
-		EMPLOYEE_VIEW: lazy(() => import('../pages/console/appointment/EmployeePage')),
-		APPOINTMENT_LIST: lazy(() => import('../pages/console/appointment/AppointmentList')),
+		CALENDAR: lazy(() => import('../pages/Menu/appointment/CalendarPage')),
+		EMPLOYEE_LIST: lazy(() => import('../pages/Menu/appointment/EmployeeList')),
+		EMPLOYEE_VIEW: lazy(() => import('../pages/Menu/appointment/EmployeePage')),
+		APPOINTMENT_LIST: lazy(() => import('../pages/Menu/appointment/AppointmentList')),
 	},
 	CRM: {
-		CRM_DASHBOARD: lazy(() => import('../pages/console/crm/CrmDashboard')),
-		CUSTOMERS: lazy(() => import('../pages/console/crm/CustomersList')),
-		CUSTOMER: lazy(() => import('../pages/console/crm/Customer')),
+		CRM_DASHBOARD: lazy(() => import('../pages/Menu/crm/CrmDashboard')),
+		CUSTOMERS: lazy(() => import('../pages/Menu/crm/CustomersList')),
+		CUSTOMER: lazy(() => import('../pages/Menu/crm/Customer')),
 	},
 };
 const GETTING_STARTED = {
@@ -82,14 +79,6 @@ const presentation: RouteProps[] = [
 	 */
 
 	/**
-	 * Single Pages
-	 */
-	{
-		path: demoPagesMenu.singlePages.subMenu.fluidSingle.path,
-		element: <SINGLE.FLUID />,
-	},
-
-	/**
 	 * Edit
 	 */
 	{
@@ -103,10 +92,6 @@ const presentation: RouteProps[] = [
 	{
 		path: demoPagesMenu.editPages.subMenu.editWizard.path,
 		element: <EDIT.WIZARD />,
-	},
-	{
-		path: demoPagesMenu.pricingTable.path,
-		element: <PRICING.PRICING_TABLE />,
 	},
 
 	/**
