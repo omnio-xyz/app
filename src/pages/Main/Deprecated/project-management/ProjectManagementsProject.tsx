@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
-import { demoPagesMenu } from '../../../menu';
+import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
+import { demoPagesMenu } from '../../../../menu';
 import SubHeader, {
 	SubHeaderLeft,
 	SubHeaderRight,
 	SubheaderSeparator,
-} from '../../../layout/SubHeader/SubHeader';
-import Page from '../../../layout/Page/Page';
-import Badge from '../../../components/bootstrap/Badge';
-import COLORS from '../../../common/data/enumColors';
-import USERS from '../../../common/data/userDummyData';
+} from '../../../../layout/SubHeader/SubHeader';
+import Page from '../../../../layout/Page/Page';
+import Badge from '../../../../components/bootstrap/Badge';
+import COLORS from '../../../../common/data/enumColors';
+import USERS from '../../../../common/data/userDummyData';
 
-import Slide2 from '../../../assets/img/wanna/slide/scene-2.png';
-import Slide4 from '../../../assets/img/wanna/slide/scene-4.png';
-import Slide6 from '../../../assets/img/wanna/slide/scene-6.png';
-import TAGS from '../../../common/data/boardTagsData';
-import CommonAvatarTeam from '../../../common/other/CommonAvatarTeam';
-import Button from '../../../components/bootstrap/Button';
-import useDarkMode from '../../../hooks/useDarkMode';
+import Slide2 from '../../../../assets/img/wanna/slide/scene-2.png';
+import Slide4 from '../../../../assets/img/wanna/slide/scene-4.png';
+import Slide6 from '../../../../assets/img/wanna/slide/scene-6.png';
+import TAGS from '../../../../common/data/boardTagsData';
+import CommonAvatarTeam from '../../../../common/other/CommonAvatarTeam';
+import Button from '../../../../components/bootstrap/Button';
+import useDarkMode from '../../../../hooks/useDarkMode';
 import { TCards, TColumnsData } from './type/types';
 import { DragDropContext, DropResult } from '@hello-pangea/dnd';
 import { move, reorder } from './helper/helper';

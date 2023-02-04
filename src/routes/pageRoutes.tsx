@@ -6,10 +6,10 @@ import {
 	gettingStartedPagesMenu,
   demoMenu,
 } from '../menu';
-import Login from '../Pages/Main/auth/Login';
+import Login from '../Pages/Main/Account/Launch';
 
 const LANDING = {
-	DASHBOARD: lazy(() => import('../Pages/Main/Consumer/ConsumerProfle')),
+	DASHBOARD: lazy(() => import('../Pages/Main/Consumer/Profle')),
 	DASHBOARD_BOOKING: lazy(() => import('../Pages/Main/Consumer/PurchaseHistory')),
 };
 const SINGLE = {
@@ -22,37 +22,36 @@ const EDIT = {
 };
 
 const AUTH = {
-	PAGE_404: lazy(() => import('../Pages/Main/auth/Page404')),
+	PAGE_404: lazy(() => import('../Pages/Main/Account/404')),
 };
 const APP = {
 	PROJECT_MANAGEMENT: {
 		PROJECTS_LIST: lazy(
-			() => import('../Pages/Main/project-management/ProjectManagementsList'),
+			() => import('../Pages/Main/Deprecated/project-management/ProjectManagementsList'),
 		),
 		PROJECT: lazy(
-			() => import('../Pages/Main/project-management/ProjectManagementsProject'),
+			() => import('../Pages/Main/Deprecated/project-management/ProjectManagementsProject'),
 		),
 	},
 	KNOWLEDGE: {
-		GRID: lazy(() => import('../Pages/Main/knowledge/KnowledgeGridPage')),
-		VIEW: lazy(() => import('../Pages/Main/knowledge/KnowledgeViewPage')),
+		GRID: lazy(() => import('../Pages/Main/Deprecated/knowledge/KnowledgeGridPage')),
+		VIEW: lazy(() => import('../Pages/Main/Deprecated/knowledge/KnowledgeViewPage')),
 	},
 	SALES: {
-		TRANSACTIONS: lazy(() => import('../Pages/Main/sales/TransActionsPage')),
-		PRODUCTS: lazy(() => import('../Pages/Main/sales/SalesListPage')),
-		PRODUCTS_GRID: lazy(() => import('../Pages/Main/sales/ProductsGridPage')),
-		PRODUCTS_VIEW: lazy(() => import('../Pages/Main/sales/ProductViewPage')),
+		TRANSACTIONS: lazy(() => import('../Pages/Main/Deprecated/sales/TransActionsPage')),
+		PRODUCTS_GRID: lazy(() => import('../Pages/Main/Deprecated/sales/ProductsGridPage')),
+		PRODUCTS_VIEW: lazy(() => import('../Pages/Main/Deprecated/sales/ProductViewPage')),
 	},
 	APPOINTMENT: {
-		CALENDAR: lazy(() => import('../Pages/Main/appointment/CalendarPage')),
-		EMPLOYEE_LIST: lazy(() => import('../Pages/Main/appointment/EmployeeList')),
-		EMPLOYEE_VIEW: lazy(() => import('../Pages/Main/appointment/EmployeePage')),
-		APPOINTMENT_LIST: lazy(() => import('../Pages/Main/appointment/AppointmentList')),
+		CALENDAR: lazy(() => import('../Pages/Main/Deprecated/appointment/CalendarPage')),
+		EMPLOYEE_LIST: lazy(() => import('../Pages/Main/Deprecated/appointment/EmployeeList')),
+		EMPLOYEE_VIEW: lazy(() => import('../Pages/Main/Deprecated/appointment/EmployeePage')),
+		APPOINTMENT_LIST: lazy(() => import('../Pages/Main/Deprecated/appointment/AppointmentList')),
 	},
 	CRM: {
-		CRM_DASHBOARD: lazy(() => import('../Pages/Main/crm/CrmDashboard')),
-		CUSTOMERS: lazy(() => import('../Pages/Main/crm/CustomersList')),
-		CUSTOMER: lazy(() => import('../Pages/Main/crm/Customer')),
+		CRM_DASHBOARD: lazy(() => import('../Pages/Main/Deprecated/crm/CrmDashboard')),
+		CUSTOMERS: lazy(() => import('../Pages/Main/Deprecated/crm/CustomersList')),
+		CUSTOMER: lazy(() => import('../Pages/Main/Deprecated/crm/Customer')),
 	},
 };
 const GETTING_STARTED = {
@@ -140,10 +139,6 @@ const presentation: RouteProps[] = [
 	{
 		path: demoPagesMenu.sales.subMenu.transactions.path,
 		element: <APP.SALES.TRANSACTIONS />,
-	},
-	{
-		path: demoPagesMenu.sales.subMenu.salesList.path,
-		element: <APP.SALES.PRODUCTS />,
 	},
 	{
 		path: demoPagesMenu.sales.subMenu.productsGrid.path,

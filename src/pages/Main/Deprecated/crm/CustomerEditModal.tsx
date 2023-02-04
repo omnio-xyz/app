@@ -7,22 +7,22 @@ import Modal, {
 	ModalFooter,
 	ModalHeader,
 	ModalTitle,
-} from '../../../components/bootstrap/Modal';
-import data from '../../../common/data/dummyCustomerData';
-import showNotification from '../../../components/extras/showNotification';
-import Icon from '../../../components/icon/Icon';
-import FormGroup from '../../../components/bootstrap/forms/FormGroup';
-import Input from '../../../components/bootstrap/forms/Input';
+} from '../../../../components/bootstrap/Modal';
+import data from '../../../../common/data/dummyCustomerData';
+import showNotification from '../../../../components/extras/showNotification';
+import Icon from '../../../../components/icon/Icon';
+import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
+import Input from '../../../../components/bootstrap/forms/Input';
 import Card, {
 	CardBody,
 	CardHeader,
 	CardLabel,
 	CardTitle,
-} from '../../../components/bootstrap/Card';
-import Button from '../../../components/bootstrap/Button';
-import Label from '../../../components/bootstrap/forms/Label';
-import Checks, { ChecksGroup } from '../../../components/bootstrap/forms/Checks';
-import PAYMENTS from '../../../common/data/enumPaymentMethod';
+} from '../../../../components/bootstrap/Card';
+import Button from '../../../../components/bootstrap/Button';
+import Label from '../../../../components/bootstrap/forms/Label';
+import Checks, { ChecksGroup } from '../../../../components/bootstrap/forms/Checks';
+import PAYMENTS from '../../../../common/data/enumPaymentMethod';
 
 interface ICustomerEditModalProps {
 	id: string;

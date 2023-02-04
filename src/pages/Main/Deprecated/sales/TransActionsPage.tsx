@@ -1,27 +1,27 @@
 import React, { FC, useState } from 'react';
 import { useFormik } from 'formik';
-import Button from '../../../components/bootstrap/Button';
-import Page from '../../../layout/Page/Page';
-import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
-import SubHeader, { SubHeaderLeft, SubHeaderRight } from '../../../layout/SubHeader/SubHeader';
-import CommonTransActions from '../../_common/CommonTransActions';
-import showNotification from '../../../components/extras/showNotification';
-import Icon from '../../../components/icon/Icon';
-import Modal, { ModalBody, ModalHeader, ModalTitle } from '../../../components/bootstrap/Modal';
-import Wizard, { WizardItem } from '../../../components/Wizard';
+import Button from '../../../../components/bootstrap/Button';
+import Page from '../../../../layout/Page/Page';
+import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
+import SubHeader, { SubHeaderLeft, SubHeaderRight } from '../../../../layout/SubHeader/SubHeader';
+import CommonTransActions from '../../../_common/CommonTransActions';
+import showNotification from '../../../../components/extras/showNotification';
+import Icon from '../../../../components/icon/Icon';
+import Modal, { ModalBody, ModalHeader, ModalTitle } from '../../../../components/bootstrap/Modal';
+import Wizard, { WizardItem } from '../../../../components/Wizard';
 import Card, {
 	CardBody,
 	CardHeader,
 	CardLabel,
 	CardTitle,
-} from '../../../components/bootstrap/Card';
-import FormGroup from '../../../components/bootstrap/forms/FormGroup';
-import Input from '../../../components/bootstrap/forms/Input';
-import Select from '../../../components/bootstrap/forms/Select';
-import Label from '../../../components/bootstrap/forms/Label';
-import Checks, { ChecksGroup } from '../../../components/bootstrap/forms/Checks';
-import { demoPagesMenu } from '../../../menu';
-import useDarkMode from '../../../hooks/useDarkMode';
+} from '../../../../components/bootstrap/Card';
+import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
+import Input from '../../../../components/bootstrap/forms/Input';
+import Select from '../../../../components/bootstrap/forms/Select';
+import Label from '../../../../components/bootstrap/forms/Label';
+import Checks, { ChecksGroup } from '../../../../components/bootstrap/forms/Checks';
+import { demoPagesMenu } from '../../../../menu';
+import useDarkMode from '../../../../hooks/useDarkMode';
 
 interface IPreviewItemProps {
 	title: string;

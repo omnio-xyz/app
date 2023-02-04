@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { DateRangePicker } from 'react-date-range';
 import moment from 'moment';
 import { useTour } from '@reactour/tour';
-import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
-import SubHeader, { SubHeaderLeft, SubHeaderRight } from '../../../layout/SubHeader/SubHeader';
-import Page from '../../../layout/Page/Page';
-import { demoPagesMenu } from '../../../menu';
-import Button from '../../../components/bootstrap/Button';
-import Popovers from '../../../components/bootstrap/Popovers';
-import Icon from '../../../components/icon/Icon';
-import CommonSalePerformance from '../../_common/CRMDashboard/CommonSalePerformance';
-import CommonTopSales from '../../_common/CRMDashboard/CommonTopSales';
-import CommonLatestTransActions from '../../_common/CRMDashboard/CommonLatestTransActions';
-import CommonIncome from '../../_common/CRMDashboard/CommonIncome';
+import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
+import SubHeader, { SubHeaderLeft, SubHeaderRight } from '../../../../layout/SubHeader/SubHeader';
+import Page from '../../../../layout/Page/Page';
+import { demoPagesMenu } from '../../../../menu';
+import Button from '../../../../components/bootstrap/Button';
+import Popovers from '../../../../components/bootstrap/Popovers';
+import Icon from '../../../../components/icon/Icon';
+import CommonSalePerformance from '../../../_common/CRMDashboard/CommonSalePerformance';
+import CommonTopSales from '../../../_common/CRMDashboard/CommonTopSales';
+import CommonLatestTransActions from '../../../_common/CRMDashboard/CommonLatestTransActions';
+import CommonIncome from '../../../_common/CRMDashboard/CommonIncome';
 
 const CrmDashboard = () => {
 	/**

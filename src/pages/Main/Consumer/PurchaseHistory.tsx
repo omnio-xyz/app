@@ -81,7 +81,7 @@ const DashboardBookingPage = () => {
 	const { selectTable, SelectAllCheck } = useSelectTable(filteredData);
 
 	return (
-		<PageWrapper title={demoPagesMenu.sales.subMenu.salesList.text}>
+		<PageWrapper>
 			<SubHeader>
 				<SubHeaderLeft>
 					<Avatar srcSet={UserImageWebp} src={UserImage} size={32} />

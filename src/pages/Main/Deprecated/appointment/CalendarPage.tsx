@@ -4,24 +4,24 @@ import classNames from 'classnames';
 import { Calendar, momentLocalizer, View as TView, Views } from 'react-big-calendar';
 import { useFormik } from 'formik';
 import { Calendar as DatePicker } from 'react-date-range';
-import USERS, { getUserDataWithUsername, IUserProps } from '../../../common/data/userDummyData';
-import eventList, { IEvents } from '../../../common/data/events';
+import USERS, { getUserDataWithUsername, IUserProps } from '../../../../common/data/userDummyData';
+import eventList, { IEvents } from '../../../../common/data/events';
 import {
 	CalendarTodayButton,
 	CalendarViewModeButtons,
 	getLabel,
 	getUnitType,
 	getViews,
-} from '../../../components/extras/calendarHelper';
-import SERVICES, { getServiceDataWithServiceName } from '../../../common/data/serviceDummyData';
-import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
-import { demoPagesMenu } from '../../../menu';
-import SubHeader, { SubHeaderLeft, SubHeaderRight } from '../../../layout/SubHeader/SubHeader';
-import Icon from '../../../components/icon/Icon';
-import Button from '../../../components/bootstrap/Button';
-import Popovers from '../../../components/bootstrap/Popovers';
-import Page from '../../../layout/Page/Page';
-import Avatar, { AvatarGroup } from '../../../components/Avatar';
+} from '../../../../components/extras/calendarHelper';
+import SERVICES, { getServiceDataWithServiceName } from '../../../../common/data/serviceDummyData';
+import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
+import { demoPagesMenu } from '../../../../menu';
+import SubHeader, { SubHeaderLeft, SubHeaderRight } from '../../../../layout/SubHeader/SubHeader';
+import Icon from '../../../../components/icon/Icon';
+import Button from '../../../../components/bootstrap/Button';
+import Popovers from '../../../../components/bootstrap/Popovers';
+import Page from '../../../../layout/Page/Page';
+import Avatar, { AvatarGroup } from '../../../../components/Avatar';
 import Card, {
 	CardActions,
 	CardBody,
@@ -29,20 +29,20 @@ import Card, {
 	CardLabel,
 	CardSubTitle,
 	CardTitle,
-} from '../../../components/bootstrap/Card';
+} from '../../../../components/bootstrap/Card';
 import OffCanvas, {
 	OffCanvasBody,
 	OffCanvasHeader,
 	OffCanvasTitle,
-} from '../../../components/bootstrap/OffCanvas';
-import FormGroup from '../../../components/bootstrap/forms/FormGroup';
-import Select from '../../../components/bootstrap/forms/Select';
-import Option from '../../../components/bootstrap/Option';
-import Checks from '../../../components/bootstrap/forms/Checks';
-import Input from '../../../components/bootstrap/forms/Input';
-import Tooltips from '../../../components/bootstrap/Tooltips';
-import useDarkMode from '../../../hooks/useDarkMode';
-import { TColor } from '../../../type/color-type';
+} from '../../../../components/bootstrap/OffCanvas';
+import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
+import Select from '../../../../components/bootstrap/forms/Select';
+import Option from '../../../../components/bootstrap/Option';
+import Checks from '../../../../components/bootstrap/forms/Checks';
+import Input from '../../../../components/bootstrap/forms/Input';
+import Tooltips from '../../../../components/bootstrap/Tooltips';
+import useDarkMode from '../../../../hooks/useDarkMode';
+import { TColor } from '../../../../type/color-type';
 
 const localizer = momentLocalizer(moment);
 const now = new Date();

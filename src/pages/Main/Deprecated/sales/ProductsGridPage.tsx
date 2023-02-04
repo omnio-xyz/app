@@ -1,32 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
-import Page from '../../../layout/Page/Page';
-import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
+import Page from '../../../../layout/Page/Page';
+import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
 import SubHeader, {
 	SubHeaderLeft,
 	SubHeaderRight,
 	SubheaderSeparator,
-} from '../../../layout/SubHeader/SubHeader';
-import Button from '../../../components/bootstrap/Button';
-import CommonGridProductItem from '../../_common/CommonGridProductItem';
-import tableData from '../../../common/data/dummyProductData';
+} from '../../../../layout/SubHeader/SubHeader';
+import Button from '../../../../components/bootstrap/Button';
+import CommonGridProductItem from '../../../_common/CommonGridProductItem';
+import tableData from '../../../../common/data/dummyProductData';
 import OffCanvas, {
 	OffCanvasBody,
 	OffCanvasHeader,
 	OffCanvasTitle,
-} from '../../../components/bootstrap/OffCanvas';
+} from '../../../../components/bootstrap/OffCanvas';
 import Card, {
 	CardBody,
 	CardHeader,
 	CardLabel,
 	CardTitle,
-} from '../../../components/bootstrap/Card';
-import Badge from '../../../components/bootstrap/Badge';
-import Input from '../../../components/bootstrap/forms/Input';
-import PlaceholderImage from '../../../components/extras/PlaceholderImage';
-import FormGroup from '../../../components/bootstrap/forms/FormGroup';
-import { demoPagesMenu } from '../../../menu';
-import Breadcrumb from '../../../components/bootstrap/Breadcrumb';
+} from '../../../../components/bootstrap/Card';
+import Badge from '../../../../components/bootstrap/Badge';
+import Input from '../../../../components/bootstrap/forms/Input';
+import PlaceholderImage from '../../../../components/extras/PlaceholderImage';
+import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
+import { demoPagesMenu } from '../../../../menu';
+import Breadcrumb from '../../../../components/bootstrap/Breadcrumb';
 
 interface IValues {
 	name: string;

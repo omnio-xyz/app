@@ -1,5 +1,5 @@
-import { TColor } from '../../../../type/color-type';
-import { TIcons } from '../../../../type/icons-type';
+import { TColor } from '../../../../../type/color-type';
+import { TIcons } from '../../../../../type/icons-type';
 
 export type TColumnData = { id: string; title: string; color: TColor; icon: TIcons };
 export type TColumnsData = {

@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import useDarkMode from '../../../../hooks/useDarkMode';
+import useDarkMode from '../../../../../hooks/useDarkMode';
 import { useFormik } from 'formik';
 import Card, {
 	CardActions,
@@ -9,15 +9,15 @@ import Card, {
 	CardHeader,
 	CardLabel,
 	CardTitle,
-} from '../../../../components/bootstrap/Card';
+} from '../../../../../components/bootstrap/Card';
 import classNames from 'classnames';
-import Badge from '../../../../components/bootstrap/Badge';
+import Badge from '../../../../../components/bootstrap/Badge';
 import Dropdown, {
 	DropdownItem,
 	DropdownMenu,
 	DropdownToggle,
-} from '../../../../components/bootstrap/Dropdown';
-import Button from '../../../../components/bootstrap/Button';
+} from '../../../../../components/bootstrap/Dropdown';
+import Button from '../../../../../components/bootstrap/Button';
 import { Droppable, DroppableProvided, DroppableStateSnapshot } from '@hello-pangea/dnd';
 import { getListStyle } from '../helper/style';
 import Modal, {
@@ -25,14 +25,14 @@ import Modal, {
 	ModalFooter,
 	ModalHeader,
 	ModalTitle,
-} from '../../../../components/bootstrap/Modal';
-import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
-import Input from '../../../../components/bootstrap/forms/Input';
-import Textarea from '../../../../components/bootstrap/forms/Textarea';
-import Select from '../../../../components/bootstrap/forms/Select';
-import Option from '../../../../components/bootstrap/Option';
-import USERS from '../../../../common/data/userDummyData';
-import TAGS from '../../../../common/data/boardTagsData';
+} from '../../../../../components/bootstrap/Modal';
+import FormGroup from '../../../../../components/bootstrap/forms/FormGroup';
+import Input from '../../../../../components/bootstrap/forms/Input';
+import Textarea from '../../../../../components/bootstrap/forms/Textarea';
+import Select from '../../../../../components/bootstrap/forms/Select';
+import Option from '../../../../../components/bootstrap/Option';
+import USERS from '../../../../../common/data/userDummyData';
+import TAGS from '../../../../../common/data/boardTagsData';
 import { TCards, TColumnData, TColumnsData } from '../type/types';
 import ColumnCardWrapper from './ColumnCardWrapper';
 

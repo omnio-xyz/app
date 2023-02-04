@@ -1,37 +1,37 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
-import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
+import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
 import SubHeader, {
 	SubHeaderLeft,
 	SubHeaderRight,
 	SubheaderSeparator,
-} from '../../../layout/SubHeader/SubHeader';
-import Page from '../../../layout/Page/Page';
-import { demoPagesMenu } from '../../../menu';
-import Card, { CardBody } from '../../../components/bootstrap/Card';
-import { getFirstLetter, priceFormat } from '../../../helpers/helpers';
-import data from '../../../common/data/dummyCustomerData';
+} from '../../../../layout/SubHeader/SubHeader';
+import Page from '../../../../layout/Page/Page';
+import { demoPagesMenu } from '../../../../menu';
+import Card, { CardBody } from '../../../../components/bootstrap/Card';
+import { getFirstLetter, priceFormat } from '../../../../helpers/helpers';
+import data from '../../../../common/data/dummyCustomerData';
 import PaginationButtons, {
 	dataPagination,
 	PER_COUNT,
-} from '../../../components/PaginationButtons';
-import Button from '../../../components/bootstrap/Button';
-import Icon from '../../../components/icon/Icon';
-import Input from '../../../components/bootstrap/forms/Input';
+} from '../../../../components/PaginationButtons';
+import Button from '../../../../components/bootstrap/Button';
+import Icon from '../../../../components/icon/Icon';
+import Input from '../../../../components/bootstrap/forms/Input';
 import Dropdown, {
 	DropdownItem,
 	DropdownMenu,
 	DropdownToggle,
-} from '../../../components/bootstrap/Dropdown';
-import FormGroup from '../../../components/bootstrap/forms/FormGroup';
-import Checks, { ChecksGroup } from '../../../components/bootstrap/forms/Checks';
-import PAYMENTS from '../../../common/data/enumPaymentMethod';
-import useSortableData from '../../../hooks/useSortableData';
-import InputGroup, { InputGroupText } from '../../../components/bootstrap/forms/InputGroup';
-import Popovers from '../../../components/bootstrap/Popovers';
+} from '../../../../components/bootstrap/Dropdown';
+import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
+import Checks, { ChecksGroup } from '../../../../components/bootstrap/forms/Checks';
+import PAYMENTS from '../../../../common/data/enumPaymentMethod';
+import useSortableData from '../../../../hooks/useSortableData';
+import InputGroup, { InputGroupText } from '../../../../components/bootstrap/forms/InputGroup';
+import Popovers from '../../../../components/bootstrap/Popovers';
 import CustomerEditModal from './CustomerEditModal';
-import { getColorNameWithIndex } from '../../../common/data/enumColors';
-import useDarkMode from '../../../hooks/useDarkMode';
+import { getColorNameWithIndex } from '../../../../common/data/enumColors';
+import useDarkMode from '../../../../hooks/useDarkMode';
 
 const CustomersList = () => {
 	const { darkModeStatus } = useDarkMode();

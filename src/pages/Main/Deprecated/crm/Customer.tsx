@@ -1,35 +1,35 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
-import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
+import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
 import SubHeader, {
 	SubHeaderLeft,
 	SubHeaderRight,
 	SubheaderSeparator,
-} from '../../../layout/SubHeader/SubHeader';
-import Page from '../../../layout/Page/Page';
-import { demoPagesMenu } from '../../../menu';
-import data from '../../../common/data/dummyCustomerData';
-import Button from '../../../components/bootstrap/Button';
+} from '../../../../layout/SubHeader/SubHeader';
+import Page from '../../../../layout/Page/Page';
+import { demoPagesMenu } from '../../../../menu';
+import data from '../../../../common/data/dummyCustomerData';
+import Button from '../../../../components/bootstrap/Button';
 import Card, {
 	CardActions,
 	CardBody,
 	CardHeader,
 	CardLabel,
 	CardTitle,
-} from '../../../components/bootstrap/Card';
-import Avatar from '../../../components/Avatar';
-import Icon from '../../../components/icon/Icon';
-import { priceFormat } from '../../../helpers/helpers';
-import latestSalesData from '../../../common/data/dummySalesData';
-import useSortableData from '../../../hooks/useSortableData';
+} from '../../../../components/bootstrap/Card';
+import Avatar from '../../../../components/Avatar';
+import Icon from '../../../../components/icon/Icon';
+import { priceFormat } from '../../../../helpers/helpers';
+import latestSalesData from '../../../../common/data/dummySalesData';
+import useSortableData from '../../../../hooks/useSortableData';
 import PaginationButtons, {
 	dataPagination,
 	PER_COUNT,
-} from '../../../components/PaginationButtons';
+} from '../../../../components/PaginationButtons';
 import CustomerEditModal from './CustomerEditModal';
-import { getColorNameWithIndex } from '../../../common/data/enumColors';
-import useDarkMode from '../../../hooks/useDarkMode';
+import { getColorNameWithIndex } from '../../../../common/data/enumColors';
+import useDarkMode from '../../../../hooks/useDarkMode';
 
 const Customer = () => {
 	const { darkModeStatus } = useDarkMode();

@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
-import Page from '../../../layout/Page/Page';
-import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
+import Page from '../../../../layout/Page/Page';
+import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
 import SubHeader, {
 	SubHeaderLeft,
 	SubHeaderRight,
 	SubheaderSeparator,
-} from '../../../layout/SubHeader/SubHeader';
-import Button from '../../../components/bootstrap/Button';
-import { demoPagesMenu } from '../../../menu';
-import tableData from '../../../common/data/dummyProductData';
-import Avatar from '../../../components/Avatar';
-import USERS from '../../../common/data/userDummyData';
+} from '../../../../layout/SubHeader/SubHeader';
+import Button from '../../../../components/bootstrap/Button';
+import { demoPagesMenu } from '../../../../menu';
+import tableData from '../../../../common/data/dummyProductData';
+import Avatar from '../../../../components/Avatar';
+import USERS from '../../../../common/data/userDummyData';
 import Card, {
 	CardBody,
 	CardFooter,
@@ -22,16 +22,16 @@ import Card, {
 	CardLabel,
 	CardSubTitle,
 	CardTitle,
-} from '../../../components/bootstrap/Card';
-import Icon from '../../../components/icon/Icon';
-import { priceFormat } from '../../../helpers/helpers';
-import Chart from '../../../components/extras/Chart';
-import Accordion, { AccordionItem } from '../../../components/bootstrap/Accordion';
-import PlaceholderImage from '../../../components/extras/PlaceholderImage';
-import Input from '../../../components/bootstrap/forms/Input';
-import FormGroup from '../../../components/bootstrap/forms/FormGroup';
-import showNotification from '../../../components/extras/showNotification';
-import useDarkMode from '../../../hooks/useDarkMode';
+} from '../../../../components/bootstrap/Card';
+import Icon from '../../../../components/icon/Icon';
+import { priceFormat } from '../../../../helpers/helpers';
+import Chart from '../../../../components/extras/Chart';
+import Accordion, { AccordionItem } from '../../../../components/bootstrap/Accordion';
+import PlaceholderImage from '../../../../components/extras/PlaceholderImage';
+import Input from '../../../../components/bootstrap/forms/Input';
+import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
+import showNotification from '../../../../components/extras/showNotification';
+import useDarkMode from '../../../../hooks/useDarkMode';
 import { ApexOptions } from 'apexcharts';
 
 interface IValues {

@@ -1,11 +1,11 @@
-import Img1 from '../../../../assets/img/scene1.png';
-import Img2 from '../../../../assets/img/scene2.png';
-import Img3 from '../../../../assets/img/scene3.png';
-import Img4 from '../../../../assets/img/scene4.png';
-import Img5 from '../../../../assets/img/scene5.png';
-import Img6 from '../../../../assets/img/scene6.png';
-import COLORS from '../../../../common/data/enumColors';
-import { TColor } from '../../../../type/color-type';
+import Img1 from '../../../../../assets/img/scene1.png';
+import Img2 from '../../../../../assets/img/scene2.png';
+import Img3 from '../../../../../assets/img/scene3.png';
+import Img4 from '../../../../../assets/img/scene4.png';
+import Img5 from '../../../../../assets/img/scene5.png';
+import Img6 from '../../../../../assets/img/scene6.png';
+import COLORS from '../../../../../common/data/enumColors';
+import { TColor } from '../../../../../type/color-type';
 
 export type TTags = { text: string; color: TColor };
 const TAGS: { [key: string]: TTags } = {

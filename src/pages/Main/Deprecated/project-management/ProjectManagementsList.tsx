@@ -1,14 +1,14 @@
 import React, { FC, HTMLAttributes, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
-import { demoPagesMenu } from '../../../menu';
+import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
+import { demoPagesMenu } from '../../../../menu';
 import SubHeader, {
 	SubHeaderLeft,
 	SubHeaderRight,
 	SubheaderSeparator,
-} from '../../../layout/SubHeader/SubHeader';
-import Page from '../../../layout/Page/Page';
-import Badge from '../../../components/bootstrap/Badge';
+} from '../../../../layout/SubHeader/SubHeader';
+import Page from '../../../../layout/Page/Page';
+import Badge from '../../../../components/bootstrap/Badge';
 import Card, {
 	CardActions,
 	CardBody,
@@ -16,15 +16,15 @@ import Card, {
 	CardLabel,
 	CardSubTitle,
 	CardTitle,
-} from '../../../components/bootstrap/Card';
-import Button from '../../../components/bootstrap/Button';
-import Avatar, { AvatarGroup } from '../../../components/Avatar';
-import USERS from '../../../common/data/userDummyData';
-import Icon from '../../../components/icon/Icon';
-import Progress from '../../../components/bootstrap/Progress';
-import CommonAvatarTeam from '../../../common/other/CommonAvatarTeam';
-import useDarkMode from '../../../hooks/useDarkMode';
-import useTourStep from '../../../hooks/useTourStep';
+} from '../../../../components/bootstrap/Card';
+import Button from '../../../../components/bootstrap/Button';
+import Avatar, { AvatarGroup } from '../../../../components/Avatar';
+import USERS from '../../../../common/data/userDummyData';
+import Icon from '../../../../components/icon/Icon';
+import Progress from '../../../../components/bootstrap/Progress';
+import CommonAvatarTeam from '../../../../common/other/CommonAvatarTeam';
+import useDarkMode from '../../../../hooks/useDarkMode';
+import useTourStep from '../../../../hooks/useTourStep';
 
 interface IItemProps extends HTMLAttributes<HTMLDivElement> {
 	name: string;

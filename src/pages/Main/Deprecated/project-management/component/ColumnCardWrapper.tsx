@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Draggable, DraggableProvided, DraggableStateSnapshot } from '@hello-pangea/dnd';
-import Card from '../../../../components/bootstrap/Card';
+import Card from '../../../../../components/bootstrap/Card';
 import classNames from 'classnames';
 import { getItemStyle } from '../helper/style';
 import { TCard, TCards, TColumnsData } from '../type/types';

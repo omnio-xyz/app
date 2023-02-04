@@ -2,40 +2,40 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
 import classNames from 'classnames';
-import { getUserDataWithId } from '../../../common/data/userDummyData';
-import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
-import Page from '../../../layout/Page/Page';
+import { getUserDataWithId } from '../../../../common/data/userDummyData';
+import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
+import Page from '../../../../layout/Page/Page';
 import SubHeader, {
 	SubHeaderLeft,
 	SubHeaderRight,
 	SubheaderSeparator,
-} from '../../../layout/SubHeader/SubHeader';
-import Button from '../../../components/bootstrap/Button';
+} from '../../../../layout/SubHeader/SubHeader';
+import Button from '../../../../components/bootstrap/Button';
 import Card, {
 	CardActions,
 	CardBody,
 	CardHeader,
 	CardLabel,
 	CardTitle,
-} from '../../../components/bootstrap/Card';
-import Avatar from '../../../components/Avatar';
-import Icon from '../../../components/icon/Icon';
-import { demoPagesMenu } from '../../../menu';
-import Badge from '../../../components/bootstrap/Badge';
+} from '../../../../components/bootstrap/Card';
+import Avatar from '../../../../components/Avatar';
+import Icon from '../../../../components/icon/Icon';
+import { demoPagesMenu } from '../../../../menu';
+import Badge from '../../../../components/bootstrap/Badge';
 import Dropdown, {
 	DropdownItem,
 	DropdownMenu,
 	DropdownToggle,
-} from '../../../components/bootstrap/Dropdown';
-import Chart, { IChartOptions } from '../../../components/extras/Chart';
-import dummyEventsData from '../../../common/data/dummyEventsData';
-import { priceFormat } from '../../../helpers/helpers';
-import EVENT_STATUS from '../../../common/data/enumEventStatus';
-import Alert from '../../../components/bootstrap/Alert';
-import CommonAvatarTeam from '../../../common/other/CommonAvatarTeam';
-import COLORS from '../../../common/data/enumColors';
-import useDarkMode from '../../../hooks/useDarkMode';
-import useTourStep from '../../../hooks/useTourStep';
+} from '../../../../components/bootstrap/Dropdown';
+import Chart, { IChartOptions } from '../../../../components/extras/Chart';
+import dummyEventsData from '../../../../common/data/dummyEventsData';
+import { priceFormat } from '../../../../helpers/helpers';
+import EVENT_STATUS from '../../../../common/data/enumEventStatus';
+import Alert from '../../../../components/bootstrap/Alert';
+import CommonAvatarTeam from '../../../../common/other/CommonAvatarTeam';
+import COLORS from '../../../../common/data/enumColors';
+import useDarkMode from '../../../../hooks/useDarkMode';
+import useTourStep from '../../../../hooks/useTourStep';
 
 const EmployeePage = () => {
 	useTourStep(19);

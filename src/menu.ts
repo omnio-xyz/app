@@ -156,12 +156,6 @@ export const demoPagesMenu = {
 		icon: 'Store',
 		subMenu: {
 			dashboard: dashboardPagesMenu.dashboard,
-			salesList: {
-				id: 'products',
-				text: 'Sales List',
-				path: 'sales/sales-list',
-				icon: 'FactCheck',
-			},
 			productsGrid: {
 				id: 'productsGrid',
 				text: 'Products Grid',

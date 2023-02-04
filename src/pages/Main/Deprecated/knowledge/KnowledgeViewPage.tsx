@@ -6,15 +6,15 @@ import SubHeader, {
 	SubHeaderLeft,
 	SubHeaderRight,
 	SubheaderSeparator,
-} from '../../../layout/SubHeader/SubHeader';
-import Button from '../../../components/bootstrap/Button';
-import Avatar from '../../../components/Avatar';
-import Page from '../../../layout/Page/Page';
-import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
-import Badge from '../../../components/bootstrap/Badge';
-import USERS from '../../../common/data/userDummyData';
-import useDarkMode from '../../../hooks/useDarkMode';
-import useTourStep from '../../../hooks/useTourStep';
+} from '../../../../layout/SubHeader/SubHeader';
+import Button from '../../../../components/bootstrap/Button';
+import Avatar from '../../../../components/Avatar';
+import Page from '../../../../layout/Page/Page';
+import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
+import Badge from '../../../../components/bootstrap/Badge';
+import USERS from '../../../../common/data/userDummyData';
+import useDarkMode from '../../../../hooks/useDarkMode';
+import useTourStep from '../../../../hooks/useTourStep';
 
 const KnowledgeViewPage = () => {
 	useTourStep(16);
