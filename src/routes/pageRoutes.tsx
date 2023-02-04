@@ -6,57 +6,57 @@ import {
 	gettingStartedPagesMenu,
   demoMenu,
 } from '../menu';
-import Login from '../pages/Menu/auth/Login';
+import Login from '../Pages/Main/auth/Login';
 
 const LANDING = {
-	DASHBOARD: lazy(() => import('../pages/Menu/Consumer/ConsumerProfle')),
-	DASHBOARD_BOOKING: lazy(() => import('../pages/Menu/Consumer/PurchaseHistory')),
+	DASHBOARD: lazy(() => import('../Pages/Main/Consumer/ConsumerProfle')),
+	DASHBOARD_BOOKING: lazy(() => import('../Pages/Main/Consumer/PurchaseHistory')),
 };
 const SINGLE = {
-	FLUID: lazy(() => import('../pages/Menu/Engagement/Search')),
+	FLUID: lazy(() => import('../Pages/Main/Engagement/Search')),
 };
 const EDIT = {
-	MODERN: lazy(() => import('../pages/Menu/demo-pages/EditModernPage')),
-	FLUID: lazy(() => import('../pages/Menu/demo-pages/EditFluidPage')),
-	WIZARD: lazy(() => import('../pages/Menu/demo-pages/EditWizardPage')),
+	MODERN: lazy(() => import('../Pages/Main/demo-pages/EditModernPage')),
+	FLUID: lazy(() => import('../Pages/Main/demo-pages/EditFluidPage')),
+	WIZARD: lazy(() => import('../Pages/Main/demo-pages/EditWizardPage')),
 };
 
 const AUTH = {
-	PAGE_404: lazy(() => import('../pages/Menu/auth/Page404')),
+	PAGE_404: lazy(() => import('../Pages/Main/auth/Page404')),
 };
 const APP = {
 	PROJECT_MANAGEMENT: {
 		PROJECTS_LIST: lazy(
-			() => import('../pages/Menu/project-management/ProjectManagementsList'),
+			() => import('../Pages/Main/project-management/ProjectManagementsList'),
 		),
 		PROJECT: lazy(
-			() => import('../pages/Menu/project-management/ProjectManagementsProject'),
+			() => import('../Pages/Main/project-management/ProjectManagementsProject'),
 		),
 	},
 	KNOWLEDGE: {
-		GRID: lazy(() => import('../pages/Menu/knowledge/KnowledgeGridPage')),
-		VIEW: lazy(() => import('../pages/Menu/knowledge/KnowledgeViewPage')),
+		GRID: lazy(() => import('../Pages/Main/knowledge/KnowledgeGridPage')),
+		VIEW: lazy(() => import('../Pages/Main/knowledge/KnowledgeViewPage')),
 	},
 	SALES: {
-		TRANSACTIONS: lazy(() => import('../pages/Menu/sales/TransActionsPage')),
-		PRODUCTS: lazy(() => import('../pages/Menu/sales/SalesListPage')),
-		PRODUCTS_GRID: lazy(() => import('../pages/Menu/sales/ProductsGridPage')),
-		PRODUCTS_VIEW: lazy(() => import('../pages/Menu/sales/ProductViewPage')),
+		TRANSACTIONS: lazy(() => import('../Pages/Main/sales/TransActionsPage')),
+		PRODUCTS: lazy(() => import('../Pages/Main/sales/SalesListPage')),
+		PRODUCTS_GRID: lazy(() => import('../Pages/Main/sales/ProductsGridPage')),
+		PRODUCTS_VIEW: lazy(() => import('../Pages/Main/sales/ProductViewPage')),
 	},
 	APPOINTMENT: {
-		CALENDAR: lazy(() => import('../pages/Menu/appointment/CalendarPage')),
-		EMPLOYEE_LIST: lazy(() => import('../pages/Menu/appointment/EmployeeList')),
-		EMPLOYEE_VIEW: lazy(() => import('../pages/Menu/appointment/EmployeePage')),
-		APPOINTMENT_LIST: lazy(() => import('../pages/Menu/appointment/AppointmentList')),
+		CALENDAR: lazy(() => import('../Pages/Main/appointment/CalendarPage')),
+		EMPLOYEE_LIST: lazy(() => import('../Pages/Main/appointment/EmployeeList')),
+		EMPLOYEE_VIEW: lazy(() => import('../Pages/Main/appointment/EmployeePage')),
+		APPOINTMENT_LIST: lazy(() => import('../Pages/Main/appointment/AppointmentList')),
 	},
 	CRM: {
-		CRM_DASHBOARD: lazy(() => import('../pages/Menu/crm/CrmDashboard')),
-		CUSTOMERS: lazy(() => import('../pages/Menu/crm/CustomersList')),
-		CUSTOMER: lazy(() => import('../pages/Menu/crm/Customer')),
+		CRM_DASHBOARD: lazy(() => import('../Pages/Main/crm/CrmDashboard')),
+		CUSTOMERS: lazy(() => import('../Pages/Main/crm/CustomersList')),
+		CUSTOMER: lazy(() => import('../Pages/Main/crm/Customer')),
 	},
 };
 const GETTING_STARTED = {
-	INSTALLATION: lazy(() => import('../pages/documentation/getting-started/InstallationPage')),
+	INSTALLATION: lazy(() => import('../Pages/documentation/getting-started/InstallationPage')),
 };
 
 const presentation: RouteProps[] = [

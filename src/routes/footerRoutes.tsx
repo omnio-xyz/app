@@ -1,5 +1,5 @@
 import { RouteProps } from 'react-router-dom';
-import DefaultFooter from '../pages/_layout/DefaultFooter';
+import DefaultFooter from '../Pages/_layout/DefaultFooter';
 
 const footers: RouteProps[] = [
 	{ path: '*', element: <DefaultFooter /> },
