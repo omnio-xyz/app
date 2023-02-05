@@ -11,7 +11,7 @@ import Login from '../Pages/Main/Account/Launch';
 
 const LANDING = {
 	DASHBOARD: lazy(() => import('../Pages/Main/Consumer/Profle')),
-	DASHBOARD_BOOKING: lazy(() => import('../Pages/Main/Consumer/PurchaseHistory')),
+	DASHBOARD_BOOKING: lazy(() => import('../Pages/Main/DataHub/PurchaseHistory')),
 };
 const SINGLE = {
 	FLUID: lazy(() => import('../Pages/Main/Engagement/Search')),

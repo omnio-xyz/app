@@ -44,9 +44,9 @@ export const ConsumerDataMenu = {
     },
   },
   dashboardBooking: {
-    id: 'dashboard-booking',
+    id: 'purchase-history',
     text: 'Purchase History',
-    path: 'dashboard-booking',
+    path: 'purchase-history',
     icon: 'emoji_transportation',
     subMenu: null,
   },
