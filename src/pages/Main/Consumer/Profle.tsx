@@ -368,7 +368,7 @@ const DashboardPage = () => {
                         color={darkModeStatus ? 'light' : 'dark'}
                         onClick={() =>
                           navigate(
-                            `../${demoPagesMenu.sales.subMenu.dashboard.path}`,
+                            `/`,
                           )
                         }>
                         Click
@@ -389,7 +389,7 @@ const DashboardPage = () => {
                         color={darkModeStatus ? 'light' : 'dark'}
                         onClick={() =>
                           navigate(
-                            `../${demoPagesMenu.sales.subMenu.dashboard.path}`,
+                            `/`,
                           )
                         }>
                         Click

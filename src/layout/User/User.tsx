@@ -49,17 +49,6 @@ const User = () => {
 			<DropdownMenu>
 				<DropdownItem>
 					<Button
-						icon='AccountBox'
-						onClick={() =>
-							navigate(
-								`../${demoPagesMenu.appointment.subMenu.employeeID.path}/${userData?.id}`,
-							)
-						}>
-						Profile
-					</Button>
-				</DropdownItem>
-				<DropdownItem>
-					<Button
 						icon={darkModeStatus ? 'DarkMode' : 'LightMode'}
 						onClick={() => setDarkModeStatus(!darkModeStatus)}
 						aria-label='Toggle fullscreen'>
@@ -71,25 +60,6 @@ const User = () => {
 			<Collapse isOpen={collapseStatus} className='user-menu'>
 				<nav aria-label='aside-bottom-user-menu'>
 					<div className='navigation'>
-						<div
-							role='presentation'
-							className='navigation-item cursor-pointer'
-							onClick={() =>
-								navigate(
-									`/`,
-									// @ts-ignore
-									handleItem(),
-								)
-							}>
-							<span className='navigation-link navigation-link-pill'>
-								<span className='navigation-link-info'>
-									<Icon icon='PersonAdd' className='navigation-icon' />
-									<span className='navigation-text'>
-										{t('Settings') as ReactNode}
-									</span>
-								</span>
-							</span>
-						</div>
 						<div
 							role='presentation'
 							className='navigation-item cursor-pointer'

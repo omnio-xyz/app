@@ -26,25 +26,15 @@ const AUTH = {
 	PAGE_404: lazy(() => import('../Pages/Main/Account/404')),
 };
 const APP = {
-	PROJECT_MANAGEMENT: {
-		PROJECTS_LIST: lazy(
-			() => import('../Pages/Main/Deprecated/project-management/ProjectManagementsList'),
-		),
-		PROJECT: lazy(
-			() => import('../Pages/Main/Deprecated/project-management/ProjectManagementsProject'),
-		),
-	},
 	KNOWLEDGE: {
 		GRID: lazy(() => import('../Pages/Main/Deprecated/knowledge/KnowledgeGridPage')),
 		VIEW: lazy(() => import('../Pages/Main/Deprecated/knowledge/KnowledgeViewPage')),
 	},
 	SALES: {
-		TRANSACTIONS: lazy(() => import('../Pages/Main/Deprecated/sales/TransActionsPage')),
 		PRODUCTS_GRID: lazy(() => import('../Pages/Main/Deprecated/sales/ProductsGridPage')),
 		PRODUCTS_VIEW: lazy(() => import('../Pages/Main/Deprecated/sales/ProductViewPage')),
 	},
 	APPOINTMENT: {
-		CALENDAR: lazy(() => import('../Pages/Main/Deprecated/appointment/CalendarPage')),
 		EMPLOYEE_LIST: lazy(() => import('../Pages/Main/Deprecated/appointment/EmployeeList')),
 		EMPLOYEE_VIEW: lazy(() => import('../Pages/Main/Deprecated/appointment/EmployeePage')),
 		APPOINTMENT_LIST: lazy(() => import('../Pages/Main/Deprecated/appointment/AppointmentList')),
@@ -111,18 +101,6 @@ const presentation: RouteProps[] = [
 	 */
 
 	/**
-	 * App > Project Management
-	 */
-	{
-		path: demoPagesMenu.projectManagement.subMenu.list.path,
-		element: <APP.PROJECT_MANAGEMENT.PROJECTS_LIST />,
-	},
-	{
-		path: `${demoPagesMenu.projectManagement.subMenu.itemID.path}/:id`,
-		element: <APP.PROJECT_MANAGEMENT.PROJECT />,
-	},
-
-	/**
 	 * App > Knowledge
 	 */
 	{
@@ -138,10 +116,6 @@ const presentation: RouteProps[] = [
 	 * App > Sales
 	 */
 	{
-		path: demoPagesMenu.sales.subMenu.transactions.path,
-		element: <APP.SALES.TRANSACTIONS />,
-	},
-	{
 		path: demoPagesMenu.sales.subMenu.productsGrid.path,
 		element: <APP.SALES.PRODUCTS_GRID />,
 	},
@@ -153,10 +127,6 @@ const presentation: RouteProps[] = [
 	/**
 	 * App > Appointment
 	 */
-	{
-		path: demoPagesMenu.appointment.subMenu.calendar.path,
-		element: <APP.APPOINTMENT.CALENDAR />,
-	},
 	{
 		path: demoPagesMenu.appointment.subMenu.employeeList.path,
 		element: <APP.APPOINTMENT.EMPLOYEE_LIST />,
