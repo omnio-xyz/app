@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import Brand from '../../../layout/Brand/Brand';
 import Navigation, { NavigationLine } from '../../../layout/Navigation/Navigation';
 import User from '../../../layout/User/User';
-import { LaunchMenu } from '../../../menu';
+import { LaunchMenu, ConsumerDataMenu } from '../../../menu';
 import ThemeContext from '../../../contexts/themeContext';
 
 import useDarkMode from '../../../hooks/useDarkMode';

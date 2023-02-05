@@ -94,7 +94,7 @@ const User = () => {
 								if (setUser) {
 									setUser('');
 								}
-								navigate(`../${LaunchMenu.login.path}`);
+								navigate(`../${LaunchMenu.launch.path}`);
 							}}>
 							<span className='navigation-link navigation-link-pill'>
 								<span className='navigation-link-info'>

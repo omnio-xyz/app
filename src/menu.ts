@@ -1,6 +1,6 @@
 export const LaunchMenu = {
-  login: {
-    id: 'login',
+  launch: {
+    id: 'launch',
     text: 'Launch',
     path: 'auth-pages/login',
     icon: 'Login',

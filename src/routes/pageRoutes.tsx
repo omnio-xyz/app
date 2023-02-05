@@ -92,7 +92,7 @@ const presentation: RouteProps[] = [
 	 * Auth Page
 	 */
 	{
-		path: LaunchMenu.login.path,
+		path: LaunchMenu.launch.path,
 		element: <Login />,
 	},
 
