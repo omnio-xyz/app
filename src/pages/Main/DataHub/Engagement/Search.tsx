@@ -4,9 +4,9 @@ import moment from 'moment';
 import classNames from 'classnames';
 import { useMeasure } from 'react-use';
 import { useNavigate } from 'react-router-dom';
-import Button from '../../../components/bootstrap/Button';
-import Page from '../../../layout/Page/Page';
-import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
+import Button from '../../../../components/bootstrap/Button';
+import Page from '../../../../layout/Page/Page';
+import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
 import Card, {
 	CardActions,
 	CardBody,
@@ -16,34 +16,34 @@ import Card, {
 	CardLabel,
 	CardTabItem,
 	CardTitle,
-} from '../../../components/bootstrap/Card';
-import UserImageWebp from '../../../assets/img/wanna/wanna1.webp';
-import UserImage from '../../../assets/img/wanna/wanna1.png';
-import FormGroup from '../../../components/bootstrap/forms/FormGroup';
-import Input from '../../../components/bootstrap/forms/Input';
-import showNotification from '../../../components/extras/showNotification';
-import Icon from '../../../components/icon/Icon';
-import Alert from '../../../components/bootstrap/Alert';
-import Avatar from '../../../components/Avatar';
-import Progress from '../../../components/bootstrap/Progress';
+} from '../../../../components/bootstrap/Card';
+import UserImageWebp from '../../../../assets/img/wanna/wanna1.webp';
+import UserImage from '../../../../assets/img/wanna/wanna1.png';
+import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
+import Input from '../../../../components/bootstrap/forms/Input';
+import showNotification from '../../../../components/extras/showNotification';
+import Icon from '../../../../components/icon/Icon';
+import Alert from '../../../../components/bootstrap/Alert';
+import Avatar from '../../../../components/Avatar';
+import Progress from '../../../../components/bootstrap/Progress';
 
-import Pic from '../../../assets/img/wanna/richie/richie.png';
-import Pic2 from '../../../assets/img/wanna/richie/richie2.png';
-import Pic3 from '../../../assets/img/wanna/richie/richie3.png';
-import Pic4 from '../../../assets/img/wanna/richie/richie4.png';
-import Pic5 from '../../../assets/img/wanna/richie/richie5.png';
-import Pic6 from '../../../assets/img/wanna/richie/richie6.png';
-import Pic7 from '../../../assets/img/wanna/richie/richie7.png';
-import Pic8 from '../../../assets/img/wanna/richie/richie8.png';
-import Modal, { ModalBody, ModalHeader, ModalTitle } from '../../../components/bootstrap/Modal';
-import { demoPagesMenu } from '../../../menu';
-import WannaImg1 from '../../../assets/img/wanna/slide/scene-1.png';
-import WannaImg2 from '../../../assets/img/wanna/slide/scene-2.png';
-import WannaImg5 from '../../../assets/img/wanna/slide/scene-5.png';
-import WannaImg6 from '../../../assets/img/wanna/slide/scene-6.png';
-import Carousel from '../../../components/bootstrap/Carousel';
-import CarouselSlide from '../../../components/bootstrap/CarouselSlide';
-import useDarkMode from '../../../hooks/useDarkMode';
+import Pic from '../../../../assets/img/wanna/richie/richie.png';
+import Pic2 from '../../../../assets/img/wanna/richie/richie2.png';
+import Pic3 from '../../../../assets/img/wanna/richie/richie3.png';
+import Pic4 from '../../../../assets/img/wanna/richie/richie4.png';
+import Pic5 from '../../../../assets/img/wanna/richie/richie5.png';
+import Pic6 from '../../../../assets/img/wanna/richie/richie6.png';
+import Pic7 from '../../../../assets/img/wanna/richie/richie7.png';
+import Pic8 from '../../../../assets/img/wanna/richie/richie8.png';
+import Modal, { ModalBody, ModalHeader, ModalTitle } from '../../../../components/bootstrap/Modal';
+import { demoPagesMenu } from '../../../../menu';
+import WannaImg1 from '../../../../assets/img/wanna/slide/scene-1.png';
+import WannaImg2 from '../../../../assets/img/wanna/slide/scene-2.png';
+import WannaImg5 from '../../../../assets/img/wanna/slide/scene-5.png';
+import WannaImg6 from '../../../../assets/img/wanna/slide/scene-6.png';
+import Carousel from '../../../../components/bootstrap/Carousel';
+import CarouselSlide from '../../../../components/bootstrap/CarouselSlide';
+import useDarkMode from '../../../../hooks/useDarkMode';
 
 const SingleFluidPage = () => {
 	const { darkModeStatus } = useDarkMode();

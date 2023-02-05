@@ -14,12 +14,12 @@ const LANDING = {
 	DASHBOARD_BOOKING: lazy(() => import('../Pages/Main/DataHub/PurchaseHistory')),
 };
 const SINGLE = {
-	FLUID: lazy(() => import('../Pages/Main/Engagement/Search')),
+	FLUID: lazy(() => import('../Pages/Main/DataHub/Engagement/Search')),
 };
 const EDIT = {
-	MODERN: lazy(() => import('../Pages/Main/demo-pages/EditModernPage')),
-	FLUID: lazy(() => import('../Pages/Main/demo-pages/EditFluidPage')),
-	WIZARD: lazy(() => import('../Pages/Main/demo-pages/EditWizardPage')),
+	MODERN: lazy(() => import('../Pages/Main/Onboarding/EditModernPage')),
+	FLUID: lazy(() => import('../Pages/Main/Onboarding/EditFluidPage')),
+	WIZARD: lazy(() => import('../Pages/Main/Onboarding/EditWizardPage')),
 };
 
 const AUTH = {
@@ -27,22 +27,22 @@ const AUTH = {
 };
 const APP = {
 	KNOWLEDGE: {
-		GRID: lazy(() => import('../Pages/Main/Deprecated/knowledge/KnowledgeGridPage')),
-		VIEW: lazy(() => import('../Pages/Main/Deprecated/knowledge/KnowledgeViewPage')),
+		GRID: lazy(() => import('../Pages/Main/BrandStudio/knowledge/KnowledgeGridPage')),
+		VIEW: lazy(() => import('../Pages/Main/BrandStudio/knowledge/KnowledgeViewPage')),
 	},
 	SALES: {
-		PRODUCTS_GRID: lazy(() => import('../Pages/Main/Deprecated/sales/ProductsGridPage')),
-		PRODUCTS_VIEW: lazy(() => import('../Pages/Main/Deprecated/sales/ProductViewPage')),
+		PRODUCTS_GRID: lazy(() => import('../Pages/Main/BrandStudio/sales/ProductsGridPage')),
+		PRODUCTS_VIEW: lazy(() => import('../Pages/Main/BrandStudio/sales/ProductViewPage')),
 	},
 	APPOINTMENT: {
-		EMPLOYEE_LIST: lazy(() => import('../Pages/Main/Deprecated/appointment/EmployeeList')),
-		EMPLOYEE_VIEW: lazy(() => import('../Pages/Main/Deprecated/appointment/EmployeePage')),
-		APPOINTMENT_LIST: lazy(() => import('../Pages/Main/Deprecated/appointment/AppointmentList')),
+		EMPLOYEE_LIST: lazy(() => import('../Pages/Main/BrandStudio/appointment/EmployeeList')),
+		EMPLOYEE_VIEW: lazy(() => import('../Pages/Main/BrandStudio/appointment/EmployeePage')),
+		APPOINTMENT_LIST: lazy(() => import('../Pages/Main/BrandStudio/appointment/AppointmentList')),
 	},
 	CRM: {
-		CRM_DASHBOARD: lazy(() => import('../Pages/Main/Deprecated/crm/CrmDashboard')),
-		CUSTOMERS: lazy(() => import('../Pages/Main/Deprecated/crm/CustomersList')),
-		CUSTOMER: lazy(() => import('../Pages/Main/Deprecated/crm/Customer')),
+		CRM_DASHBOARD: lazy(() => import('../Pages/Main/BrandStudio/crm/CrmDashboard')),
+		CUSTOMERS: lazy(() => import('../Pages/Main/BrandStudio/crm/CustomersList')),
+		CUSTOMER: lazy(() => import('../Pages/Main/BrandStudio/crm/Customer')),
 	},
 };
 const GETTING_STARTED = {

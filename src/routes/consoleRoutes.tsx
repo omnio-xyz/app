@@ -4,7 +4,7 @@ import LaunchConsole from '../Pages/Layout/Console/LaunchConsole';
 import { LaunchMenu } from '../menu';
 
 const asides: RouteProps[] = [
-	{ path: LaunchMenu.login.path, element: <LaunchConsole /> },
+	{ path: LaunchMenu.login.path, element: <DefaultAside /> },
   { path: '*', element: <DefaultAside /> },
 ];
 
