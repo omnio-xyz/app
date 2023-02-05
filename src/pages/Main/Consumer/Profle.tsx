@@ -339,26 +339,25 @@ const DashboardPage = () => {
                 isDark={darkModeStatus}>
                 <CarouselSlide>
                   <div className='row align-items-center h-100'>
-                    <div
-                      className='col-6 carousel-slide-bg'
-                      style={{ backgroundImage: `url(${WannaImg1})` }}
-                    />
-                    <div className='col-6'>
-                      <h2>New Products</h2>
-                      <p className='lead'>New products ready for sale.</p>
+                    <div className='col-6 text-end'>
+                      <h2>Customize</h2>
+                      <h5>You can design your own screens</h5>
                       <Button
                         color={darkModeStatus ? 'light' : 'dark'}
                         onClick={() =>
                           navigate(
-                            `../${demoPagesMenu.sales.subMenu.productsGrid.path}`,
+                            `/`,
                           )
                         }>
                         Click
                       </Button>
                     </div>
+                    <div
+                      className='col-6 carousel-slide-bg'
+                      style={{ backgroundImage: `url(${WannaImg2})` }}
+                    />
                   </div>
                 </CarouselSlide>
-                <CarouselSlide background={WannaImg5} />
                 <CarouselSlide>
                   <div className='row align-items-center h-100'>
                     <div className='col-6 text-end'>
