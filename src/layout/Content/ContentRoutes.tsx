@@ -1,6 +1,6 @@
 import React, { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import contents from '../../routes/pageRoutes';
+import contents from '../../Routes/pageRoutes';
 
 const PAGE_404 = lazy(() => import('../../Pages/Main/Account/404'));
 const ContentRoutes = () => {

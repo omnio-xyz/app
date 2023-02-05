@@ -135,7 +135,7 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
                         setSignInPassword(false);
                         setSingUpStatus(!singUpStatus);
                       }}>
-                      Login
+                      Brand
                     </Button>
                   </div>
                   <div className='col'>
@@ -148,7 +148,7 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
                         setSignInPassword(false);
                         setSingUpStatus(!singUpStatus);
                       }}>
-                      Sign Up
+                      Consumer
                     </Button>
                   </div>
                 </div>

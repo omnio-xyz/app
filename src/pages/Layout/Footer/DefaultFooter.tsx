@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
-import useDarkMode from '../../hooks/useDarkMode';
-import Footer from '../../layout/Footer/Footer';
+import useDarkMode from '../../../hooks/useDarkMode';
+import Footer from '../../../layout/Footer/Footer';
 
 const DefaultFooter = () => {
   const { darkModeStatus } = useDarkMode();
