@@ -5,7 +5,7 @@ import { ISubHeaderProps } from '../SubHeader/SubHeader';
 import { IPageProps } from '../Page/Page';
 import { useNavigate } from 'react-router-dom';
 import AuthContext from '../../contexts/authContext';
-import { dashboardPagesMenu } from '../../menu';
+import { LaunchMenu } from '../../menu';
 
 interface IPageWrapperProps {
 	isProtected?: boolean;
@@ -35,7 +35,7 @@ const PageWrapper = forwardRef<HTMLDivElement, IPageWrapperProps>(
 		const navigate = useNavigate();
 		useEffect(() => {
 			if (isProtected && user === '') {
-				navigate(`../${dashboardPagesMenu.login.path}`);
+				navigate(`../${LaunchMenu.login.path}`);
 			}
 			return () => {};
 			// eslint-disable-next-line react-hooks/exhaustive-deps

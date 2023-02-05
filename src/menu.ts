@@ -1,33 +1,26 @@
-export const dashboardPagesMenu = {
+export const LaunchMenu = {
   login: {
 		id: 'login',
 		text: 'Launch',
 		path: 'auth-pages/login',
 		icon: 'Login',
 	},
+};
+
+export const ConsumerMenu = {
 	dashboard: {
 		id: 'dashboard',
-		text: 'Consumer Profile',
+		text: 'Profile',
 		path: '/',
 		icon: 'PersonAdd',
 		subMenu: null,
 	},
 };
 
-
-export const userMenu = {
-  login: {
-		id: 'login',
-		text: 'Launch',
-		path: 'auth-pages/login',
-		icon: 'Login',
-	},
-};
-
-export const demoMenu = {
+export const ConsumerDataMenu = {
   demo: {
 		id: 'demo',
-		text: 'Consumer Data',
+		text: 'Data Hub',
 		icon: 'Extension',
 	},
   dashboardBdooking: {
@@ -155,7 +148,7 @@ export const demoPagesMenu = {
 		path: 'sales',
 		icon: 'Store',
 		subMenu: {
-			dashboard: dashboardPagesMenu.dashboard,
+			dashboard: ConsumerMenu.dashboard,
 			productsGrid: {
 				id: 'productsGrid',
 				text: 'Products Grid',
@@ -188,7 +181,7 @@ export const demoPagesMenu = {
 		path: 'appointment',
 		icon: 'Today',
 		subMenu: {
-			dashboard: demoMenu.dashboardBooking,
+			dashboard: ConsumerDataMenu.dashboardBooking,
 			calendar: {
 				id: 'calendar',
 				text: 'Calendar',

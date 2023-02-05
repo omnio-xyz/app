@@ -1,10 +1,11 @@
 import React, { lazy } from 'react';
 import { RouteProps } from 'react-router-dom';
 import {
-	dashboardPagesMenu,
+	ConsumerMenu,
 	demoPagesMenu,
 	gettingStartedPagesMenu,
-  demoMenu,
+  ConsumerDataMenu,
+  LaunchMenu,
 } from '../menu';
 import Login from '../Pages/Main/Account/Launch';
 
@@ -63,11 +64,11 @@ const presentation: RouteProps[] = [
 	 * Landing
 	 */
 	{
-		path: dashboardPagesMenu.dashboard.path,
+		path: ConsumerMenu.dashboard.path,
 		element: <LANDING.DASHBOARD />,
 	},
 	{
-		path: demoMenu.dashboardBooking.path,
+		path: ConsumerDataMenu.dashboardBooking.path,
 		element: <LANDING.DASHBOARD_BOOKING />,
 	},
   
@@ -101,7 +102,7 @@ const presentation: RouteProps[] = [
 	 * Auth Page
 	 */
 	{
-		path: dashboardPagesMenu.login.path,
+		path: LaunchMenu.login.path,
 		element: <Login />,
 	},
 

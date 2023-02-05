@@ -2,7 +2,7 @@ import React, { useState, useContext, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
-import { demoPagesMenu, dashboardPagesMenu } from '../../menu';
+import { demoPagesMenu, LaunchMenu } from '../../menu';
 import { DropdownItem, DropdownMenu } from '../../components/bootstrap/Dropdown';
 import Button from '../../components/bootstrap/Button';
 import useDarkMode from '../../hooks/useDarkMode';
@@ -85,7 +85,7 @@ const User = () => {
 								<span className='navigation-link-info'>
 									<Icon icon='PersonAdd' className='navigation-icon' />
 									<span className='navigation-text'>
-										{t('Profile') as ReactNode}
+										{t('Settings') as ReactNode}
 									</span>
 								</span>
 							</span>
@@ -124,7 +124,7 @@ const User = () => {
 								if (setUser) {
 									setUser('');
 								}
-								navigate(`../${dashboardPagesMenu.login.path}`);
+								navigate(`../${LaunchMenu.login.path}`);
 							}}>
 							<span className='navigation-link navigation-link-pill'>
 								<span className='navigation-link-info'>
