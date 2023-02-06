@@ -1,0 +1,9 @@
+{
+  "definitions": {
+    "omnioProduct": "kjzl6cwe1jw146nim6r5ecuxd3fzgkggs3oi6552exo76v2lh9mpoi8w3uh45ay"
+  },
+  "schemas": {
+    "Product": "ceramic://k3y52l7qbv1frxzmbgk7jnarnbos7x2y9x1wmw2vyzmm933dr1vb05txcrah3lr0g"
+  },
+  "tiles": {}
+}

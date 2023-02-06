@@ -1,0 +1,9 @@
+{
+  "definitions": {
+    "omnioBrand": "kjzl6cwe1jw14anxvfoi6j4uddimdxdm4dbx9ibqwi11ec9b0a1jojp8k0tbkh9"
+  },
+  "schemas": {
+    "Brand": "ceramic://k3y52l7qbv1frxkq2nsptywnlsdtux8itpdz0t1xx49hw56vcfc0b1tkkvq6oof7k"
+  },
+  "tiles": {}
+}

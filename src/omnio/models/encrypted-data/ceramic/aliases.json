@@ -1,0 +1,9 @@
+{
+  "definitions": {
+    "omnioEncryptedData": "kjzl6cwe1jw148nmhd6dqhccdiwvvkzqmbhad76atfqreycqx079be693bmwm1g"
+  },
+  "schemas": {
+    "EncryptedData": "ceramic://k3y52l7qbv1fryc6kophv3pl5841enl5ub7a3gidamfrz1mm1yd2ziz1w5i362wao"
+  },
+  "tiles": {}
+}
