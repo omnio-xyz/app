@@ -20,7 +20,7 @@ export const ConsumerMenu = {
 export const ConsumerDataMenu = {
   demo: {
     id: 'demo',
-    text: 'Data Hub',
+    text: 'Consumer Data',
     icon: 'Extension',
   },
   dashboardBdooking: {
