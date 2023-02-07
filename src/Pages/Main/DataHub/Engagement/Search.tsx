@@ -366,11 +366,7 @@ const SingleFluidPage = () => {
 											<h5>You can design your own screens</h5>
 											<Button
 												color={darkModeStatus ? 'light' : 'dark'}
-												onClick={() =>
-													navigate(
-														`/`,
-													)
-												}>
+												onClick={() => navigate(`/`)}>
 												Click
 											</Button>
 										</div>
