@@ -4,8 +4,8 @@ import {
 	ConsumerMenu,
 	demoPagesMenu,
 	gettingStartedPagesMenu,
-  ConsumerDataMenu,
-  LaunchMenu,
+	ConsumerDataMenu,
+	LaunchMenu,
 } from '../menu';
 import Login from '../Pages/Main/Account/Launch';
 
@@ -37,7 +37,9 @@ const APP = {
 	APPOINTMENT: {
 		EMPLOYEE_LIST: lazy(() => import('../Pages/Main/BrandStudio/appointment/EmployeeList')),
 		EMPLOYEE_VIEW: lazy(() => import('../Pages/Main/BrandStudio/appointment/EmployeePage')),
-		APPOINTMENT_LIST: lazy(() => import('../Pages/Main/BrandStudio/appointment/AppointmentList')),
+		APPOINTMENT_LIST: lazy(
+			() => import('../Pages/Main/BrandStudio/appointment/AppointmentList'),
+		),
 	},
 	CRM: {
 		CRM_DASHBOARD: lazy(() => import('../Pages/Main/BrandStudio/crm/CrmDashboard')),
@@ -61,7 +63,7 @@ const presentation: RouteProps[] = [
 		path: ConsumerDataMenu.dashboardBooking.path,
 		element: <LANDING.DASHBOARD_BOOKING />,
 	},
-  
+
 	/** ************************************************** */
 
 	/**
