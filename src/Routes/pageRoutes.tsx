@@ -48,7 +48,7 @@ const APP = {
 	},
 };
 const GETTING_STARTED = {
-	INSTALLATION: lazy(() => import('../Pages/documentation/getting-started/InstallationPage')),
+	INSTALLATION: lazy(() => import('../Pages/Main/DataHub/Engagement/InstallationPage')),
 };
 
 const presentation: RouteProps[] = [

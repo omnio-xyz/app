@@ -32,7 +32,7 @@ export const ConsumerDataMenu = {
       editMeodern: {
         id: 'editModern',
         text: 'Search',
-        path: 'edit-pages/modern',
+        path: 'getting-started/installation',
         icon: 'Search',
       },
       editModern: {
