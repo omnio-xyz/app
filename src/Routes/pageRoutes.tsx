@@ -18,7 +18,7 @@ const SINGLE = {
 };
 const EDIT = {
 	MODERN: lazy(() => import('../Pages/Main/DataHub/Engagement/EditModernPage')),
-	FLUID: lazy(() => import('../Pages/Main/Onboarding/EditFluidPage')),
+	FLUID: lazy(() => import('../Pages/Main/DataHub/Engagement/EditFluidPage')),
 	WIZARD: lazy(() => import('../Pages/Main/Onboarding/EditWizardPage')),
 };
 
@@ -35,15 +35,15 @@ const APP = {
 		PRODUCTS_VIEW: lazy(() => import('../Pages/Main/BrandStudio/sales/ProductViewPage')),
 	},
 	APPOINTMENT: {
-		EMPLOYEE_LIST: lazy(() => import('../Pages/Main/BrandStudio/appointment/EmployeeList')),
+		EMPLOYEE_LIST: lazy(() => import('../Pages/Main/DataHub/Engagement/EmployeeList')),
 		EMPLOYEE_VIEW: lazy(() => import('../Pages/Main/BrandStudio/appointment/EmployeePage')),
 		APPOINTMENT_LIST: lazy(
-			() => import('../Pages/Main/BrandStudio/appointment/AppointmentList'),
+			() => import('../Pages/Main/DataHub/Engagement/AppointmentList'),
 		),
 	},
 	CRM: {
-		CRM_DASHBOARD: lazy(() => import('../Pages/Main/BrandStudio/crm/CrmDashboard')),
-		CUSTOMERS: lazy(() => import('../Pages/Main/BrandStudio/crm/CustomersList')),
+		CRM_DASHBOARD: lazy(() => import('../Pages/Main/DataHub/Engagement/CrmDashboard')),
+		CUSTOMERS: lazy(() => import('../Pages/Main/DataHub/Engagement/CustomersList')),
 		CUSTOMER: lazy(() => import('../Pages/Main/BrandStudio/crm/Customer')),
 	},
 };

@@ -29,17 +29,41 @@ export const ConsumerDataMenu = {
     path: 'dashboard-booking',
     icon: 'History',
     subMenu: {
-      editMeodern: {
-        id: 'editModern',
+      viewContent: {
+        id: 'pagedView',
+        text: 'View Content',
+        path: 'edit-pages/modern',
+        icon: 'WebAsset',
+      },
+      search: {
+        id: 'search',
         text: 'Search',
         path: 'getting-started/installation',
         icon: 'Search',
       },
-      editModern: {
-        id: 'editModern',
-        text: 'Page View',
-        path: 'edit-pages/modern',
-        icon: 'WebAsset',
+      addToWishlist: {
+        id: 'pageView',
+        text: 'Add to Wishlist',
+        path: 'edit-pages/fluid',
+        icon: 'Star',
+      },
+      addToCart: {
+        id: 'pageView',
+        text: 'Add to Cart',
+        path: 'appointment/appointment-list',
+        icon: 'Add',
+      },
+      initiateCheckout: {
+        id: 'pageView',
+        text: 'Initiate Checkout',
+        path: 'crm/dashboard',
+        icon: 'ShoppingBasket',
+      },
+      addBillingInformation: {
+        id: 'pageView',
+        text: 'Add Payment Information',
+        path: 'crm/customers',
+        icon: 'CreditCard',
       },
     },
   },
@@ -47,7 +71,14 @@ export const ConsumerDataMenu = {
     id: 'purchase-history',
     text: 'Purchase History',
     path: 'purchase-history',
-    icon: 'ShoppingBasket',
+    icon: 'History',
+    subMenu: null,
+  },
+  dashboardBooking1: {
+    id: 'purchase-history',
+    text: 'Requests',
+    path: 'appointment/employee-list',
+    icon: 'History',
     subMenu: null,
   },
 };
