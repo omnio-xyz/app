@@ -17,7 +17,7 @@ const SINGLE = {
 	FLUID: lazy(() => import('../Pages/Main/DataHub/Engagement/Search')),
 };
 const EDIT = {
-	MODERN: lazy(() => import('../Pages/Main/Onboarding/EditModernPage')),
+	MODERN: lazy(() => import('../Pages/Main/DataHub/Engagement/EditModernPage')),
 	FLUID: lazy(() => import('../Pages/Main/Onboarding/EditFluidPage')),
 	WIZARD: lazy(() => import('../Pages/Main/Onboarding/EditWizardPage')),
 };

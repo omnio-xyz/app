@@ -12,7 +12,7 @@ export const ConsumerMenu = {
     id: 'dashboard',
     text: 'Profile',
     path: '/',
-    icon: 'PersonAdd',
+    icon: 'Person',
     subMenu: null,
   },
 };
@@ -27,19 +27,19 @@ export const ConsumerDataMenu = {
     id: 'dashboard-booking',
     text: 'Engagement',
     path: 'dashboard-booking',
-    icon: 'emoji_transportation',
+    icon: 'History',
     subMenu: {
       editMeodern: {
         id: 'editModern',
         text: 'Search',
         path: 'edit-pages/modern',
-        icon: 'AutoAwesomeMosaic',
+        icon: 'Search',
       },
       editModern: {
         id: 'editModern',
         text: 'Page View',
         path: 'edit-pages/modern',
-        icon: 'AutoAwesomeMosaic',
+        icon: 'WebAsset',
       },
     },
   },
@@ -47,7 +47,7 @@ export const ConsumerDataMenu = {
     id: 'purchase-history',
     text: 'Purchase History',
     path: 'purchase-history',
-    icon: 'emoji_transportation',
+    icon: 'ShoppingBasket',
     subMenu: null,
   },
 };
