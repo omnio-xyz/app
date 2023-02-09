@@ -11,10 +11,10 @@ import { NavigationLine } from '../Navigation/Navigation';
 import Icon from '../../components/icon/Icon';
 import useNavigationItemHandle from '../../hooks/useNavigationItemHandle';
 import useOmnio from '../../contexts/omnioContext';
+import logo from '../../assets/img/human.svg';
 
 const User = () => {
-	// FixMe: were is this used?
-	const { userData, setUserData } = useOmnio();
+	const { userData, disconnectWithOmnio } = useOmnio();
 
 	const navigate = useNavigate();
 	const handleItem = useNavigationItemHandle();
@@ -31,13 +31,7 @@ const User = () => {
 				role='presentation'
 				onClick={() => setCollapseStatus(!collapseStatus)}>
 				<div className='user-avatar'>
-					<img
-						srcSet={userData?.profile?.imageUrl}
-						src={userData?.profile?.imageUrl}
-						alt='Avatar'
-						width={128}
-						height={128}
-					/>
+					<img src={logo} alt='Avatar' width={128} height={128} />
 				</div>
 				<div className='user-info'>
 					<div className='user-name d-flex align-items-center'>
@@ -91,9 +85,7 @@ const User = () => {
 							role='presentation'
 							className='navigation-item cursor-pointer'
 							onClick={() => {
-								if (userData) {
-									setUserData(null);
-								}
+								disconnectWithOmnio();
 								navigate(`../${LaunchMenu.launch.path}`);
 							}}>
 							<span className='navigation-link navigation-link-pill'>

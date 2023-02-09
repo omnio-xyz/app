@@ -7,10 +7,10 @@ import { IConsumerUserProfile } from '../omnio/models/user/consumer/profile';
 export interface IOmnioContextProps {
 	loading: boolean;
 	userData: IConsumerUser | null;
-	setUserData(...args: unknown[]): unknown;
 	saveProfile(profile: IConsumerUserProfile): Promise<void>;
 	omnioConnected: boolean;
 	connectWithOmnio(): Promise<void>;
+	disconnectWithOmnio(): Promise<void>;
 }
 const OmnioContext = createContext<IOmnioContextProps>({} as IOmnioContextProps);
 
@@ -35,6 +35,18 @@ export const OmnioContextProvider: FC<IOmnioContextProviderProps> = ({ children 
 		}
 	};
 
+	const disconnectWithOmnio = async () => {
+		setLoading(true);
+		try {
+			setOmnioConnected(false);
+			setUserData(null);
+		} catch (error) {
+			console.error(error);
+		} finally {
+			setLoading(false);
+		}
+	};
+
 	const saveProfile = async (profile: IConsumerUserProfile) => {
 		setLoading(true);
 		try {
@@ -49,10 +61,10 @@ export const OmnioContextProvider: FC<IOmnioContextProviderProps> = ({ children 
 	const values = {
 		loading,
 		userData,
-		setUserData, //todo remove
 		saveProfile,
 		omnioConnected,
 		connectWithOmnio,
+		disconnectWithOmnio,
 	};
 
 	return <OmnioContext.Provider value={values}>{children}</OmnioContext.Provider>;
