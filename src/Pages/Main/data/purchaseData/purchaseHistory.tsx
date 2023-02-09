@@ -7,13 +7,13 @@ import SubHeader, {
   SubHeaderLeft,
   SubHeaderRight,
   SubheaderSeparator,
-} from '../../../layout/SubHeader/SubHeader';
-import Avatar from '../../../components/Avatar';
-import UserImageWebp from '../../../assets/img/wanna/wanna1.webp';
-import UserImage from '../../../assets/img/wanna/wanna1.png';
-import Button from '../../../components/bootstrap/Button';
-import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
-import Page from '../../../layout/Page/Page';
+} from '../../../../layout/SubHeader/SubHeader';
+import Avatar from '../../../../components/Avatar';
+import UserImageWebp from '../../../../assets/img/wanna/wanna1.webp';
+import UserImage from '../../../../assets/img/wanna/wanna1.png';
+import Button from '../../../../components/bootstrap/Button';
+import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
+import Page from '../../../../layout/Page/Page';
 import Card, {
   CardActions,
   CardBody,
@@ -21,25 +21,25 @@ import Card, {
   CardHeader,
   CardLabel,
   CardTitle,
-} from '../../../components/bootstrap/Card';
+} from '../../../../components/bootstrap/Card';
 import Dropdown, {
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
-} from '../../../components/bootstrap/Dropdown';
-import Checks, { ChecksGroup } from '../../../components/bootstrap/forms/Checks';
-import InputGroup, { InputGroupText } from '../../../components/bootstrap/forms/InputGroup';
-import Input from '../../../components/bootstrap/forms/Input';
-import FormGroup from '../../../components/bootstrap/forms/FormGroup';
-import Label from '../../../components/bootstrap/forms/Label';
-import CommonFilterTag from '../../_common/CommonFilterTag';
-import CommonTableRow from '../../_common/CommonTableRow';
-import Select from '../../../components/bootstrap/forms/Select';
-import Popovers from '../../../components/bootstrap/Popovers';
-import { demoPagesMenu } from '../../../menu';
-import data from '../../../common/data/dummyProductData';
-import useSelectTable from '../../../hooks/useSelectTable';
-import useDarkMode from '../../../hooks/useDarkMode';
+} from '../../../../components/bootstrap/Dropdown';
+import Checks, { ChecksGroup } from '../../../../components/bootstrap/forms/Checks';
+import InputGroup, { InputGroupText } from '../../../../components/bootstrap/forms/InputGroup';
+import Input from '../../../../components/bootstrap/forms/Input';
+import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
+import Label from '../../../../components/bootstrap/forms/Label';
+import CommonFilterTag from '../../../_common/CommonFilterTag';
+import CommonTableRow from '../../../_common/CommonTableRow';
+import Select from '../../../../components/bootstrap/forms/Select';
+import Popovers from '../../../../components/bootstrap/Popovers';
+import { demoPagesMenu } from '../../../../menu';
+import data from '../../../../common/data/dummyProductData';
+import useSelectTable from '../../../../hooks/useSelectTable';
+import useDarkMode from '../../../../hooks/useDarkMode';
 
 const DashboardBookingPage = () => {
   const { themeStatus, darkModeStatus } = useDarkMode();

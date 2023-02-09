@@ -11,7 +11,7 @@ import Login from '../Pages/Main/Account/Launch';
 
 const LANDING = {
 	DASHBOARD: lazy(() => import('../Pages/Main/Consumer/Profle')),
-	DASHBOARD_BOOKING: lazy(() => import('../Pages/Main/data/PurchaseHistory')),
+	DASHBOARD_BOOKING: lazy(() => import('../Pages/Main/data/purchaseData/purchaseHistory')),
 };
 const SINGLE = {
 	FLUID: lazy(() => import('../Pages/Main/oldSearch')),
@@ -32,7 +32,7 @@ const APP = {
 	},
 	SALES: {
 		PRODUCTS_GRID: lazy(() => import('../Pages/Main/BrandStudio/sales/ProductsGridPage')),
-		PRODUCTS_VIEW: lazy(() => import('../Pages/Main/data/ProductViewPage')),
+		PRODUCTS_VIEW: lazy(() => import('../Pages/Main/data/purchaseData/product')),
 	},
 	APPOINTMENT: {
 		EMPLOYEE_LIST: lazy(() => import('../Pages/Main/data/requests')),
