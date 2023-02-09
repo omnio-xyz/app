@@ -3,4 +3,5 @@ export interface IConsumerUserProfile {
 	name?: string;
 	surname?: string;
 	email?: string;
+	imageUrl?: string;
 }

@@ -8,6 +8,7 @@ import Button from '../../../components/bootstrap/Button';
 import useDarkMode from '../../../hooks/useDarkMode';
 import Spinner from '../../../components/bootstrap/Spinner';
 import useOmnio from '../../../contexts/omnioContext';
+import { ConsumerMenu } from '../../../menu';
 
 interface ILoginHeaderProps {
 	consumerUserMode?: boolean;
@@ -50,7 +51,7 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 	};
 
 	useEffect(() => {
-		omnioConnected && navigate('/');
+		omnioConnected && navigate(ConsumerMenu.dashboard.path);
 	}, [omnioConnected, navigate]);
 
 	return (

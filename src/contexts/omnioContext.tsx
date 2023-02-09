@@ -7,6 +7,7 @@ import { IConsumerUserProfile } from '../omnio/models/user/consumer/profile';
 export interface IOmnioContextProps {
 	loading: boolean;
 	userData: IConsumerUser | null;
+	setUserData(...args: unknown[]): unknown;
 	saveProfile(profile: IConsumerUserProfile): Promise<void>;
 	omnioConnected: boolean;
 	connectWithOmnio(): Promise<void>;
@@ -48,6 +49,7 @@ export const OmnioContextProvider: FC<IOmnioContextProviderProps> = ({ children 
 	const values = {
 		loading,
 		userData,
+		setUserData, //todo remove
 		saveProfile,
 		omnioConnected,
 		connectWithOmnio,

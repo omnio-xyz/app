@@ -1,10 +1,10 @@
-import React, { useLayoutEffect, forwardRef, ReactElement, useContext, useEffect } from 'react';
+import React, { useLayoutEffect, forwardRef, ReactElement, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { ISubHeaderProps } from '../SubHeader/SubHeader';
 import { IPageProps } from '../Page/Page';
 import { useNavigate } from 'react-router-dom';
-import AuthContext from '../../contexts/authContext';
+import useOmnio from '../../contexts/omnioContext';
 import { LaunchMenu } from '../../menu';
 
 interface IPageWrapperProps {
@@ -30,11 +30,11 @@ const PageWrapper = forwardRef<HTMLDivElement, IPageWrapperProps>(
 				.setAttribute('content', description || process.env.REACT_APP_META_DESC || '');
 		});
 
-		const { user } = useContext(AuthContext);
+		const { userData } = useOmnio();
 
 		const navigate = useNavigate();
 		useEffect(() => {
-			if (isProtected && user === '') {
+			if (isProtected && !userData) {
 				navigate(`../${LaunchMenu.launch.path}`);
 			}
 			return () => {};
