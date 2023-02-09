@@ -65,4 +65,6 @@ class Lit {
 	}
 }
 
-export default new Lit();
+const lit = new Lit();
+
+export default lit;

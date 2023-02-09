@@ -37,7 +37,7 @@ export class Ceramic {
 		}
 
 		try {
-			return this.datastore.get(key);
+			return await this.datastore.get(key);
 		} catch (error) {
 			console.error(error);
 		}
@@ -53,7 +53,7 @@ export class Ceramic {
 			await this.datastore.merge(key, updatedModel);
 
 			// use the DIDDatastore to get data from Ceramic
-			return this.datastore.get(key);
+			return await this.datastore.get(key);
 		} catch (error) {
 			console.error(error);
 		}

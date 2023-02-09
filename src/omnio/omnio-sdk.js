@@ -31,4 +31,6 @@ class Omnio {
 	}
 }
 
-export default new Omnio();
+const omnio = new Omnio();
+
+export default omnio;
