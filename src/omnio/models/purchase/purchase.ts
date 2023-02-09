@@ -10,7 +10,7 @@ export interface IPurchase {
 		seller: string;
 		products: IProduct[];
 		transaction: {
-			date: Date;
+			date: string;
 			amount: string;
 			currency: string;
 		};
