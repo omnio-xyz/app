@@ -39,7 +39,7 @@ import CustomerEditModal from '../../BrandStudio/crm/CustomerEditModal';
 import { getColorNameWithIndex } from '../../../../common/data/enumColors';
 import useDarkMode from '../../../../hooks/useDarkMode';
 
-const EditModernPage = () => {
+const CustomersList = () => {
   const { themeStatus, darkModeStatus } = useDarkMode();
 
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -162,7 +162,7 @@ const EditModernPage = () => {
             <Card stretch>
               <CardHeader borderSize={1}>
                 <CardLabel icon='WebAsset' iconColor='info'>
-                  <CardTitle>Page View</CardTitle>
+                  <CardTitle>Add Payment Information</CardTitle>
                 </CardLabel>
                 <CardActions>
                   <Dropdown className='d-inline'>
@@ -323,4 +323,4 @@ const EditModernPage = () => {
   );
 };
 
-export default EditModernPage;
+export default CustomersList;

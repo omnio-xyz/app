@@ -11,14 +11,14 @@ import Login from '../Pages/Main/Account/Launch';
 
 const LANDING = {
 	DASHBOARD: lazy(() => import('../Pages/Main/Consumer/Profle')),
-	DASHBOARD_BOOKING: lazy(() => import('../Pages/Main/DataHub/PurchaseHistory')),
+	DASHBOARD_BOOKING: lazy(() => import('../Pages/Main/data/PurchaseHistory')),
 };
 const SINGLE = {
-	FLUID: lazy(() => import('../Pages/Main/DataHub/Engagement/Search')),
+	FLUID: lazy(() => import('../Pages/Main/oldSearch')),
 };
 const EDIT = {
-	MODERN: lazy(() => import('../Pages/Main/DataHub/Engagement/EditModernPage')),
-	FLUID: lazy(() => import('../Pages/Main/DataHub/Engagement/EditFluidPage')),
+	MODERN: lazy(() => import('../Pages/Main/data/Engagement/viewContent')),
+	FLUID: lazy(() => import('../Pages/Main/data/Engagement/addtoWishlist')),
 	WIZARD: lazy(() => import('../Pages/Main/Onboarding/EditWizardPage')),
 };
 
@@ -32,23 +32,23 @@ const APP = {
 	},
 	SALES: {
 		PRODUCTS_GRID: lazy(() => import('../Pages/Main/BrandStudio/sales/ProductsGridPage')),
-		PRODUCTS_VIEW: lazy(() => import('../Pages/Main/BrandStudio/sales/ProductViewPage')),
+		PRODUCTS_VIEW: lazy(() => import('../Pages/Main/data/ProductViewPage')),
 	},
 	APPOINTMENT: {
-		EMPLOYEE_LIST: lazy(() => import('../Pages/Main/DataHub/Engagement/EmployeeList')),
+		EMPLOYEE_LIST: lazy(() => import('../Pages/Main/data/requests')),
 		EMPLOYEE_VIEW: lazy(() => import('../Pages/Main/BrandStudio/appointment/EmployeePage')),
 		APPOINTMENT_LIST: lazy(
-			() => import('../Pages/Main/DataHub/Engagement/AppointmentList'),
+			() => import('../Pages/Main/data/Engagement/addtoCart'),
 		),
 	},
 	CRM: {
-		CRM_DASHBOARD: lazy(() => import('../Pages/Main/DataHub/Engagement/CrmDashboard')),
-		CUSTOMERS: lazy(() => import('../Pages/Main/DataHub/Engagement/CustomersList')),
+		CRM_DASHBOARD: lazy(() => import('../Pages/Main/data/Engagement/initiateCheckout')),
+		CUSTOMERS: lazy(() => import('../Pages/Main/data/Engagement/addpaymentInformation')),
 		CUSTOMER: lazy(() => import('../Pages/Main/BrandStudio/crm/Customer')),
 	},
 };
 const GETTING_STARTED = {
-	INSTALLATION: lazy(() => import('../Pages/Main/DataHub/Engagement/InstallationPage')),
+	INSTALLATION: lazy(() => import('../Pages/Main/data/Engagement/search')),
 };
 
 const presentation: RouteProps[] = [

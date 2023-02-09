@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import { useFormik } from 'formik';
-import SubHeader, { SubHeaderLeft, SubHeaderRight } from '../../../../layout/SubHeader/SubHeader';
-import Icon from '../../../../components/icon/Icon';
-import Page from '../../../../layout/Page/Page';
-import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
-import Card, { CardBody } from '../../../../components/bootstrap/Card';
-import USERS from '../../../../common/data/userDummyData';
-import Badge from '../../../../components/bootstrap/Badge';
-import Button from '../../../../components/bootstrap/Button';
-import Dropdown, { DropdownMenu, DropdownToggle } from '../../../../components/bootstrap/Dropdown';
-import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
-import Label from '../../../../components/bootstrap/forms/Label';
-import Input from '../../../../components/bootstrap/forms/Input';
-import Checks, { ChecksGroup } from '../../../../components/bootstrap/forms/Checks';
-import SERVICES from '../../../../common/data/serviceDummyData';
-import { demoPagesMenu } from '../../../../menu';
-import useTourStep from '../../../../hooks/useTourStep';
+import SubHeader, { SubHeaderLeft, SubHeaderRight } from '../../../layout/SubHeader/SubHeader';
+import Icon from '../../../components/icon/Icon';
+import Page from '../../../layout/Page/Page';
+import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
+import Card, { CardBody } from '../../../components/bootstrap/Card';
+import USERS from '../../../common/data/userDummyData';
+import Badge from '../../../components/bootstrap/Badge';
+import Button from '../../../components/bootstrap/Button';
+import Dropdown, { DropdownMenu, DropdownToggle } from '../../../components/bootstrap/Dropdown';
+import FormGroup from '../../../components/bootstrap/forms/FormGroup';
+import Label from '../../../components/bootstrap/forms/Label';
+import Input from '../../../components/bootstrap/forms/Input';
+import Checks, { ChecksGroup } from '../../../components/bootstrap/forms/Checks';
+import SERVICES from '../../../common/data/serviceDummyData';
+import { demoPagesMenu } from '../../../menu';
+import useTourStep from '../../../hooks/useTourStep';
 
 const EmployeeList = () => {
 	useTourStep(18);

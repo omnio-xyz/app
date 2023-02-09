@@ -27,7 +27,7 @@ export const ConsumerDataMenu = {
     id: 'dashboard-booking',
     text: 'Engagement',
     path: 'dashboard-booking',
-    icon: 'History',
+    icon: 'Menu',
     subMenu: {
       viewContent: {
         id: 'pagedView',

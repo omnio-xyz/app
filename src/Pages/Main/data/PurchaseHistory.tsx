@@ -95,7 +95,7 @@ const DashboardBookingPage = () => {
           )}
 
           {!!formik.values.categoryName && (
-            <CommonFilterTag title='Category' text={formik.values.categoryName} />
+            <CommonFilterTag title='Brand' text={formik.values.categoryName} />
           )}
 
           {(formik.values.companyA ||
@@ -103,12 +103,12 @@ const DashboardBookingPage = () => {
             formik.values.companyC ||
             formik.values.companyD) && (
               <CommonFilterTag
-                title='Store'
+                title='Product Category'
                 text={
-                  (formik.values.companyA ? 'Company A, ' : '') +
-                  (formik.values.companyB ? 'Company B, ' : '') +
-                  (formik.values.companyC ? 'Company C, ' : '') +
-                  (formik.values.companyD ? 'Company D ' : '')
+                  (formik.values.companyA ? 'Brand A, ' : '') +
+                  (formik.values.companyB ? 'Brand B, ' : '') +
+                  (formik.values.companyC ? 'Brand C, ' : '') +
+                  (formik.values.companyD ? 'Brand D ' : '')
                 }
               />
             )}
@@ -164,7 +164,7 @@ const DashboardBookingPage = () => {
                   </div>
                   <div className='col-12'>
                     <FormGroup>
-                      <Label>Store</Label>
+                      <Label>Product Category</Label>
                       <ChecksGroup>
                         <Checks
                           id='companyA'
@@ -246,7 +246,7 @@ const DashboardBookingPage = () => {
                   <th scope='col'>Sales</th>
                   <th scope='col'>Stock</th>
                   <th scope='col'>Price</th>
-                  <th scope='col'>Store</th>
+                  <th scope='col'>Product Category</th>
                   <th scope='col' className='text-end'>
                     Actions
                   </th>

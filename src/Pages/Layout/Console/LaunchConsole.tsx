@@ -29,7 +29,6 @@ const LaunchConsole = () => {
 				{!doc && (
 					<>
 						<Navigation menu={LaunchMenu} id='aside-dashboard' />
-						<Navigation menu={ConsumerDataMenu} id='aside-dashboard' />
 						<NavigationLine />
 					</>
 				)}
