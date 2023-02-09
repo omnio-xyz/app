@@ -1,5 +1,6 @@
 export type TSvgIcons =
 	| 'CustomApple'
+	| 'CustomEthereum'
 	| 'CustomFacebook'
 	| 'CustomFactory'
 	| 'CustomFrance'

@@ -1,8 +1,8 @@
-import React, { useState, useContext, ReactNode } from 'react';
+import React, { useState, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
-import { demoPagesMenu, LaunchMenu } from '../../menu';
+import { LaunchMenu } from '../../menu';
 import { DropdownItem, DropdownMenu } from '../../components/bootstrap/Dropdown';
 import Button from '../../components/bootstrap/Button';
 import useDarkMode from '../../hooks/useDarkMode';
@@ -10,10 +10,11 @@ import Collapse from '../../components/bootstrap/Collapse';
 import { NavigationLine } from '../Navigation/Navigation';
 import Icon from '../../components/icon/Icon';
 import useNavigationItemHandle from '../../hooks/useNavigationItemHandle';
-import AuthContext from '../../contexts/authContext';
+import useOmnio from '../../contexts/omnioContext';
 
 const User = () => {
-	const { userData, setUser } = useContext(AuthContext);
+	// FixMe: were is this used?
+	const { userData, setUserData } = useOmnio();
 
 	const navigate = useNavigate();
 	const handleItem = useNavigationItemHandle();
@@ -31,8 +32,8 @@ const User = () => {
 				onClick={() => setCollapseStatus(!collapseStatus)}>
 				<div className='user-avatar'>
 					<img
-						srcSet={userData?.srcSet}
-						src={userData?.src}
+						srcSet={userData?.profile?.imageUrl}
+						src={userData?.profile?.imageUrl}
 						alt='Avatar'
 						width={128}
 						height={128}
@@ -40,10 +41,9 @@ const User = () => {
 				</div>
 				<div className='user-info'>
 					<div className='user-name d-flex align-items-center'>
-						{`${userData?.name} ${userData?.surname}`}
+						{`${userData?.profile?.name} ${userData?.profile?.surname}`}
 						<Icon icon='Verified' className='ms-1' color='info' />
 					</div>
-					<div className='user-sub-title'>{userData?.position}</div>
 				</div>
 			</div>
 			<DropdownMenu>
@@ -91,8 +91,8 @@ const User = () => {
 							role='presentation'
 							className='navigation-item cursor-pointer'
 							onClick={() => {
-								if (setUser) {
-									setUser('');
+								if (userData) {
+									setUserData(null);
 								}
 								navigate(`../${LaunchMenu.launch.path}`);
 							}}>

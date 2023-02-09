@@ -7,26 +7,30 @@ class Omnio {
 		this.integration = new Integration();
 	}
 
-	async savePurchase(purchase) {
-		// TODO: Improve Append
+	async saveUserConsumerProfile(profile) {
 		let userOmnioData = await JSON.parse(await this.integration.readAndDecrypt());
-		if (userOmnioData == null) {
-			userOmnioData = { shopping_history: [] };
-		}
-		userOmnioData.shopping_history.push(purchase);
+		userOmnioData = {
+			...userOmnioData,
+			profile: this.mergeWithExistingProfile(userOmnioData?.profile, profile),
+		};
 
 		await this.integration.encryptAndWrite(JSON.stringify(userOmnioData));
 	}
 
-	async generateRecommendation() {
-		const userOmnioData = JSON.parse(await this.integration.readAndDecrypt());
-		if (userOmnioData == null) {
-			return 0;
-		}
+	async getUserData() {
+		return JSON.parse(await this.integration.readAndDecrypt());
+	}
 
-		console.log(userOmnioData.shopping_history);
-		return userOmnioData.shopping_history?.length;
+	mergeWithExistingProfile(existingProfile, profileUpdated) {
+		return {
+			username: profileUpdated.username ?? existingProfile.username,
+			name: profileUpdated.name ?? existingProfile.name,
+			surname: profileUpdated.surname ?? existingProfile.surname,
+			email: profileUpdated.email ?? existingProfile.email,
+		};
 	}
 }
 
-export default new Omnio();
+const omnio = new Omnio();
+
+export default omnio;
