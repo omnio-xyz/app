@@ -7,13 +7,13 @@ import SubHeader, {
   SubHeaderLeft,
   SubHeaderRight,
   SubheaderSeparator,
-} from '../../../layout/SubHeader/SubHeader';
-import Avatar from '../../../components/Avatar';
+} from '../../../../layout/SubHeader/SubHeader';
+import Avatar from '../../../../components/Avatar';
 import UserImageWebp from '../../../assets/img/wanna/wanna1.webp';
 import UserImage from '../../../assets/img/wanna/wanna1.png';
-import Button from '../../../components/bootstrap/Button';
-import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
-import Page from '../../../layout/Page/Page';
+import Button from '../../../../components/bootstrap/Button';
+import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
+import Page from '../../../../layout/Page/Page';
 import Card, {
   CardActions,
   CardBody,
@@ -21,25 +21,25 @@ import Card, {
   CardHeader,
   CardLabel,
   CardTitle,
-} from '../../../components/bootstrap/Card';
+} from '../../../../components/bootstrap/Card';
 import Dropdown, {
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
-} from '../../../components/bootstrap/Dropdown';
-import Checks, { ChecksGroup } from '../../../components/bootstrap/forms/Checks';
-import InputGroup, { InputGroupText } from '../../../components/bootstrap/forms/InputGroup';
-import Input from '../../../components/bootstrap/forms/Input';
-import FormGroup from '../../../components/bootstrap/forms/FormGroup';
-import Label from '../../../components/bootstrap/forms/Label';
-import CommonFilterTag from '../../_common/CommonFilterTag';
-import CommonTableRow from '../../_common/CommonTableRow';
-import Select from '../../../components/bootstrap/forms/Select';
-import Popovers from '../../../components/bootstrap/Popovers';
-import { demoPagesMenu } from '../../../menu';
-import data from '../../../common/data/dummyProductData';
-import useSelectTable from '../../../hooks/useSelectTable';
-import useDarkMode from '../../../hooks/useDarkMode';
+} from '../../../../components/bootstrap/Dropdown';
+import Checks, { ChecksGroup } from '../../../../components/bootstrap/forms/Checks';
+import InputGroup, { InputGroupText } from '../../../../components/bootstrap/forms/InputGroup';
+import Input from '../../../../components/bootstrap/forms/Input';
+import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
+import Label from '../../../../components/bootstrap/forms/Label';
+import CommonFilterTag from '../../../_common/CommonFilterTag';
+import CommonTableRow from '../../../_common/CommonTableRow';
+import Select from '../../../../components/bootstrap/forms/Select';
+import Popovers from '../../../../components/bootstrap/Popovers';
+import { demoPagesMenu } from '../../../../menu';
+import data from '../../../../common/data/dummyProductData';
+import useSelectTable from '../../../../hooks/useSelectTable';
+import useDarkMode from '../../../../hooks/useDarkMode';
 
 const DashboardBookingPage = () => {
   const { themeStatus, darkModeStatus } = useDarkMode();
@@ -115,9 +115,20 @@ const DashboardBookingPage = () => {
           <SubheaderSeparator />
           <Dropdown isOpen={filterMenu} setIsOpen={setFilterMenu}>
             <DropdownToggle hasIcon={false}>
-              <Button icon='Filter' color='primary' isLight>
-        
-     
+              <Button
+                icon='FilterAlt'
+                color='dark'
+                isLight
+                className='btn-only-icon position-relative'>
+                {data.length !== filteredData.length && (
+                  <Popovers desc='Filtering applied' trigger='hover'>
+                    <span className='position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2'>
+                      <span className='visually-hidden'>
+                        there is filtering
+                      </span>
+                    </span>
+                  </Popovers>
+                )}
               </Button>
             </DropdownToggle>
             <DropdownMenu isAlignmentEnd size='lg' isCloseAfterLeave={false}>
@@ -220,19 +231,7 @@ const DashboardBookingPage = () => {
               <CardTitle>Purchase History</CardTitle>
             </CardLabel>
             <CardActions>
-              <Dropdown className='d-inline'>
-                <DropdownToggle hasIcon={false}>
-                  <Button color={themeStatus} icon='MoreHoriz' />
-                </DropdownToggle>
-                <DropdownMenu isAlignmentEnd>
-                  <DropdownItem>
-                    <Button icon='Edit'>Edit</Button>
-                  </DropdownItem>
-                  <DropdownItem>
-                    <Button icon='Delete'>Delete</Button>
-                  </DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
+              <Button color={themeStatus} icon='Delete' />
             </CardActions>
           </CardHeader>
           <CardBody className='table-responsive' isScrollable>

@@ -162,7 +162,7 @@ const EditModernPage = () => {
             <Card stretch>
               <CardHeader borderSize={1}>
                 <CardLabel icon='WebAsset' iconColor='info'>
-                  <CardTitle>Page View</CardTitle>
+                  <CardTitle>View Content</CardTitle>
                 </CardLabel>
                 <CardActions>
                   <Dropdown className='d-inline'>
