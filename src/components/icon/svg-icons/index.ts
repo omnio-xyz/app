@@ -1,4 +1,5 @@
 export { default as CustomApple } from './CustomApple';
+export { default as CustomEthereum } from './CustomEthereum';
 export { default as CustomFacebook } from './CustomFacebook';
 export { default as CustomFactory } from './CustomFactory';
 export { default as CustomFrance } from './CustomFrance';

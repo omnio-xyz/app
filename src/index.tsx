@@ -7,17 +7,20 @@ import App from './App/App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeContextProvider } from './contexts/themeContext';
 import { AuthContextProvider } from './contexts/authContext';
+import { OmnioContextProvider } from './contexts/omnioContext';
 import './i18n';
 
 const children = (
 	<AuthContextProvider>
-		<ThemeContextProvider>
-			<Router>
-				<React.StrictMode>
-					<App />
-				</React.StrictMode>
-			</Router>
-		</ThemeContextProvider>
+		<OmnioContextProvider>
+			<ThemeContextProvider>
+				<Router>
+					<React.StrictMode>
+						<App />
+					</React.StrictMode>
+				</Router>
+			</ThemeContextProvider>
+		</OmnioContextProvider>
 	</AuthContextProvider>
 );
 
