@@ -5,6 +5,9 @@ export interface IProduct {
 	description: string;
 	brand_id: string;
 	image: string;
-	quantity: number;
 	unit_price: string;
+}
+
+export interface IPurchasedProduct extends IProduct {
+	quantity: number;
 }

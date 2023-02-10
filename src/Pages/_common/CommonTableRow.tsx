@@ -35,7 +35,6 @@ const CommonTableRow: FC<ICommonTableRowProps> = ({
 
 	return (
 		<tr>
-			<th scope='row'>{id}</th>
 			<td>
 				<img src={image} alt={name} width={54} height={54} />
 			</td>

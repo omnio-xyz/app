@@ -5,7 +5,7 @@ import Login from '../Pages/Main/Account/Launch';
 
 const LANDING = {
 	DASHBOARD: lazy(() => import('../Pages/Main/Consumer/Profle')),
-	DASHBOARD_BOOKING: lazy(() => import('../Pages/Main/DataHub/purchaseHistory/purchaseHistory1')),
+	DASHBOARD_BOOKING: lazy(() => import('../Pages/Main/DataHub/purchaseHistory/purchaseHistory')),
 };
 
 const EDIT = {

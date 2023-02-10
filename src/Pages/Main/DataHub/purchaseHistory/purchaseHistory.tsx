@@ -12,7 +12,7 @@ import useOmnio from '../../../../contexts/omnioContext';
 
 const DashboardBookingPage = () => {
 	const { userData } = useOmnio();
-	console.log(userData);
+
 	const purchaseProductsHistoryData: ICommonTableRowProps[] = [];
 	userData?.purchase_history?.forEach((purchase) => {
 		purchase?.data?.products?.forEach((product) => {
@@ -25,11 +25,11 @@ const DashboardBookingPage = () => {
 				price: product?.unit_price,
 				brand: product?.brand_id,
 				seller: purchase?.data?.seller,
-				date: purchase?.data?.transaction?.date,
+				date: purchase?.date,
 			});
 		});
 	});
-	console.log(purchaseProductsHistoryData);
+
 	let count = 0;
 	return (
 		<PageWrapper>
@@ -44,7 +44,6 @@ const DashboardBookingPage = () => {
 						<table className='table table-modern table-hover'>
 							<thead>
 								<tr>
-									<th scope='col'>#</th>
 									<th scope='col'>Image</th>
 									<th scope='col'>Name</th>
 									<th scope='col'>Category</th>
