@@ -139,7 +139,7 @@ const DashboardPage = () => {
 														)}.`}{' '}
 													{formik.values.formSurName || 'Surname'}
 												</div>
-												<div className='h5 text-muted'>Founder</div>
+												<div className='h5 text-muted'>Omnio User</div>
 											</div>
 										</div>
 									</div>
@@ -185,93 +185,6 @@ const DashboardPage = () => {
 						</Card>
 						<Card>
 							<CardHeader>
-								<CardLabel icon='ShowChart' iconColor='secondary'>
-									<CardTitle>Statics</CardTitle>
-								</CardLabel>
-							</CardHeader>
-							<CardBody>
-								<div className='row g-4 align-items-center'>
-									<div className='col-xl-6'>
-										<div
-											className={classNames(
-												'd-flex align-items-center rounded-2 p-3',
-												{
-													'bg-l10-warning': !darkModeStatus,
-													'bg-lo25-warning': darkModeStatus,
-												},
-											)}>
-											<div className='flex-shrink-0'>
-												<Icon
-													icon='MonetizationOn'
-													size='3x'
-													color='warning'
-												/>
-											</div>
-											<div className='flex-grow-1 ms-3'>
-												<div className='fw-bold fs-3 mb-0'>183K</div>
-												<div className='text-muted mt-n2'>Sales</div>
-											</div>
-										</div>
-									</div>
-									<div className='col-xl-6'>
-										<div
-											className={classNames(
-												'd-flex align-items-center rounded-2 p-3',
-												{
-													'bg-l10-info': !darkModeStatus,
-													'bg-lo25-info': darkModeStatus,
-												},
-											)}>
-											<div className='flex-shrink-0'>
-												<Icon icon='Person' size='3x' color='info' />
-											</div>
-											<div className='flex-grow-1 ms-3'>
-												<div className='fw-bold fs-3 mb-0'>1247</div>
-												<div className='text-muted mt-n2'>Customers</div>
-											</div>
-										</div>
-									</div>
-									<div className='col-xl-6'>
-										<div
-											className={classNames(
-												'd-flex align-items-center rounded-2 p-3',
-												{
-													'bg-l10-primary': !darkModeStatus,
-													'bg-lo25-primary': darkModeStatus,
-												},
-											)}>
-											<div className='flex-shrink-0'>
-												<Icon icon='Inventory2' size='3x' color='primary' />
-											</div>
-											<div className='flex-grow-1 ms-3'>
-												<div className='fw-bold fs-3 mb-0'>500+</div>
-												<div className='text-muted mt-n2'>Products</div>
-											</div>
-										</div>
-									</div>
-									<div className='col-xl-6'>
-										<div
-											className={classNames(
-												'd-flex align-items-center rounded-2 p-3',
-												{
-													'bg-l10-success': !darkModeStatus,
-													'bg-lo25-success': darkModeStatus,
-												},
-											)}>
-											<div className='flex-shrink-0'>
-												<Icon icon='Money' size='3x' color='success' />
-											</div>
-											<div className='flex-grow-1 ms-3'>
-												<div className='fw-bold fs-3 mb-0'>112,458</div>
-												<div className='text-muted mt-n2'>Profits</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</CardBody>
-						</Card>
-						<Card>
-							<CardHeader>
 								<CardLabel>
 									<CardTitle>About Omnio</CardTitle>
 								</CardLabel>
@@ -280,96 +193,11 @@ const DashboardPage = () => {
 								<p>
 									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
 									vitae velit efficitur nulla dignissim commodo nec vitae odio.
-									Proin ut risus metus. Aenean dui lectus, laoreet at ornare et,
-									pellentesque id mauris. Morbi a molestie elit. Nunc eget mi in
-									lectus rutrum venenatis. Duis dapibus porta justo, nec dapibus
-									tellus condimentum ultrices. In hac habitasse platea dictumst.
-									Nulla facilisi. Aenean consequat gravida felis vitae vestibulum.
-									Suspendisse lacinia ex sed tellus imperdiet, ut lacinia odio
-									rutrum.
-								</p>
-								<p>
-									Pellentesque vel sem bibendum, tristique urna a, lacinia tortor.
-									Suspendisse dapibus lectus id venenatis tincidunt. Proin tempor
-									lorem non arcu rutrum interdum. Cras sit amet ultricies lacus,
-									vitae luctus nunc. Sed commodo hendrerit augue, et aliquet sem
-									commodo in. Pellentesque in diam eros. Sed quis sapien eros. Sed
-									eleifend at arcu vitae sagittis.
-								</p>
-								<p>
-									Morbi at fringilla lorem. Nulla eu odio a ante vulputate
-									finibus. Duis congue finibus nibh fermentum egestas. Maecenas
-									risus neque, dapibus vitae porttitor vel, efficitur ac dolor.
-									Sed nec ante ac orci dictum laoreet vitae eget odio. Proin at
-									consequat ipsum.
 								</p>
 							</CardBody>
 						</Card>
 					</div>
 					<div className='col-xxl-8 col-xl-6'>
-						<Card
-							className={classNames('shadow-3d-info', 'mb-5', {
-								'bg-lo10-info': darkModeStatus,
-								'bg-l25-info': !darkModeStatus,
-							})}>
-							<Carousel
-								isHoverPause
-								isRide
-								height={height || 305}
-								isDark={darkModeStatus}>
-								<CarouselSlide>
-									<div className='row align-items-center h-100'>
-										<div className='col-6 text-end'>
-											<h2>Customize</h2>
-											<h5>You can design your own screens</h5>
-											<Button
-												color={darkModeStatus ? 'light' : 'dark'}
-												onClick={() => navigate(`/`)}>
-												Click
-											</Button>
-										</div>
-										<div
-											className='col-6 carousel-slide-bg'
-											style={{ backgroundImage: `url(${WannaImg2})` }}
-										/>
-									</div>
-								</CarouselSlide>
-								<CarouselSlide>
-									<div className='row align-items-center h-100'>
-										<div className='col-6 text-end'>
-											<h2>Customize</h2>
-											<h5>You can design your own screens</h5>
-											<Button
-												color={darkModeStatus ? 'light' : 'dark'}
-												onClick={() => navigate(`/`)}>
-												Click
-											</Button>
-										</div>
-										<div
-											className='col-6 carousel-slide-bg'
-											style={{ backgroundImage: `url(${WannaImg2})` }}
-										/>
-									</div>
-								</CarouselSlide>
-								<CarouselSlide>
-									<div className='row align-items-center h-100'>
-										<div className='col-6 text-end'>
-											<h2>Customize</h2>
-											<h5>You can design your own screens</h5>
-											<Button
-												color={darkModeStatus ? 'light' : 'dark'}
-												onClick={() => navigate(`/`)}>
-												Click
-											</Button>
-										</div>
-										<div
-											className='col-6 carousel-slide-bg'
-											style={{ backgroundImage: `url(${WannaImg2})` }}
-										/>
-									</div>
-								</CarouselSlide>
-							</Carousel>
-						</Card>
 						<Card hasTab>
 							<CardTabItem id='profile' title='Identity' icon='Contacts'>
 								<Alert isLight className='border-0' shadow='md' icon='LocalPolice'>
@@ -542,70 +370,6 @@ const DashboardPage = () => {
 										<CardFooterRight>
 											<Button type='submit' color='info' icon='Save'>
 												Save
-											</Button>
-										</CardFooterRight>
-									</CardFooter>
-								</Card>
-							</CardTabItem>
-							<CardTabItem id='profile2' title='Purchase Intention' icon='Lock'>
-								<Alert isLight className='border-0' shadow='md' icon='LocalPolice'>
-									The information is not shared with third parties.
-								</Alert>
-								<Card
-									className='rounded-2'
-									tag='form'
-									onSubmit={formik.handleSubmit}>
-									<CardHeader>
-										<CardLabel icon='Lock'>
-											<CardTitle>Change Password</CardTitle>
-										</CardLabel>
-									</CardHeader>
-									<CardBody>
-										<div className='row g-4'>
-											<FormGroup
-												className='col-lg-4'
-												id='formCurrentPassword'
-												label='Current Password'>
-												<Input
-													type='password'
-													placeholder='Current Password'
-													autoComplete='current-password'
-													onChange={formik.handleChange}
-													value={formik.values.formCurrentPassword}
-												/>
-											</FormGroup>
-											<div className='w-100 m-0' />
-											<FormGroup
-												className='col-lg-4'
-												id='formNewPassword'
-												label='New Password'>
-												<Input
-													type='password'
-													placeholder='New Password'
-													autoComplete='new-password'
-													onChange={formik.handleChange}
-													value={formik.values.formNewPassword}
-												/>
-											</FormGroup>
-											<div className='w-100 m-0' />
-											<FormGroup
-												className='col-lg-4'
-												id='formConfirmNewPassword'
-												label='Confirm New Password'>
-												<Input
-													type='password'
-													placeholder='Confirm New Password'
-													autoComplete='new-password'
-													onChange={formik.handleChange}
-													value={formik.values.formConfirmNewPassword}
-												/>
-											</FormGroup>
-										</div>
-									</CardBody>
-									<CardFooter>
-										<CardFooterRight>
-											<Button type='submit' color='info' icon='Save'>
-												Change Password
 											</Button>
 										</CardFooterRight>
 									</CardFooter>

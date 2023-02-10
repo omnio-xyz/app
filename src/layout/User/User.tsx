@@ -35,7 +35,9 @@ const User = () => {
 				</div>
 				<div className='user-info'>
 					<div className='user-name d-flex align-items-center'>
-						{`${userData?.profile?.name} ${userData?.profile?.surname}`}
+						{`${userData?.profile?.name || 'Omnio'} ${
+							userData?.profile?.surname || 'User'
+						}`}
 						<Icon icon='Verified' className='ms-1' color='info' />
 					</div>
 				</div>
@@ -91,9 +93,7 @@ const User = () => {
 							<span className='navigation-link navigation-link-pill'>
 								<span className='navigation-link-info'>
 									<Icon icon='Logout' className='navigation-icon' />
-									<span className='navigation-text'>
-										{t('menu:Logout') as ReactNode}
-									</span>
+									<span className='navigation-text'>Disconnect</span>
 								</span>
 							</span>
 						</div>
