@@ -2,7 +2,7 @@ export const LaunchMenu = {
 	launch: {
 		id: 'launch',
 		text: 'Launch',
-		path: 'auth-pages/login',
+		path: 'login',
 		icon: 'Login',
 	},
 };
@@ -24,31 +24,31 @@ export const ConsumerDataMenu = {
 		icon: 'Extension',
 	},
 	dashboardBdooking: {
-		id: 'dashboard-booking',
+		id: 'engangement',
 		text: 'Engagement',
 		path: 'dashboard-booking',
 		icon: 'PanTool',
 		subMenu: {
 			viewContent: {
-				id: 'pagedView',
+				id: 'view-content',
 				text: 'View Content',
 				path: 'view-content',
 				icon: 'WebAsset',
 			},
 			addToWishlist: {
-				id: 'pageView',
+				id: 'add-to-wishlist',
 				text: 'Add to Wishlist',
 				path: 'add-to-wishlist',
 				icon: 'Star',
 			},
 			addToCart: {
-				id: 'pageView',
+				id: 'add-to-cart',
 				text: 'Add to Cart',
 				path: 'add-to-cart',
 				icon: 'Add',
 			},
 			initiateCheckout: {
-				id: 'pageView',
+				id: 'initiate-checkout',
 				text: 'Initiate Checkout',
 				path: 'initiate-checkout',
 				icon: 'ShoppingBasket',

@@ -7,18 +7,26 @@ import Card, {
 	CardLabel,
 	CardTitle,
 } from '../../../../components/bootstrap/Card';
+import CommonTableRow, { ICommonTableRowProps } from '../../../_common/CommonTableRow';
 import useOmnio from '../../../../contexts/omnioContext';
-import ViewContentTableRow, { IViewContentTableRowProps } from './ViewContentTableRow';
 
 const DashboardBookingPage = () => {
 	const { userData } = useOmnio();
 
-	const viewContentData: IViewContentTableRowProps[] = [];
-	userData?.content_view?.forEach((content) => {
-		viewContentData.push({
-			url: content?.data?.url,
-			seller: content?.data?.seller,
-			date: content?.date,
+	const purchaseProductsHistoryData: ICommonTableRowProps[] = [];
+	userData?.purchase_history?.forEach((purchase) => {
+		purchase?.data?.products?.forEach((product) => {
+			purchaseProductsHistoryData.push({
+				id: product?.gtin,
+				image: product?.image,
+				name: product?.name,
+				category: product?.category,
+				description: product?.description,
+				price: product?.unit_price,
+				brand: product?.brand_id,
+				seller: purchase?.data?.seller,
+				date: purchase?.date,
+			});
 		});
 	});
 
@@ -29,21 +37,26 @@ const DashboardBookingPage = () => {
 				<Card stretch>
 					<CardHeader borderSize={1}>
 						<CardLabel icon='WebAsset' iconColor='info'>
-							<CardTitle>View Content</CardTitle>
+							<CardTitle>Purchase Products History</CardTitle>
 						</CardLabel>
 					</CardHeader>
 					<CardBody className='table-responsive' isScrollable>
 						<table className='table table-modern table-hover'>
 							<thead>
 								<tr>
-									<th scope='col'>URL</th>
+									<th scope='col'>Image</th>
+									<th scope='col'>Name</th>
+									<th scope='col'>Category</th>
+									<th scope='col'>Description</th>
+									<th scope='col'>Price</th>
+									<th scope='col'>Brand</th>
 									<th scope='col'>Seller</th>
 									<th scope='col'>Date</th>
 								</tr>
 							</thead>
 							<tbody>
-								{viewContentData.map((i) => (
-									<ViewContentTableRow
+								{purchaseProductsHistoryData.map((i) => (
+									<CommonTableRow
 										key={count++}
 										// eslint-disable-next-line react/jsx-props-no-spreading
 										{...i}

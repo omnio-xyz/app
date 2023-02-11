@@ -7,29 +7,29 @@ import Card, {
 	CardLabel,
 	CardTitle,
 } from '../../../../components/bootstrap/Card';
-import CommonTableRow, { ICommonTableRowProps } from '../../../_common/CommonTableRow';
 import useOmnio from '../../../../contexts/omnioContext';
+import InitiatedCheckoutTableRow, {
+	IInitiatedCheckoutTableRowProps,
+} from './InitiatedCheckoutTableRow';
 
 const DashboardBookingPage = () => {
 	const { userData } = useOmnio();
-	console.log(userData);
-	const purchaseProductsHistoryData: ICommonTableRowProps[] = [];
-	userData?.purchase_history?.forEach((purchase) => {
-		purchase?.data?.products?.forEach((product) => {
-			purchaseProductsHistoryData.push({
-				id: product?.gtin,
-				image: product?.image,
-				name: product?.name,
-				category: product?.category,
-				description: product?.description,
-				price: product?.unit_price,
-				brand: product?.brand_id,
-				seller: purchase?.data?.seller,
-				date: purchase?.data?.transaction?.date,
-			});
+
+	const initiatedCheckoutData: IInitiatedCheckoutTableRowProps[] = [];
+	userData?.initiated_checkouts?.forEach((initiatedCheckout) => {
+		const products = initiatedCheckout?.data?.products?.map((p) => p.name);
+		const subtotal = initiatedCheckout?.data?.products
+			?.map((p) => p?.unit_price || 0)
+			.reduce((accumulator: number, currentValue: number) => accumulator + currentValue, 0);
+		initiatedCheckoutData.push({
+			image: initiatedCheckout?.data?.products[0]?.image,
+			products: products,
+			subtotal: subtotal,
+			seller: initiatedCheckout?.data?.seller,
+			date: initiatedCheckout?.date,
 		});
 	});
-	console.log(purchaseProductsHistoryData);
+
 	let count = 0;
 	return (
 		<PageWrapper>
@@ -37,27 +37,23 @@ const DashboardBookingPage = () => {
 				<Card stretch>
 					<CardHeader borderSize={1}>
 						<CardLabel icon='WebAsset' iconColor='info'>
-							<CardTitle>Purchase Products History</CardTitle>
+							<CardTitle>Initiated Checkouts</CardTitle>
 						</CardLabel>
 					</CardHeader>
 					<CardBody className='table-responsive' isScrollable>
 						<table className='table table-modern table-hover'>
 							<thead>
 								<tr>
-									<th scope='col'>#</th>
 									<th scope='col'>Image</th>
-									<th scope='col'>Name</th>
-									<th scope='col'>Category</th>
-									<th scope='col'>Description</th>
-									<th scope='col'>Price</th>
-									<th scope='col'>Brand</th>
+									<th scope='col'>Products</th>
+									<th scope='col'>Subtotal</th>
 									<th scope='col'>Seller</th>
 									<th scope='col'>Date</th>
 								</tr>
 							</thead>
 							<tbody>
-								{purchaseProductsHistoryData.map((i) => (
-									<CommonTableRow
+								{initiatedCheckoutData.map((i) => (
+									<InitiatedCheckoutTableRow
 										key={count++}
 										// eslint-disable-next-line react/jsx-props-no-spreading
 										{...i}
