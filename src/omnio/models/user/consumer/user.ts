@@ -11,5 +11,5 @@ export interface IConsumerUser {
 	add_to_cart?: IAddToCartItem[];
 	wishlist?: IWishlistItem[];
 	content_view?: IContentViewItem[];
-	initiate_checkouts?: IInitiatedCheckoutItem[];
+	initiated_checkouts?: IInitiatedCheckoutItem[];
 }

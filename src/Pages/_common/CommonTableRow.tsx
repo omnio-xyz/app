@@ -9,7 +9,7 @@ export interface ICommonTableRowProps {
 	name: string;
 	category: string;
 	description: string;
-	price: string;
+	price: number;
 	brand: string;
 	seller: string;
 	date: string;
@@ -69,7 +69,7 @@ const CommonTableRow: FC<ICommonTableRowProps> = ({
 				<Badge color={'info'}>{seller}</Badge>
 			</td>
 			<td>
-				<span>{new Date(date).toISOString().substring(0, 10)}</span>
+				<span>{date && new Date(date)?.toISOString()?.substring(0, 10)}</span>
 			</td>
 		</tr>
 	);

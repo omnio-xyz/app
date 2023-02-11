@@ -8,17 +8,25 @@ import Card, {
 	CardTitle,
 } from '../../../../components/bootstrap/Card';
 import useOmnio from '../../../../contexts/omnioContext';
-import ViewContentTableRow, { IViewContentTableRowProps } from './ViewContentTableRow';
+import InitiatedCheckoutTableRow, {
+	IInitiatedCheckoutTableRowProps,
+} from './InitiatedCheckoutTableRow';
 
 const DashboardBookingPage = () => {
 	const { userData } = useOmnio();
 
-	const viewContentData: IViewContentTableRowProps[] = [];
-	userData?.content_view?.forEach((content) => {
-		viewContentData.push({
-			url: content?.data?.url,
-			seller: content?.data?.seller,
-			date: content?.date,
+	const initiatedCheckoutData: IInitiatedCheckoutTableRowProps[] = [];
+	userData?.initiated_checkouts?.forEach((initiatedCheckout) => {
+		const products = initiatedCheckout?.data?.products?.map((p) => p.name);
+		const subtotal = initiatedCheckout?.data?.products
+			?.map((p) => p?.unit_price || 0)
+			.reduce((accumulator: number, currentValue: number) => accumulator + currentValue, 0);
+		initiatedCheckoutData.push({
+			image: initiatedCheckout?.data?.products[0]?.image,
+			products: products,
+			subtotal: subtotal,
+			seller: initiatedCheckout?.data?.seller,
+			date: initiatedCheckout?.date,
 		});
 	});
 
@@ -29,21 +37,23 @@ const DashboardBookingPage = () => {
 				<Card stretch>
 					<CardHeader borderSize={1}>
 						<CardLabel icon='WebAsset' iconColor='info'>
-							<CardTitle>View Content</CardTitle>
+							<CardTitle>Initiated Checkouts</CardTitle>
 						</CardLabel>
 					</CardHeader>
 					<CardBody className='table-responsive' isScrollable>
 						<table className='table table-modern table-hover'>
 							<thead>
 								<tr>
-									<th scope='col'>URL</th>
+									<th scope='col'>Image</th>
+									<th scope='col'>Products</th>
+									<th scope='col'>Subtotal</th>
 									<th scope='col'>Seller</th>
 									<th scope='col'>Date</th>
 								</tr>
 							</thead>
 							<tbody>
-								{viewContentData.map((i) => (
-									<ViewContentTableRow
+								{initiatedCheckoutData.map((i) => (
+									<InitiatedCheckoutTableRow
 										key={count++}
 										// eslint-disable-next-line react/jsx-props-no-spreading
 										{...i}

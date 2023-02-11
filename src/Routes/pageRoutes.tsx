@@ -1,44 +1,22 @@
 import React, { lazy } from 'react';
 import { RouteProps } from 'react-router-dom';
-import { demoPagesMenu, gettingStartedPagesMenu, LaunchMenu } from '../menu';
+import { LaunchMenu } from '../menu';
 import Login from '../Pages/Main/Account/Launch';
 
 const LANDING = {
 	DASHBOARD: lazy(() => import('../Pages/Main/Consumer/Profle')),
-	DASHBOARD_BOOKING: lazy(() => import('../Pages/Main/DataHub/purchaseHistory/purchaseHistory')),
+	PURCHASE_HISTORY: lazy(() => import('../Pages/Main/DataHub/purchaseHistory/purchaseHistory')),
+	REQUESTS: lazy(() => import('../Pages/Main/DataHub/purchaseHistory/purchaseHistory')),
 };
 
-const EDIT = {
-	MODERN: lazy(() => import('../Pages/Main/DataHub/Engagement/viewContent')),
-	FLUID: lazy(() => import('../Pages/Main/DataHub/Engagement/addToWishlist')),
-	WIZARD: lazy(() => import('../Pages/Main/Onboarding/EditWizardPage')),
+const ENGANGEMENT = {
+	ADD_TO_CART: lazy(() => import('../Pages/Main/DataHub/Engagement/addToCart')),
+	ADD_TO_WISHLIST: lazy(() => import('../Pages/Main/DataHub/Engagement/addToWishlist')),
+	VIEW_CONTENT: lazy(() => import('../Pages/Main/DataHub/Engagement/viewContent')),
+	INITIATED_CHECKOUTS: lazy(() => import('../Pages/Main/DataHub/Engagement/initiatedCheckouts')),
 };
 
-const APP = {
-	KNOWLEDGE: {
-		GRID: lazy(() => import('../Pages/Main/BrandStudio/knowledge/KnowledgeGridPage')),
-		VIEW: lazy(() => import('../Pages/Main/BrandStudio/knowledge/KnowledgeViewPage')),
-	},
-	SALES: {
-		PRODUCTS_GRID: lazy(() => import('../Pages/Main/BrandStudio/sales/ProductsGridPage')),
-		PRODUCTS_VIEW: lazy(() => import('../Pages/Main/DataHub/purchaseHistory/productView')),
-	},
-	APPOINTMENT: {
-		EMPLOYEE_LIST: lazy(() => import('../Pages/Main/DataHub/Engagement/EmployeeList')),
-		EMPLOYEE_VIEW: lazy(() => import('../Pages/Main/BrandStudio/appointment/EmployeePage')),
-		APPOINTMENT_LIST: lazy(() => import('../Pages/Main/DataHub/Engagement/addToCart')),
-	},
-	CRM: {
-		CRM_DASHBOARD: lazy(() => import('../Pages/Main/DataHub/Engagement/initiateCheckout')),
-		CUSTOMERS: lazy(() => import('../Pages/Main/DataHub/Engagement/addBillingInformation')),
-		CUSTOMER: lazy(() => import('../Pages/Main/BrandStudio/crm/Customer')),
-	},
-};
-const GETTING_STARTED = {
-	INSTALLATION: lazy(() => import('../Pages/Main/DataHub/Engagement/Search')),
-};
-
-const presentation: RouteProps[] = [
+const routes: RouteProps[] = [
 	/**
 	 * Landing
 	 */
@@ -58,30 +36,26 @@ const presentation: RouteProps[] = [
 	 */
 	{
 		path: 'purchase-history',
-		element: <LANDING.DASHBOARD_BOOKING />,
+		element: <LANDING.PURCHASE_HISTORY />,
 	},
 	/**
 	 * Engangement
 	 */
 	{
 		path: 'view-content',
-		element: <EDIT.MODERN />,
+		element: <ENGANGEMENT.VIEW_CONTENT />,
 	},
 	{
 		path: 'add-to-wishlist',
-		element: <EDIT.FLUID />,
-	},
-	{
-		path: demoPagesMenu.editPages.subMenu.editWizard.path,
-		element: <EDIT.WIZARD />,
+		element: <ENGANGEMENT.ADD_TO_WISHLIST />,
 	},
 	{
 		path: 'add-to-cart',
-		element: <APP.APPOINTMENT.APPOINTMENT_LIST />,
+		element: <ENGANGEMENT.ADD_TO_CART />,
 	},
 	{
 		path: 'initiate-checkout',
-		element: <APP.CRM.CRM_DASHBOARD />,
+		element: <ENGANGEMENT.INITIATED_CHECKOUTS />,
 	},
 
 	/**
@@ -89,19 +63,8 @@ const presentation: RouteProps[] = [
 	 */
 	{
 		path: 'requests',
-		element: <APP.APPOINTMENT.EMPLOYEE_LIST />,
+		element: <LANDING.REQUESTS />,
 	},
 ];
 
-const documentation: RouteProps[] = [
-	/**
-	 * Getting Started
-	 */
-	{
-		path: gettingStartedPagesMenu.gettingStarted.subMenu.installation.path,
-		element: <GETTING_STARTED.INSTALLATION />,
-	},
-];
-const contents = [...presentation, ...documentation];
-
-export default contents;
+export default routes;

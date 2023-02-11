@@ -5,7 +5,7 @@ export interface IProduct {
 	description: string;
 	brand_id: string;
 	image: string;
-	unit_price: string;
+	unit_price: number;
 }
 
 export interface IPurchasedProduct extends IProduct {
