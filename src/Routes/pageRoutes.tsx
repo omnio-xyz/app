@@ -11,9 +11,9 @@ const LANDING = {
 
 const ENGANGEMENT = {
 	ADD_TO_CART: lazy(() => import('../Pages/Main/DataHub/Engagement/addToCart')),
-	ADD_TO_WISHLIST: lazy(() => import('../Pages/Main/DataHub/Engagement/addToWishlist')),
-	VIEW_CONTENT: lazy(() => import('../Pages/Main/DataHub/Engagement/viewContent')),
-	INITIATED_CHECKOUTS: lazy(() => import('../Pages/Main/DataHub/Engagement/initiatedCheckouts')),
+	FAVORITE_PRODUCTS: lazy(() => import('../Pages/Main/DataHub/Engagement/favoriteProducts')),
+	VIEW_PRODUCT: lazy(() => import('../Pages/Main/DataHub/Engagement/viewProduct')),
+	INITIATED_PURCHASES: lazy(() => import('../Pages/Main/DataHub/Engagement/initiatedPurchases')),
 };
 
 const routes: RouteProps[] = [
@@ -42,20 +42,20 @@ const routes: RouteProps[] = [
 	 * Engangement
 	 */
 	{
-		path: 'view-content',
-		element: <ENGANGEMENT.VIEW_CONTENT />,
+		path: 'view-product',
+		element: <ENGANGEMENT.VIEW_PRODUCT />,
 	},
 	{
-		path: 'add-to-wishlist',
-		element: <ENGANGEMENT.ADD_TO_WISHLIST />,
+		path: 'favorite-product',
+		element: <ENGANGEMENT.FAVORITE_PRODUCTS />,
 	},
 	{
 		path: 'add-to-cart',
 		element: <ENGANGEMENT.ADD_TO_CART />,
 	},
 	{
-		path: 'initiate-checkout',
-		element: <ENGANGEMENT.INITIATED_CHECKOUTS />,
+		path: 'initiate-purchase',
+		element: <ENGANGEMENT.INITIATED_PURCHASES />,
 	},
 
 	/**

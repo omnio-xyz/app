@@ -20,6 +20,7 @@ const DashboardBookingPage = () => {
 			id: product?.gtin,
 			image: product?.image,
 			name: product?.name,
+			credentialType: 'Favorite Product',
 			category: product?.category,
 			description: product?.description,
 			price: product?.unit_price,
@@ -35,8 +36,11 @@ const DashboardBookingPage = () => {
 			<Page container='fluid'>
 				<Card stretch>
 					<CardHeader borderSize={1}>
-						<CardLabel icon='WebAsset' iconColor='info'>
-							<CardTitle>Add to Wishlist</CardTitle>
+						<CardLabel icon='Star' iconColor='info'>
+							<CardTitle>Favorite Products</CardTitle>
+						</CardLabel>
+						<CardLabel>
+							A data credential is generated when you favorite a product.
 						</CardLabel>
 					</CardHeader>
 					<CardBody className='table-responsive' isScrollable>
@@ -45,6 +49,7 @@ const DashboardBookingPage = () => {
 								<tr>
 									<th scope='col'>Image</th>
 									<th scope='col'>Name</th>
+									<th scope='col'>Data Credential</th>
 									<th scope='col'>Category</th>
 									<th scope='col'>Description</th>
 									<th scope='col'>Price</th>

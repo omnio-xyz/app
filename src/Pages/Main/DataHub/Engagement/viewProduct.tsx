@@ -8,7 +8,7 @@ import Card, {
 	CardTitle,
 } from '../../../../components/bootstrap/Card';
 import useOmnio from '../../../../contexts/omnioContext';
-import ViewContentTableRow, { IViewContentTableRowProps } from './ViewContentTableRow';
+import ViewContentTableRow, { IViewContentTableRowProps } from './ViewProductTableRow';
 
 const DashboardBookingPage = () => {
 	const { userData } = useOmnio();
@@ -17,6 +17,7 @@ const DashboardBookingPage = () => {
 	userData?.content_view?.forEach((content) => {
 		viewContentData.push({
 			url: content?.data?.url,
+			credentialType: 'View Product',
 			seller: content?.data?.seller,
 			date: content?.date,
 		});
@@ -29,14 +30,16 @@ const DashboardBookingPage = () => {
 				<Card stretch>
 					<CardHeader borderSize={1}>
 						<CardLabel icon='WebAsset' iconColor='info'>
-							<CardTitle>View Content</CardTitle>
+							<CardTitle>View Product</CardTitle>
 						</CardLabel>
+						<CardLabel>A credential is generated when you view a product.</CardLabel>
 					</CardHeader>
 					<CardBody className='table-responsive' isScrollable>
 						<table className='table table-modern table-hover'>
 							<thead>
 								<tr>
 									<th scope='col'>URL</th>
+									<th scope='col'>Data Credential</th>
 									<th scope='col'>Seller</th>
 									<th scope='col'>Date</th>
 								</tr>

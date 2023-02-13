@@ -7,6 +7,7 @@ export interface IInitiatedCheckoutTableRowProps {
 	image: string;
 	products: string[];
 	subtotal: number;
+	credentialType: string;
 	seller: string;
 	date: string;
 }
@@ -15,6 +16,7 @@ const InitiatedCheckoutTableRow: FC<IInitiatedCheckoutTableRowProps> = ({
 	image,
 	products,
 	subtotal,
+	credentialType,
 	seller,
 	date,
 }) => {
@@ -36,6 +38,9 @@ const InitiatedCheckoutTableRow: FC<IInitiatedCheckoutTableRowProps> = ({
 			</td>
 			<td>
 				<span>{subtotal}</span>
+			</td>
+			<td>
+				<span>{credentialType}</span>
 			</td>
 			<td className='h5'>
 				<Badge color={'info'}>{seller}</Badge>

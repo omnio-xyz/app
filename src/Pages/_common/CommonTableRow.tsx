@@ -7,6 +7,7 @@ export interface ICommonTableRowProps {
 	id: string | number;
 	image: string;
 	name: string;
+	credentialType: string;
 	category: string;
 	description: string;
 	price: number;
@@ -24,6 +25,7 @@ const CommonTableRow: FC<ICommonTableRowProps> = ({
 	id,
 	image,
 	name,
+	credentialType,
 	category,
 	description,
 	price,
@@ -46,6 +48,9 @@ const CommonTableRow: FC<ICommonTableRowProps> = ({
 					})}>
 					{name}
 				</div>
+			</td>
+			<td>
+				<span>{credentialType}</span>
 			</td>
 			<td>
 				<div

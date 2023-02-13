@@ -3,15 +3,24 @@ import Badge from '../../../../components/bootstrap/Badge';
 
 export interface IViewContentTableRowProps {
 	url: string;
+	credentialType: string;
 	seller: string;
 	date: string;
 }
 
-const ViewContentTableRow: FC<IViewContentTableRowProps> = ({ url, seller, date }) => {
+const ViewContentTableRow: FC<IViewContentTableRowProps> = ({
+	url,
+	credentialType,
+	seller,
+	date,
+}) => {
 	return (
 		<tr>
 			<td>
 				<span>{url}</span>
+			</td>
+			<td>
+				<span>{credentialType}</span>
 			</td>
 			<td className='h5'>
 				<Badge color={'info'}>{seller}</Badge>

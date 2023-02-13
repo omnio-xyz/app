@@ -10,7 +10,7 @@ import Card, {
 import useOmnio from '../../../../contexts/omnioContext';
 import InitiatedCheckoutTableRow, {
 	IInitiatedCheckoutTableRowProps,
-} from './InitiatedCheckoutTableRow';
+} from './InitiatedPurchasesTableRow';
 
 const DashboardBookingPage = () => {
 	const { userData } = useOmnio();
@@ -25,6 +25,7 @@ const DashboardBookingPage = () => {
 			image: initiatedCheckout?.data?.products[0]?.image,
 			products: products,
 			subtotal: subtotal,
+			credentialType: 'Initiate Purchase',
 			seller: initiatedCheckout?.data?.seller,
 			date: initiatedCheckout?.date,
 		});
@@ -36,8 +37,11 @@ const DashboardBookingPage = () => {
 			<Page container='fluid'>
 				<Card stretch>
 					<CardHeader borderSize={1}>
-						<CardLabel icon='WebAsset' iconColor='info'>
-							<CardTitle>Initiated Checkouts</CardTitle>
+						<CardLabel icon='ShoppingBasket' iconColor='info'>
+							<CardTitle>Initiated Purchases</CardTitle>
+						</CardLabel>
+						<CardLabel>
+							A data credential is generated when you initiate a purchase.
 						</CardLabel>
 					</CardHeader>
 					<CardBody className='table-responsive' isScrollable>
@@ -47,6 +51,7 @@ const DashboardBookingPage = () => {
 									<th scope='col'>Image</th>
 									<th scope='col'>Products</th>
 									<th scope='col'>Subtotal</th>
+									<th scope='col'>Data Credential</th>
 									<th scope='col'>Seller</th>
 									<th scope='col'>Date</th>
 								</tr>

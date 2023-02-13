@@ -20,6 +20,7 @@ const DashboardBookingPage = () => {
 			id: product?.gtin,
 			image: product?.image,
 			name: product?.name,
+			credentialType: 'Add to Cart',
 			category: product?.category,
 			description: product?.description,
 			price: product?.unit_price,
@@ -35,8 +36,11 @@ const DashboardBookingPage = () => {
 			<Page container='fluid'>
 				<Card stretch>
 					<CardHeader borderSize={1}>
-						<CardLabel icon='WebAsset' iconColor='info'>
+						<CardLabel icon='AddShoppingCart' iconColor='info'>
 							<CardTitle>Add to Cart</CardTitle>
+						</CardLabel>
+						<CardLabel>
+							A data credential is generated when a product is added to your cart.
 						</CardLabel>
 					</CardHeader>
 					<CardBody className='table-responsive' isScrollable>
@@ -45,6 +49,7 @@ const DashboardBookingPage = () => {
 								<tr>
 									<th scope='col'>Image</th>
 									<th scope='col'>Name</th>
+									<th scope='col'>Data Credential</th>
 									<th scope='col'>Category</th>
 									<th scope='col'>Description</th>
 									<th scope='col'>Price</th>
