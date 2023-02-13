@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import moment, { Moment } from 'moment';
 import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
 import Page from '../../../../layout/Page/Page';
 import Card, {
@@ -7,13 +8,32 @@ import Card, {
 	CardLabel,
 	CardTitle,
 } from '../../../../components/bootstrap/Card';
-import CommonTableRow, { ICommonTableRowProps } from '../../../_common/CommonTableRow';
 import useOmnio from '../../../../contexts/omnioContext';
+import PaginationButtons, {
+	dataPagination,
+	PER_COUNT,
+} from '../../../../components/PaginationButtons';
+import classNames from 'classnames';
+import Badge from '../../../../components/bootstrap/Badge';
+import useDarkMode from '../../../../hooks/useDarkMode';
 
-const DashboardBookingPage = () => {
+interface IPurchaseProductRow {
+	id: string | number;
+	image: string;
+	name: string;
+	credentialType: string;
+	category: string;
+	description: string;
+	price: number;
+	brand: string;
+	seller: string;
+	date: Moment;
+}
+
+const PurchaseHistory = () => {
 	const { userData } = useOmnio();
 
-	const purchaseProductsHistoryData: ICommonTableRowProps[] = [];
+	const purchaseProductsHistoryData: IPurchaseProductRow[] = [];
 	userData?.purchase_history?.forEach((purchase) => {
 		purchase?.data?.products?.forEach((product) => {
 			purchaseProductsHistoryData.push({
@@ -26,12 +46,14 @@ const DashboardBookingPage = () => {
 				price: product?.unit_price,
 				brand: product?.brand_id,
 				seller: purchase?.data?.seller,
-				date: purchase?.date,
+				date: moment(purchase?.date),
 			});
 		});
 	});
 
-	let count = 0;
+	const [currentPage, setCurrentPage] = useState<number>(1);
+	const [perPage, setPerPage] = useState<number>(PER_COUNT['10']);
+	const { darkModeStatus } = useDarkMode();
 	return (
 		<PageWrapper>
 			<Page container='fluid'>
@@ -48,32 +70,81 @@ const DashboardBookingPage = () => {
 						<table className='table table-modern table-hover'>
 							<thead>
 								<tr>
+									<th scope='col'>GTIN</th>
 									<th scope='col'>Image</th>
 									<th scope='col'>Name</th>
-									<th scope='col'>Data Credential</th>
+									<th scope='col'>Date</th>
 									<th scope='col'>Category</th>
-									<th scope='col'>Description</th>
 									<th scope='col'>Price</th>
 									<th scope='col'>Brand</th>
 									<th scope='col'>Seller</th>
-									<th scope='col'>Date</th>
 								</tr>
 							</thead>
 							<tbody>
-								{purchaseProductsHistoryData.map((i) => (
-									<CommonTableRow
-										key={count++}
-										// eslint-disable-next-line react/jsx-props-no-spreading
-										{...i}
-									/>
+								{dataPagination(
+									purchaseProductsHistoryData,
+									currentPage,
+									perPage,
+								).map((i) => (
+									<tr key={i.id}>
+										<td>
+											<div className='fs-6'>{i.id}</div>
+										</td>
+										<td>
+											<img
+												src={i.image}
+												alt={i.name}
+												width={54}
+												height={54}
+											/>
+										</td>
+										<td>
+											<div
+												className={classNames('fw-bold', {
+													'link-dark': !darkModeStatus,
+													'link-light': darkModeStatus,
+												})}>
+												{i.name}
+											</div>
+										</td>
+										<td>
+											<div className='fs-6'>{i.date.format('LLL')}</div>
+										</td>
+										<td>
+											<div
+												className={classNames('fw-bold', {
+													'link-dark': !darkModeStatus,
+													'link-light': darkModeStatus,
+												})}>
+												{i.category}
+											</div>
+										</td>
+										<td>
+											<span>{i.price}</span>
+										</td>
+										<td className='h5'>
+											<Badge color={'success'}>{i.brand}</Badge>
+										</td>
+										<td className='h5'>
+											<Badge color={'info'}>{i.seller}</Badge>
+										</td>
+									</tr>
 								))}
 							</tbody>
 						</table>
 					</CardBody>
+					<PaginationButtons
+						data={purchaseProductsHistoryData}
+						label='Data Credentials'
+						setCurrentPage={setCurrentPage}
+						currentPage={currentPage}
+						perPage={perPage}
+						setPerPage={setPerPage}
+					/>
 				</Card>
 			</Page>
 		</PageWrapper>
 	);
 };
 
-export default DashboardBookingPage;
+export default PurchaseHistory;

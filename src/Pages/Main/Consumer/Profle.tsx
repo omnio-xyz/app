@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import classNames from 'classnames';
 import { useMeasure } from 'react-use';
-import { useNavigate } from 'react-router-dom';
 import Button from '../../../components/bootstrap/Button';
 import Page from '../../../layout/Page/Page';
 import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
@@ -32,15 +31,11 @@ import Pic6 from '../../../assets/img/wanna/richie/richie6.png';
 import Pic7 from '../../../assets/img/wanna/richie/richie7.png';
 import Pic8 from '../../../assets/img/wanna/richie/richie8.png';
 import Modal, { ModalBody, ModalHeader, ModalTitle } from '../../../components/bootstrap/Modal';
-import WannaImg2 from '../../../assets/img/wanna/slide/scene-2.png';
-import Carousel from '../../../components/bootstrap/Carousel';
-import CarouselSlide from '../../../components/bootstrap/CarouselSlide';
 import useDarkMode from '../../../hooks/useDarkMode';
 
 const DashboardPage = () => {
 	const { darkModeStatus } = useDarkMode();
 
-	const navigate = useNavigate();
 	const formik = useFormik({
 		initialValues: {
 			formPrefix: 'Prof.',
@@ -69,7 +64,7 @@ const DashboardPage = () => {
 			);
 		},
 	});
-	const [ref, { height }] = useMeasure<HTMLDivElement>();
+	const [ref] = useMeasure<HTMLDivElement>();
 
 	const colors = ['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'dark'];
 	const [selectedImage, setSelectedImage] = useState<string | undefined>(undefined);
@@ -370,70 +365,6 @@ const DashboardPage = () => {
 										<CardFooterRight>
 											<Button type='submit' color='info' icon='Save'>
 												Save
-											</Button>
-										</CardFooterRight>
-									</CardFooter>
-								</Card>
-							</CardTabItem>
-							<CardTabItem id='profile2' title='Purchase Intention' icon='Lock'>
-								<Alert isLight className='border-0' shadow='md' icon='LocalPolice'>
-									The information is not shared with third parties.
-								</Alert>
-								<Card
-									className='rounded-2'
-									tag='form'
-									onSubmit={formik.handleSubmit}>
-									<CardHeader>
-										<CardLabel icon='Lock'>
-											<CardTitle>Change Password</CardTitle>
-										</CardLabel>
-									</CardHeader>
-									<CardBody>
-										<div className='row g-4'>
-											<FormGroup
-												className='col-lg-4'
-												id='formCurrentPassword'
-												label='Current Password'>
-												<Input
-													type='password'
-													placeholder='Current Password'
-													autoComplete='current-password'
-													onChange={formik.handleChange}
-													value={formik.values.formCurrentPassword}
-												/>
-											</FormGroup>
-											<div className='w-100 m-0' />
-											<FormGroup
-												className='col-lg-4'
-												id='formNewPassword'
-												label='New Password'>
-												<Input
-													type='password'
-													placeholder='New Password'
-													autoComplete='new-password'
-													onChange={formik.handleChange}
-													value={formik.values.formNewPassword}
-												/>
-											</FormGroup>
-											<div className='w-100 m-0' />
-											<FormGroup
-												className='col-lg-4'
-												id='formConfirmNewPassword'
-												label='Confirm New Password'>
-												<Input
-													type='password'
-													placeholder='Confirm New Password'
-													autoComplete='new-password'
-													onChange={formik.handleChange}
-													value={formik.values.formConfirmNewPassword}
-												/>
-											</FormGroup>
-										</div>
-									</CardBody>
-									<CardFooter>
-										<CardFooterRight>
-											<Button type='submit' color='info' icon='Save'>
-												Change Password
 											</Button>
 										</CardFooterRight>
 									</CardFooter>
