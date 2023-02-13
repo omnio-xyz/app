@@ -1,6 +1,6 @@
 import React, { SVGProps } from 'react';
 
-const SvgCustomPayPal= (props: SVGProps<SVGSVGElement>) => (
+const SvgCustomOmnio = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     viewBox='0 0 1375 1000'
@@ -18,4 +18,4 @@ const SvgCustomPayPal= (props: SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export default SvgCustomPayPal;
+export default SvgCustomOmnio;

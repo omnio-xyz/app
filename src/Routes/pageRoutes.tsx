@@ -1,173 +1,182 @@
 import React, { lazy } from 'react';
 import { RouteProps } from 'react-router-dom';
 import {
-	ConsumerMenu,
-	demoPagesMenu,
-	gettingStartedPagesMenu,
-	ConsumerDataMenu,
-	LaunchMenu,
+  launchMenu,
+  consumerProfileMenu,
+  consumerDataMenu,
+  demoPagesMenu,
+  brandProfileMenu,
+  brandStudioMenu,
 } from '../menu';
-import Login from '../Pages/Main/Account/Launch';
+import Login from '../pages/account/Launch';
 
 const LANDING = {
-	DASHBOARD: lazy(() => import('../Pages/Main/Consumer/Profle')),
-	DASHBOARD_BOOKING: lazy(() => import('../Pages/Main/data/purchaseData/purchaseHistory')),
+  DASHBOARD: lazy(() => import('../pages/consumer/consumerProfle')),
+  DASHBOARD_BOOKING: lazy(() => import('../pages/consumer/purchaseHistory')),
 };
+
 const SINGLE = {
-	FLUID: lazy(() => import('../Pages/Main/oldSearch')),
+  FLUID: lazy(() => import('../pages/Main/oldSearch')),
 };
+
 const EDIT = {
-	MODERN: lazy(() => import('../Pages/Main/data/Engagement/viewContent')),
-	FLUID: lazy(() => import('../Pages/Main/data/Engagement/addtoWishlist')),
-	WIZARD: lazy(() => import('../Pages/Main/Onboarding/EditWizardPage')),
+  MODERN: lazy(() => import('../pages/consumer/viewProduct')),
+  FLUID: lazy(() => import('../pages/consumer/favoriteProduct')),
+  WIZARD: lazy(() => import('../pages/account/consumerOnboarding')),
 };
 
 const AUTH = {
-	PAGE_404: lazy(() => import('../Pages/Main/Account/404')),
+  PAGE_404: lazy(() => import('../pages/account/404')),
 };
+
 const APP = {
-	KNOWLEDGE: {
-		GRID: lazy(() => import('../Pages/Main/BrandStudio/knowledge/KnowledgeGridPage')),
-		VIEW: lazy(() => import('../Pages/Main/BrandStudio/knowledge/KnowledgeViewPage')),
-	},
-	SALES: {
-		PRODUCTS_GRID: lazy(() => import('../Pages/Main/BrandStudio/sales/ProductsGridPage')),
-		PRODUCTS_VIEW: lazy(() => import('../Pages/Main/data/purchaseData/product')),
-	},
-	APPOINTMENT: {
-		EMPLOYEE_LIST: lazy(() => import('../Pages/Main/data/requests')),
-		EMPLOYEE_VIEW: lazy(() => import('../Pages/Main/BrandStudio/appointment/EmployeePage')),
-		APPOINTMENT_LIST: lazy(
-			() => import('../Pages/Main/data/Engagement/addtoCart'),
-		),
-	},
-	CRM: {
-		CRM_DASHBOARD: lazy(() => import('../Pages/Main/data/Engagement/initiateCheckout')),
-		CUSTOMERS: lazy(() => import('../Pages/Main/data/Engagement/addpaymentInformation')),
-		CUSTOMER: lazy(() => import('../Pages/Main/BrandStudio/crm/Customer')),
-	},
+  KNOWLEDGE: {
+    GRID: lazy(() => import('../pages/Main/brand/brandProfile')),
+  },
+  SALES: {
+    PRODUCTS_GRID: lazy(() => import('../pages/Main/brand/brandStudio/productCatalog')),
+    PRODUCTS_VIEW: lazy(() => import('../pages/consumer/product')),
+  },
+  APPOINTMENT: {
+    EMPLOYEE_LIST: lazy(() => import('../pages/consumer/requests')),
+    EMPLOYEE_VIEW: lazy(() => import('../pages/Main/brand/appointment/EmployeePage')),
+    APPOINTMENT_LIST: lazy(
+      () => import('../pages/consumer/addtoCart'),
+    ),
+  },
+  CRM: {
+    CRM_DASHBOARD: lazy(() => import('../pages/consumer/initiatePurchase')),
+    CUSTOMERS: lazy(() => import('../pages/Main/brand/query')),
+    CUSTOMER: lazy(() => import('../pages/Main/brand/crm/Customer')),
+  },
 };
+
 const GETTING_STARTED = {
-	INSTALLATION: lazy(() => import('../Pages/Main/data/Engagement/search')),
+  INSTALLATION: lazy(() => import('../pages/consumer/search')),
 };
 
 const presentation: RouteProps[] = [
-	/**
-	 * Landing
-	 */
-	{
-		path: ConsumerMenu.dashboard.path,
-		element: <LANDING.DASHBOARD />,
-	},
-	{
-		path: ConsumerDataMenu.dashboardBooking.path,
-		element: <LANDING.DASHBOARD_BOOKING />,
-	},
+  /**
+   * Profile
+   */
+  {
+    path: consumerProfileMenu.profile.path,
+    element: <LANDING.DASHBOARD />,
+  },
+  /** ************************************************** */
+  /**
+   * View Content
+   */
+  {
+    path: consumerDataMenu.engagement.subMenu.viewContent.path,
+    element: <EDIT.MODERN />,
+  },
+  /**
+   * Search
+   */
+  {
+    path: consumerDataMenu.engagement.subMenu.search.path,
+    element: <GETTING_STARTED.INSTALLATION />,
+  },
+  /**
+   * Add to Wishlist
+   */
+  {
+    path: consumerDataMenu.engagement.subMenu.addToWishlist.path,
+    element: <EDIT.FLUID />,
+  },
+  /**
+  * Add to Cart
+  */
+  {
+    path: consumerDataMenu.engagement.subMenu.addToCart.path,
+    element: <APP.APPOINTMENT.APPOINTMENT_LIST />,
+  },
+  /**
+  * Initiate Checkout
+  */
+  {
+    path: consumerDataMenu.engagement.subMenu.initiateCheckout.path,
+    element: <APP.CRM.CRM_DASHBOARD />,
+  },
+  /**
+  * Add Payment Information
+  */
+  {
+    path: brandStudioMenu.addBillingInformation.path,
+    element: <APP.CRM.CUSTOMERS />,
+  },
+  /** ************************************************** */
+  /**
+   * Purchase History
+   */
+  {
+    path: consumerDataMenu.purchaseData.path,
+    element: <LANDING.DASHBOARD_BOOKING />,
+  },
+  /** ************************************************** */
+  /**
+   * Requests
+   */
+  {
+    path: consumerDataMenu.requests.path,
+    element: <APP.APPOINTMENT.EMPLOYEE_LIST />,
+  },
 
-	/** ************************************************** */
 
-	/**
-	 * Pages
-	 */
 
-	/**
-	 * Edit
-	 */
-	{
-		path: demoPagesMenu.editPages.subMenu.editModern.path,
-		element: <EDIT.MODERN />,
-	},
-	{
-		path: demoPagesMenu.editPages.subMenu.editFluid.path,
-		element: <EDIT.FLUID />,
-	},
-	{
-		path: demoPagesMenu.editPages.subMenu.editWizard.path,
-		element: <EDIT.WIZARD />,
-	},
 
-	/**
-	 * END - Pages
-	 */
+  {
+    path: demoPagesMenu.editPages.subMenu.editWizard.path,
+    element: <EDIT.WIZARD />,
+  },
 
-	/**
-	 * Auth Page
-	 */
-	{
-		path: LaunchMenu.launch.path,
-		element: <Login />,
-	},
+  /**
+   * END - Pages
+   */
 
-	/**
-	 * App
-	 */
+  /**
+   * Auth Page
+   */
+  {
+    path: launchMenu.launch.path,
+    element: <Login />,
+  },
 
-	/**
-	 * App > Knowledge
-	 */
-	{
-		path: demoPagesMenu.knowledge.subMenu.grid.path,
-		element: <APP.KNOWLEDGE.GRID />,
-	},
-	{
-		path: `${demoPagesMenu.knowledge.subMenu.itemID.path}/:id`,
-		element: <APP.KNOWLEDGE.VIEW />,
-	},
+  /**
+   * App
+   */
 
-	/**
-	 * App > Sales
-	 */
-	{
-		path: demoPagesMenu.sales.subMenu.productsGrid.path,
-		element: <APP.SALES.PRODUCTS_GRID />,
-	},
-	{
-		path: `${demoPagesMenu.sales.subMenu.productID.path}/:id`,
-		element: <APP.SALES.PRODUCTS_VIEW />,
-	},
+  /**
+   * App > Knowledge
+   */
+  {
+    path: brandProfileMenu.knowledge.path,
+    element: <APP.KNOWLEDGE.GRID />,
+  },
 
-	/**
-	 * App > Appointment
-	 */
-	{
-		path: demoPagesMenu.appointment.subMenu.employeeList.path,
-		element: <APP.APPOINTMENT.EMPLOYEE_LIST />,
-	},
-	{
-		path: `${demoPagesMenu.appointment.subMenu.employeeID.path}/:id`,
-		element: <APP.APPOINTMENT.EMPLOYEE_VIEW />,
-	},
-	{
-		path: demoPagesMenu.appointment.subMenu.appointmentList.path,
-		element: <APP.APPOINTMENT.APPOINTMENT_LIST />,
-	},
+  /**
+   * App > Sales
+   */
+  {
+    path: demoPagesMenu.sales.subMenu.productsGrid.path,
+    element: <APP.SALES.PRODUCTS_GRID />,
+  },
+  {
+    path: `${demoPagesMenu.sales.subMenu.productID.path}/:id`,
+    element: <APP.SALES.PRODUCTS_VIEW />,
+  },
 
-	/**
-	 * App > CRM
-	 */
-	{
-		path: demoPagesMenu.crm.subMenu.dashboard.path,
-		element: <APP.CRM.CRM_DASHBOARD />,
-	},
-	{
-		path: demoPagesMenu.crm.subMenu.customersList.path,
-		element: <APP.CRM.CUSTOMERS />,
-	},
-	{
-		path: `${demoPagesMenu.crm.subMenu.customerID.path}/:id`,
-		element: <APP.CRM.CUSTOMER />,
-	},
+  /**
+   * App > CRM
+   */
+
+  {
+    path: `${demoPagesMenu.crm.subMenu.customerID.path}/:id`,
+    element: <APP.CRM.CUSTOMER />,
+  },
 ];
 
-const documentation: RouteProps[] = [
-	/**
-	 * Getting Started
-	 */
-	{
-		path: gettingStartedPagesMenu.gettingStarted.subMenu.installation.path,
-		element: <GETTING_STARTED.INSTALLATION />,
-	},
-];
-const contents = [...presentation, ...documentation];
+const contents = [...presentation];
 
 export default contents;

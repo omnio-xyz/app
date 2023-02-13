@@ -1,17 +1,16 @@
-import React from 'react';
 import { useTour } from '@reactour/tour';
 import { createUseStyles } from 'react-jss';
-import SusyDarkMode from './assets/img/wanna/susy/susy-dark-mode.png';
-import Susy from './assets/img/wanna/susy/susy.png';
-import Susy2 from './assets/img/wanna/susy/susy2.png';
-import Susy3 from './assets/img/wanna/susy/susy3.png';
-import Susy4 from './assets/img/wanna/susy/susy4.png';
-import Susy5 from './assets/img/wanna/susy/susy5.png';
-import Susy6 from './assets/img/wanna/susy/susy6.png';
-import Susy7 from './assets/img/wanna/susy/susy7.png';
-import Susy8 from './assets/img/wanna/susy/susy8.png';
-import Susy9 from './assets/img/wanna/susy/susy9.png';
-import Susy10 from './assets/img/wanna/susy/susy10.png';
+import SusyDarkMode from './assets/wanna/susy/susy-dark-mode.png';
+import Susy from './assets/wanna/susy/susy.png';
+import Susy2 from './assets/wanna/susy/susy2.png';
+import Susy3 from './assets/wanna/susy/susy3.png';
+import Susy4 from './assets/wanna/susy/susy4.png';
+import Susy5 from './assets/wanna/susy/susy5.png';
+import Susy6 from './assets/wanna/susy/susy6.png';
+import Susy7 from './assets/wanna/susy/susy7.png';
+import Susy8 from './assets/wanna/susy/susy8.png';
+import Susy9 from './assets/wanna/susy/susy9.png';
+import Susy10 from './assets/wanna/susy/susy10.png';
 import useDarkMode from './hooks/useDarkMode';
 import Button from './components/bootstrap/Button';
 

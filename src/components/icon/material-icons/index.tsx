@@ -518,7 +518,6 @@ export { default as Elevator } from './Elevator';
 export { default as Email } from './Email';
 export { default as Emergency } from './Emergency';
 export { default as EmojiEmotions } from './EmojiEmotions';
-export { default as EmojiEvents } from './EmojiEvents';
 export { default as EmojiFlags } from './EmojiFlags';
 export { default as EmojiFoodBeverage } from './EmojiFoodBeverage';
 export { default as EmojiNature } from './EmojiNature';

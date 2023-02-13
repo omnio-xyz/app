@@ -13,7 +13,6 @@ import OffCanvas, {
 import Alert from '../../../components/bootstrap/Alert';
 import Icon from '../../../components/icon/Icon';
 import ThemeContext from '../../../contexts/themeContext';
-import { getLangWithKey, ILang } from '../../../lang';
 import showNotification from '../../../components/extras/showNotification';
 import useDarkMode from '../../../hooks/useDarkMode';
 import Popovers from '../../../components/bootstrap/Popovers';
@@ -37,20 +36,6 @@ const CommonHeaderRight: FC<ICommonHeaderRightProps> = ({ beforeChildren, afterC
 
 	const { i18n } = useTranslation();
 
-	const changeLanguage = (lng: ILang['key']['lng']) => {
-		i18n.changeLanguage(lng).then();
-		showNotification(
-			<span className='d-flex align-items-center'>
-				<Icon icon={getLangWithKey(lng)?.icon} size='lg' className='me-1' />
-				<span>{`Language changed to ${getLangWithKey(lng)?.text}`}</span>
-			</span>,
-			'You updated the language of the site. (Only "Aside" was prepared as an example.)',
-		);
-	};
-
-	/**
-	 * Language attribute
-	 */
 	useLayoutEffect(() => {
 		document.documentElement.setAttribute('lang', i18n.language.substring(0, 2));
 	});

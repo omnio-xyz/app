@@ -1,4 +1,4 @@
-export const LaunchMenu = {
+export const launchMenu = {
   launch: {
     id: 'launch',
     text: 'Launch',
@@ -7,8 +7,60 @@ export const LaunchMenu = {
   },
 };
 
-export const ConsumerMenu = {
-  dashboard: {
+// Brand Studo
+
+export const brandOnboardingMenu = {
+  launch: {
+    id: 'launch',
+    text: 'Launch',
+    path: 'edit-pages/wizard',
+    icon: 'Login',
+  },
+};
+
+export const brandProfileMenu = {
+  knowledge: {
+    id: 'knowledge',
+    text: 'Profile',
+    path: 'knowledge/grid',
+    icon: 'Person',
+  },
+};
+
+export const brandStudioMenu = {
+  demo: {
+    id: 'demo',
+    text: 'Brand Studio',
+    icon: 'Extension',
+  },
+  profile: {
+    id: 'sales',
+    text: 'Product Catalog',
+    path: 'sales/grid',
+    icon: 'Store',
+    subMenu: null,
+  },
+  addBillingInformation: {
+    id: 'pageView',
+    text: 'Query',
+    path: 'add-billing-information',
+    icon: 'LocationSearching',
+  },
+};
+
+// Consumer
+
+export const consumerOnboardingMenu = {
+  launch: {
+    id: 'launch',
+    text: 'Launch',
+    path: 'edit-pages/wizard',
+    icon: 'Login',
+  },
+};
+
+export const consumerProfileMenu = {
+  profile: {
     id: 'dashboard',
     text: 'Profile',
     path: '/',
@@ -17,13 +69,9 @@ export const ConsumerMenu = {
   },
 };
 
-export const ConsumerDataMenu = {
-  demo: {
-    id: 'demo',
-    text: 'Consumer Data',
-    icon: 'Extension',
-  },
-  dashboardBdooking: {
+export const consumerDataMenu = {
+
+  engagement: {
     id: 'dashboard-booking',
     text: 'Engagement',
     path: 'dashboard-booking',
@@ -31,55 +79,55 @@ export const ConsumerDataMenu = {
     subMenu: {
       viewContent: {
         id: 'pagedView',
-        text: 'View Content',
-        path: 'edit-pages/modern',
+        text: 'View Product',
+        path: 'view-product',
         icon: 'WebAsset',
       },
       search: {
         id: 'search',
         text: 'Search',
-        path: 'getting-started/installation',
+        path: 'search',
         icon: 'Search',
       },
       addToWishlist: {
         id: 'pageView',
-        text: 'Add to Wishlist',
-        path: 'edit-pages/fluid',
+        text: 'Favorite Product',
+        path: 'favorite-product',
         icon: 'Star',
       },
       addToCart: {
         id: 'pageView',
         text: 'Add to Cart',
-        path: 'appointment/appointment-list',
-        icon: 'Add',
+        path: 'add-to-cart',
+        icon: 'AddShoppingCart',
       },
       initiateCheckout: {
         id: 'pageView',
-        text: 'Initiate Checkout',
-        path: 'crm/dashboard',
-        icon: 'ShoppingBasket',
-      },
-      addBillingInformation: {
-        id: 'pageView',
-        text: 'Add Payment Information',
-        path: 'crm/customers',
+        text: 'Initiate Purchase',
+        path: 'initiate-purchase',
         icon: 'CreditCard',
       },
     },
   },
-  dashboardBooking: {
+  purchaseData: {
     id: 'purchase-history',
     text: 'Purchase History',
     path: 'purchase-history',
     icon: 'History',
     subMenu: null,
   },
-  dashboardBooking1: {
+  requests: {
     id: 'purchase-history',
     text: 'Requests',
     path: 'appointment/employee-list',
     icon: 'Notifications',
     subMenu: null,
+  },
+  product: {
+    id: 'productID',
+    text: 'productID',
+    path: 'product',
+    hide: true,
   },
 };
 
@@ -95,18 +143,6 @@ export const demoPagesMenu = {
     path: 'edit-pages',
     icon: 'drive_file_rename_outline ',
     subMenu: {
-      editModern: {
-        id: 'editModern',
-        text: 'Modern Edit',
-        path: 'edit-pages/modern',
-        icon: 'AutoAwesomeMosaic',
-      },
-      editFluid: {
-        id: 'editFluid',
-        text: 'Fluid Edit',
-        path: 'edit-pages/fluid',
-        icon: 'ViewDay',
-      },
       editWizard: {
         id: 'editWizard',
         text: 'Wizard Edit',
@@ -121,36 +157,10 @@ export const demoPagesMenu = {
     text: 'Apps',
     icon: 'Extension',
   },
-  knowledge: {
-    id: 'knowledge',
-    text: 'Knowledge',
-    path: 'knowledge',
-    icon: 'AutoStories',
-    subMenu: {
-      grid: {
-        id: 'grid',
-        text: 'Knowledge Grid',
-        path: 'knowledge/grid',
-        icon: 'AutoStories',
-      },
-      itemID: {
-        id: 'itemID',
-        text: 'itemID',
-        path: 'knowledge/item',
-        hide: true,
-      },
-      item: {
-        id: 'item',
-        text: 'Item',
-        path: 'knowledge/item/1',
-        icon: 'Book',
-      },
-    },
-  },
   sales: {
     id: 'sales',
     text: 'Sales',
-    path: 'sales',
+    path: 'sales/grid',
     icon: 'Store',
     subMenu: {
       productsGrid: {
@@ -162,7 +172,7 @@ export const demoPagesMenu = {
       productID: {
         id: 'productID',
         text: 'productID',
-        path: 'sales/product',
+        path: 'product',
         hide: true,
       },
       product: {
@@ -170,38 +180,7 @@ export const demoPagesMenu = {
         text: 'Product',
         path: 'sales/product/1',
         icon: 'QrCode2',
-      },
-    },
-  },
-  appointment: {
-    id: 'appointment',
-    text: 'Appointment',
-    path: 'appointment',
-    icon: 'Today',
-    subMenu: {
-      employeeList: {
-        id: 'employeeList',
-        text: 'Employee List',
-        path: 'appointment/employee-list',
-        icon: 'PersonSearch',
-      },
-      employeeID: {
-        id: 'employeeID',
-        text: 'employeeID',
-        path: 'appointment/employee',
         hide: true,
-      },
-      employee: {
-        id: 'employee',
-        text: 'Employee',
-        path: 'appointment/employee/1',
-        icon: 'QrCode2',
-      },
-      appointmentList: {
-        id: 'appointmentList',
-        text: 'Appointment List',
-        path: 'appointment/appointment-list',
-        icon: 'Event',
       },
     },
   },
@@ -211,18 +190,6 @@ export const demoPagesMenu = {
     path: 'crm',
     icon: 'Contacts',
     subMenu: {
-      dashboard: {
-        id: 'dashboard',
-        text: 'CRM Dashboard',
-        path: 'crm/dashboard',
-        icon: 'RecentActors',
-      },
-      customersList: {
-        id: 'customersList',
-        text: 'Customers',
-        path: 'crm/customers',
-        icon: 'PersonSearch',
-      },
       customerID: {
         id: 'customerID',
         text: 'customerID',
@@ -234,41 +201,7 @@ export const demoPagesMenu = {
         text: 'Customer',
         path: 'crm/customer/1',
         icon: 'Badge',
-      },
-      // sales: {
-      // 	id: 'sales',
-      // 	text: 'Sales',
-      // 	path: 'crm/sales',
-      // 	icon: 'Storefront',
-      // },
-      // invoiceID: {
-      // 	id: 'invoiceID',
-      // 	text: 'invoiceID',
-      // 	path: 'crm/invoice',
-      // 	hide: true,
-      // },
-      // invoice: {
-      // 	id: 'invoice',
-      // 	text: 'Invoice',
-      // 	path: 'crm/invoice/1',
-      // 	icon: 'Receipt',
-      // },
-    },
-  },
-};
-
-export const gettingStartedPagesMenu = {
-  gettingStarted: {
-    id: 'gettingStarted',
-    text: 'About',
-    path: 'getting-started',
-    icon: 'Book',
-    subMenu: {
-      installation: {
-        id: 'installation',
-        text: 'Omnio Protocol',
-        path: 'getting-started/installation',
-        icon: 'BuildCircle',
+        hide: true,
       },
     },
   },

@@ -6,9 +6,10 @@ import Navigation, { NavigationLine } from '../../../layout/Navigation/Navigatio
 import User from '../../../layout/User/User';
 import {
 	demoPagesMenu,
-	gettingStartedPagesMenu,
-	ConsumerDataMenu,
-	ConsumerMenu,
+	brandProfileMenu,
+	consumerDataMenu,
+	consumerProfileMenu,
+  brandStudioMenu,
 } from '../../../menu';
 import ThemeContext from '../../../contexts/themeContext';
 import Icon from '../../../components/icon/Icon';
@@ -34,17 +35,18 @@ const DefaultAside = () => {
 			<AsideBody>
 				{!doc && (
 					<>
-						<Navigation menu={ConsumerMenu} id='aside-dashboard' />
+						<Navigation menu={consumerProfileMenu} id='aside-dashboard' />
 						<NavigationLine />
-						<Navigation menu={ConsumerDataMenu} id='aside-dashboard' />
+						<Navigation menu={consumerDataMenu} id='aside-dashboard' />
 					</>
 				)}
 
 				{doc && (
 					<>
-						<Navigation menu={gettingStartedPagesMenu} id='aside-docMenu' />
+						<Navigation menu={brandProfileMenu} id='aside-docMenu' />
 						<NavigationLine />
-						<Navigation menu={demoPagesMenu} id='aside-demo-pages' />
+						<Navigation menu={brandStudioMenu} id='aside-demo-pages' />
+            <Navigation menu={demoPagesMenu} id='aside-demo-pages' />
 					</>
 				)}
 			</AsideBody>

@@ -2,7 +2,7 @@ import React, { useState, useContext, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
-import { demoPagesMenu, LaunchMenu } from '../../menu';
+import { demoPagesMenu, launchMenu } from '../../menu';
 import { DropdownItem, DropdownMenu } from '../../components/bootstrap/Dropdown';
 import Button from '../../components/bootstrap/Button';
 import useDarkMode from '../../hooks/useDarkMode';
@@ -94,7 +94,7 @@ const User = () => {
 								if (setUser) {
 									setUser('');
 								}
-								navigate(`../${LaunchMenu.launch.path}`);
+								navigate(`../${launchMenu.launch.path}`);
 							}}>
 							<span className='navigation-link navigation-link-pill'>
 								<span className='navigation-link-info'>

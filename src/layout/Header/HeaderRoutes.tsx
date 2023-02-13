@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import headers from '../../Routes/HeaderRoutes';
+import headers from '../../routes/headerRoutes';
 
 const HeaderRoutes = () => {
 	return (

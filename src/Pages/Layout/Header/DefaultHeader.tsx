@@ -1,10 +1,8 @@
-import React from 'react';
-import Header, { HeaderLeft } from '../../../layout/Header/Header';
-import useDeviceScreen from '../../../hooks/useDeviceScreen';
 import CommonHeaderRight from './CommonHeaderRight';
-import Brand from '../../../layout/Brand/Brand';
+import Header, { HeaderLeft } from '../../../layout/Header/Header';
 import { Link } from 'react-router-dom';
 import Logo from '../../../components/Logo';
+import useDeviceScreen from '../../../hooks/useDeviceScreen';
 
 const DefaultHeader = () => {
 	const { width } = useDeviceScreen();

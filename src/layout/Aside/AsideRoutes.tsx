@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import asides from '../../Routes/ConsoleRoutes';
+import asides from '../../routes/consoleRoutes';
 
 const AsideRoutes = () => {
 	return (
