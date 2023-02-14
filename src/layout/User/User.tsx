@@ -35,7 +35,7 @@ const User = () => {
 				</div>
 				<div className='user-info'>
 					<div className='user-name d-flex align-items-center'>
-						{`${userData?.profile?.name || 'Omnio'} ${
+						{`${userData?.profile?.firstName || 'Omnio'} ${
 							userData?.profile?.surname || 'User'
 						}`}
 						<Icon icon='Verified' className='ms-1' color='info' />

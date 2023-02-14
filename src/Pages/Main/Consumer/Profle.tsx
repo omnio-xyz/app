@@ -32,36 +32,59 @@ import Pic7 from '../../../assets/img/wanna/richie/richie7.png';
 import Pic8 from '../../../assets/img/wanna/richie/richie8.png';
 import Modal, { ModalBody, ModalHeader, ModalTitle } from '../../../components/bootstrap/Modal';
 import useDarkMode from '../../../hooks/useDarkMode';
+import useOmnio from '../../../contexts/omnioContext';
 
 const DashboardPage = () => {
 	const { darkModeStatus } = useDarkMode();
+	const { userData, saveProfile } = useOmnio();
 
 	const formik = useFormik({
 		initialValues: {
-			formPrefix: 'Prof.',
-			formName: 'Timothy',
-			formMiddleName: 'John',
-			formSurName: 'Doe',
-			formEmailAddress: 'tjohndoe@site.com',
-			formPhone: '2575637401',
-			formAddressLine: '711-2880 Nulla St.',
-			formAddressLine2: 'Mankato',
-			formCity: 'Mississippi',
-			formState: 'USA',
-			formZIP: '96522',
+			formPrefix: userData?.profile?.prefix,
+			formName: userData?.profile?.firstName,
+			formMiddleName: userData?.profile?.middleName,
+			formSurName: userData?.profile?.surname,
+			formEmailAddress: userData?.profile?.email,
+			formPhone: userData?.profile?.phone,
+			formAddressLine: userData?.profile?.address?.line,
+			formAddressLine2: userData?.profile?.address?.line2,
+			formCity: userData?.profile?.address?.city,
+			formState: userData?.profile?.address?.country,
+			formZIP: userData?.profile?.address?.zip,
 			formCurrentPassword: '',
 			formNewPassword: '',
 			formConfirmNewPassword: '',
 		},
-		onSubmit: (values) => {
+		enableReinitialize: true,
+		onSubmit: async (values) => {
+			const profile = {
+				prefix: values.formPrefix,
+				firstName: values.formName,
+				middleName: values.formMiddleName,
+				surname: values.formSurName,
+				email: values.formEmailAddress,
+				phone: values.formPhone,
+				address: {
+					line: values.formAddressLine,
+					line2: values.formAddressLine2,
+					city: values.formCity,
+					country: values.formState,
+					zip: values.formZIP,
+				},
+			};
+			try {
+				await saveProfile(profile);
+				showNotification(
+					<span className='d-flex align-items-center'>
+						<Icon icon='Info' size='lg' className='me-1' />
+						<span>Updated Information</span>
+					</span>,
+					'User profile updated successfully',
+				);
+			} catch (error: unknown) {
+				console.error(error);
+			}
 			// eslint-disable-next-line no-console
-			showNotification(
-				<span className='d-flex align-items-center'>
-					<Icon icon='Info' size='lg' className='me-1' />
-					<span>Updated Information</span>
-				</span>,
-				JSON.stringify(values, null, 2),
-			);
 		},
 	});
 	const [ref] = useMeasure<HTMLDivElement>();

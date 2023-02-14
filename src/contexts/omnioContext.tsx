@@ -62,9 +62,11 @@ export const OmnioContextProvider: FC<IOmnioContextProviderProps> = ({ children 
 	const saveProfile = async (profile: IConsumerUserProfile) => {
 		setLoading(true);
 		try {
-			return await omnioSdk.saveUserConsumerProfile(profile);
+			const omnioUserData = await omnioSdk.saveUserConsumerProfile(profile);
+			setUserData(omnioUserData);
 		} catch (error) {
 			console.error(error);
+			throw error;
 		} finally {
 			setLoading(false);
 		}
