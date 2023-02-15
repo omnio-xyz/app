@@ -11,6 +11,7 @@ export interface IOmnioBrandContextProps {
 	products: IProduct[] | null;
 	saveProfile(profile: IBrandUserProfile): Promise<void>;
 	addProduct(product: IProduct): Promise<void>;
+	removeProduct(product: IProduct): Promise<void>;
 	omnioBrandConnected: Boolean;
 	connectBrandWithOmnio(): Promise<void>;
 	disconnectBrandWithOmnio(): Promise<void>;
@@ -47,11 +48,11 @@ export const OmnioBrandContextProvider: FC<IOmnioBrandContextProviderProps> = ({
 		try {
 			const brandProfile = await omnioSdk.getProfile();
 			setProfile(brandProfile);
-			/*let brandProducts = await omnioSdk.getProducts();
-			if (!brandProducts || (!brandProducts?.length && brandProducts.length <= 0)) {*/
-				let brandProducts = defaultBrandProducts;
+			let brandProducts = await omnioSdk.getProducts();
+			if (!brandProducts || (!brandProducts?.length && brandProducts.length <= 0)) {
+				brandProducts = defaultBrandProducts;
 				await omnioSdk.saveProducts(brandProducts);
-			//}
+			}
 			setProducts(brandProducts);
 			setOmnioConnected(true);
 		} catch (error) {
@@ -103,12 +104,28 @@ export const OmnioBrandContextProvider: FC<IOmnioBrandContextProviderProps> = ({
 		}
 	};
 
+	const removeProduct = async (productToDelete: IProduct) => {
+		setLoading(true);
+		try {
+			const brandProducts = await omnioSdk.saveProducts(
+				(products || []).filter((p) => p !== productToDelete),
+			);
+			setProducts(brandProducts);
+		} catch (error) {
+			console.error(error);
+			throw error;
+		} finally {
+			setLoading(false);
+		}
+	};
+
 	const values = {
 		brandLoading: loading,
 		profile,
 		products,
 		saveProfile,
 		addProduct,
+		removeProduct,
 		omnioBrandConnected: omnioConnected,
 		connectBrandWithOmnio: connectWithOmnio,
 		disconnectBrandWithOmnio: disconnectWithOmnio,

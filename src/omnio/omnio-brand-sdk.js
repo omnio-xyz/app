@@ -27,31 +27,31 @@ class OmnioBrand {
 
 	async getProfile() {
 		const brandData = await this.ceramic.get(this.modelDefinitionName);
-		if (brandData == null || !brandData?.data) {
+		if (brandData == null || !brandData?.profile) {
 			return null;
 		}
 
-		return brandData.data?.profile;
+		return brandData.profile;
 	}
 
-	async saveProducts(products) {
+	async saveProducts(newProducts) {
 		let brandData = await this.ceramic.get(this.modelDefinitionName);
 		brandData = {
 			...brandData,
-			products: this.mergeWithExistingProducts(brandData?.products, products),
+			products: newProducts,
 		};
 
 		await this.ceramic.update(this.modelDefinitionName, brandData);
-		return products;
+		return newProducts;
 	}
 
 	async getProducts() {
 		const brandData = await this.ceramic.get(this.modelDefinitionName);
-		if (brandData == null || !brandData?.data) {
+		if (brandData == null || !brandData?.products) {
 			return null;
 		}
 
-		return brandData.data?.products;
+		return brandData.products;
 	}
 
 	mergeWithExistingProfile(existingProfile, profileUpdated) {
@@ -71,10 +71,6 @@ class OmnioBrand {
 				zip: profileUpdated.address?.zip ?? existingProfile?.address?.zip,
 			},
 		};
-	}
-
-	mergeWithExistingProducts(existingProducts, productsUpdated) {
-		return Array.from(new Set([...(existingProducts || []), ...(productsUpdated || [])]));
 	}
 }
 

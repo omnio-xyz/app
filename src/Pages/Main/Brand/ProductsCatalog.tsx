@@ -26,6 +26,7 @@ import PlaceholderImage from '../../../components/extras/PlaceholderImage';
 import FormGroup from '../../../components/bootstrap/forms/FormGroup';
 import { BrandMenu } from '../../../menu';
 import useOmnioBrand from '../../../contexts/omnioBrandContext';
+import { IProduct } from '../../../omnio/models/product/product';
 
 interface IValues {
 	name: string;
@@ -74,9 +75,11 @@ const validate = (values: IValues) => {
 const ProductsCatalog = () => {
 	const [editItem, setEditItem] = useState<IValues | null>(null);
 	const [editPanel, setEditPanel] = useState<boolean>(false);
+	const { products, removeProduct } = useOmnioBrand();
 
-	function handleRemove(id: number) {
-		return; //TODO
+
+	function handleRemove(product: IProduct) {
+		return removeProduct(product);
 	}
 
 	function handleEdit(id: number) {
@@ -97,8 +100,6 @@ const ProductsCatalog = () => {
 			setEditPanel(false);
 		},
 	});
-
-	const { products } = useOmnioBrand();
 
 	useEffect(() => {
 		if (editItem) {
@@ -155,7 +156,7 @@ const ProductsCatalog = () => {
 								editAction={() => {
 									setEditPanel(true);
 								}}
-								deleteAction={() => []}
+								deleteAction={() => handleRemove(product)}
 							/>
 						</div>
 					))}
