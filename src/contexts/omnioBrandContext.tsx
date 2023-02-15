@@ -12,6 +12,7 @@ export interface IOmnioBrandContextProps {
 	saveProfile(profile: IBrandUserProfile): Promise<void>;
 	addProduct(product: IProduct): Promise<void>;
 	removeProduct(product: IProduct): Promise<void>;
+	editProduct(product: IProduct): Promise<void>;
 	omnioBrandConnected: Boolean;
 	connectBrandWithOmnio(): Promise<void>;
 	disconnectBrandWithOmnio(): Promise<void>;
@@ -119,6 +120,21 @@ export const OmnioBrandContextProvider: FC<IOmnioBrandContextProviderProps> = ({
 		}
 	};
 
+	const editProduct = async (productEdited: IProduct) => {
+		setLoading(true);
+		try {
+			const newProducts = (products || []).filter((p) => p.gtin !== productEdited.gtin);
+			newProducts.push(productEdited);
+			const brandProducts = await omnioSdk.saveProducts(newProducts);
+			setProducts(brandProducts);
+		} catch (error) {
+			console.error(error);
+			throw error;
+		} finally {
+			setLoading(false);
+		}
+	};
+
 	const values = {
 		brandLoading: loading,
 		profile,
@@ -126,6 +142,7 @@ export const OmnioBrandContextProvider: FC<IOmnioBrandContextProviderProps> = ({
 		saveProfile,
 		addProduct,
 		removeProduct,
+		editProduct,
 		omnioBrandConnected: omnioConnected,
 		connectBrandWithOmnio: connectWithOmnio,
 		disconnectBrandWithOmnio: disconnectWithOmnio,

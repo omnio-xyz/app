@@ -28,75 +28,66 @@ import { BrandMenu } from '../../../menu';
 import useOmnioBrand from '../../../contexts/omnioBrandContext';
 import { IProduct } from '../../../omnio/models/product/product';
 
-interface IValues {
-	name: string;
-	price: number;
-	stock: number;
-	category: string;
-	image?: string | null;
-}
-const validate = (values: IValues) => {
+const validateValues = (values: IProduct) => {
 	const errors = {
+		gtin: '',
 		name: '',
-		price: '',
-		stock: '',
+		description: '',
+		unit_price: '',
 		category: '',
+		image: '',
+		brand_id: '',
 	};
 
 	if (!values.name) {
 		errors.name = 'Required';
-	} else if (values.name.length < 3) {
-		errors.name = 'Must be 3 characters or more';
-	} else if (values.name.length > 20) {
-		errors.name = 'Must be 20 characters or less';
 	}
 
-	if (!values.price) {
-		errors.price = 'Required';
-	} else if (values.price < 0) {
-		errors.price = 'Price should not be 0';
+	if (!values.unit_price) {
+		errors.unit_price = 'Required';
 	}
 
-	if (!values.stock) {
-		errors.stock = 'Required';
+	if (!values.image) {
+		errors.image = 'Required';
 	}
 
 	if (!values.category) {
 		errors.category = 'Required';
-	} else if (values.category.length < 3) {
-		errors.category = 'Must be 3 characters or more';
-	} else if (values.category.length > 20) {
-		errors.category = 'Must be 20 characters or less';
 	}
 
 	return errors;
 };
 
 const ProductsCatalog = () => {
-	const [editItem, setEditItem] = useState<IValues | null>(null);
+	const [editItem, setEditItem] = useState<IProduct | null>(null);
 	const [editPanel, setEditPanel] = useState<boolean>(false);
-	const { products, removeProduct } = useOmnioBrand();
-
+	const { products, removeProduct, editProduct } = useOmnioBrand();
 
 	function handleRemove(product: IProduct) {
 		return removeProduct(product);
 	}
 
-	function handleEdit(id: number) {
-		return; //TODO
-
+	function handleEdit(product: IProduct) {
+		setEditPanel(true);
+		return setEditItem(product);
 	}
 
 	const formik = useFormik({
 		initialValues: {
+			gtin: '',
 			name: '',
-			price: 0,
-			stock: 0,
+			description: '',
+			unit_price: 1,
 			category: '',
+			image: '',
+			brand_id: 'FakeBrand',
 		},
-		validate,
+		//validate: validateValues,
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		onSubmit: (values) => {
+		onSubmit: async (values) => {
+			if (editItem) {
+				await editProduct(values);
+			}
 			setEditPanel(false);
 		},
 	});
@@ -104,18 +95,24 @@ const ProductsCatalog = () => {
 	useEffect(() => {
 		if (editItem) {
 			formik.setValues({
+				gtin: editItem.gtin,
 				name: editItem.name,
-				price: editItem.price,
-				stock: editItem.stock,
+				description: editItem.description,
+				unit_price: editItem.unit_price,
 				category: editItem.category,
+				image: editItem.image,
+				brand_id: editItem.brand_id,
 			});
 		}
 		return () => {
 			formik.setValues({
+				gtin: '',
 				name: '',
-				price: 0,
-				stock: 0,
+				description: '',
+				unit_price: 0,
 				category: '',
+				image: '',
+				brand_id: 'FakeBrand',
 			});
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -153,9 +150,7 @@ const ProductsCatalog = () => {
 								img={product.image}
 								unit_price={product.unit_price}
 								brand_id={product.brand_id}
-								editAction={() => {
-									setEditPanel(true);
-								}}
+								editAction={() => handleEdit(product)}
 								deleteAction={() => handleRemove(product)}
 							/>
 						</div>
@@ -168,7 +163,6 @@ const ProductsCatalog = () => {
 				isOpen={editPanel}
 				isRightPanel
 				tag='form'
-				noValidate
 				onSubmit={formik.handleSubmit}>
 				<OffCanvasHeader setOpen={setEditPanel}>
 					<OffCanvasTitle id='edit-panel'>
@@ -223,7 +217,7 @@ const ProductsCatalog = () => {
 													icon='Delete'
 													className='w-100'
 													onClick={() => {
-														setEditItem({ ...editItem, image: null });
+														setEditItem({ ...editItem, image: '' });
 													}}>
 													Delete Image
 												</Button>
@@ -248,7 +242,6 @@ const ProductsCatalog = () => {
 										<Input
 											placeholder='Name'
 											onChange={formik.handleChange}
-											onBlur={formik.handleBlur}
 											value={formik.values.name}
 											isValid={formik.isValid}
 											isTouched={formik.touched.name}
@@ -258,29 +251,15 @@ const ProductsCatalog = () => {
 									</FormGroup>
 								</div>
 								<div className='col-12'>
-									<FormGroup id='price' label='Price' isFloating>
+									<FormGroup id='price' label='Unit price' isFloating>
 										<Input
-											placeholder='Price'
+											placeholder='Unit price'
+											type='number'
 											onChange={formik.handleChange}
-											onBlur={formik.handleBlur}
-											value={formik.values.price}
+											value={formik.values.unit_price}
 											isValid={formik.isValid}
-											isTouched={formik.touched.price}
-											invalidFeedback={formik.errors.price}
-											validFeedback='Looks good!'
-										/>
-									</FormGroup>
-								</div>
-								<div className='col-12'>
-									<FormGroup id='stock' label='Stock' isFloating>
-										<Input
-											placeholder='Stock'
-											onChange={formik.handleChange}
-											onBlur={formik.handleBlur}
-											value={formik.values.stock}
-											isValid={formik.isValid}
-											isTouched={formik.touched.stock}
-											invalidFeedback={formik.errors.stock}
+											isTouched={formik.touched.unit_price}
+											invalidFeedback={formik.errors.unit_price}
 											validFeedback='Looks good!'
 										/>
 									</FormGroup>
@@ -290,7 +269,6 @@ const ProductsCatalog = () => {
 										<Input
 											placeholder='Category'
 											onChange={formik.handleChange}
-											onBlur={formik.handleBlur}
 											value={formik.values.category}
 											isValid={formik.isValid}
 											isTouched={formik.touched.category}
