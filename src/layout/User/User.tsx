@@ -10,11 +10,13 @@ import Collapse from '../../components/bootstrap/Collapse';
 import { NavigationLine } from '../Navigation/Navigation';
 import Icon from '../../components/icon/Icon';
 import useNavigationItemHandle from '../../hooks/useNavigationItemHandle';
-import useOmnio from '../../contexts/omnioContext';
+import useOmnioConsumer from '../../contexts/omnioConsumerContext';
+import useOmnioBrand from '../../contexts/omnioBrandContext';
 import logo from '../../assets/img/human.svg';
 
 const User = () => {
-	const { userData, disconnectWithOmnio } = useOmnio();
+	const { userData, disconnectConsumerWithOmnio } = useOmnioConsumer();
+	const { profile, disconnectBrandWithOmnio } = useOmnioBrand();
 
 	const navigate = useNavigate();
 	const handleItem = useNavigationItemHandle();
@@ -35,8 +37,8 @@ const User = () => {
 				</div>
 				<div className='user-info'>
 					<div className='user-name d-flex align-items-center'>
-						{`${userData?.profile?.firstName || 'Omnio'} ${
-							userData?.profile?.surname || 'User'
+						{`${userData?.profile?.firstName || profile?.firstName || 'Omnio'} ${
+							userData?.profile?.surname || profile?.surname || 'User'
 						}`}
 						<Icon icon='Verified' className='ms-1' color='info' />
 					</div>
@@ -87,7 +89,8 @@ const User = () => {
 							role='presentation'
 							className='navigation-item cursor-pointer'
 							onClick={() => {
-								disconnectWithOmnio();
+								disconnectConsumerWithOmnio();
+								disconnectBrandWithOmnio();
 								navigate(`../${LaunchMenu.launch.path}`);
 							}}>
 							<span className='navigation-link navigation-link-pill'>

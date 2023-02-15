@@ -8,7 +8,7 @@ import Card, {
 	CardLabel,
 	CardTitle,
 } from '../../../../components/bootstrap/Card';
-import useOmnio from '../../../../contexts/omnioContext';
+import useOmnio from '../../../../contexts/omnioConsumerContext';
 import PaginationButtons, {
 	dataPagination,
 	PER_COUNT,
@@ -17,90 +17,109 @@ import classNames from 'classnames';
 import Badge from '../../../../components/bootstrap/Badge';
 import useDarkMode from '../../../../hooks/useDarkMode';
 
-interface IInitiatedPurchaseRow {
+interface IFavoriteProductRow {
+	id: string | number;
 	image: string;
-	products: string[];
-	subtotal: number;
+	name: string;
 	credentialType: string;
+	category: string;
+	description: string;
+	price: number;
+	brand: string;
 	seller: string;
 	date: Moment;
 }
 
-const InitiatedPurchases = () => {
+const FavoriteProducts = () => {
 	const { userData } = useOmnio();
 
-	const initiatedCheckoutData: IInitiatedPurchaseRow[] = [];
-	userData?.initiated_checkouts?.forEach((initiatedCheckout) => {
-		const products = initiatedCheckout?.data?.products?.map((p) => p.name);
-		const subtotal = initiatedCheckout?.data?.products
-			?.map((p) => p?.unit_price || 0)
-			.reduce((accumulator: number, currentValue: number) => accumulator + currentValue, 0);
-		initiatedCheckoutData.push({
-			image: initiatedCheckout?.data?.products[0]?.image,
-			products: products,
-			subtotal: subtotal,
-			credentialType: 'Initiate Purchase',
-			seller: initiatedCheckout?.data?.seller,
-			date: moment(initiatedCheckout?.date),
+	const addToWishListData: IFavoriteProductRow[] = [];
+	userData?.wishlist?.forEach((addToCart) => {
+		const product = addToCart?.data?.product;
+		addToWishListData.push({
+			id: product?.gtin,
+			image: product?.image,
+			name: product?.name,
+			credentialType: 'Favorite Product',
+			category: product?.category,
+			description: product?.description,
+			price: product?.unit_price,
+			brand: product?.brand_id,
+			seller: addToCart?.data?.seller,
+			date: moment(addToCart?.date),
 		});
 	});
 
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [perPage, setPerPage] = useState<number>(PER_COUNT['10']);
 	const { darkModeStatus } = useDarkMode();
-
 	return (
 		<PageWrapper>
 			<Page container='fluid'>
 				<Card stretch>
 					<CardHeader borderSize={1}>
-						<CardLabel icon='ShoppingBasket' iconColor='info'>
-							<CardTitle>Initiated Purchases</CardTitle>
+						<CardLabel icon='Star' iconColor='info'>
+							<CardTitle>Favorite Products</CardTitle>
 						</CardLabel>
 						<CardLabel>
-							A data credential is generated when you initiate a purchase.
+							A data credential is generated when you favorite a product.
 						</CardLabel>
 					</CardHeader>
 					<CardBody className='table-responsive' isScrollable>
 						<table className='table table-modern table-hover'>
 							<thead>
 								<tr>
+									<th scope='col'>GTIN</th>
 									<th scope='col'>Image</th>
-									<th scope='col'>Products</th>
+									<th scope='col'>Name</th>
 									<th scope='col'>Date</th>
-									<th scope='col'>Subtotal</th>
+									<th scope='col'>Category</th>
+									<th scope='col'>Price</th>
+									<th scope='col'>Brand</th>
 									<th scope='col'>Seller</th>
 								</tr>
 							</thead>
 							<tbody>
-								{dataPagination(initiatedCheckoutData, currentPage, perPage).map(
+								{dataPagination(addToWishListData, currentPage, perPage).map(
 									(i) => (
 										<tr key={i.id}>
 											<td>
+												<div className='fs-6'>{i.id}</div>
+											</td>
+											<td>
 												<img
 													src={i.image}
-													alt={'checkout ' + i.date}
+													alt={i.name}
 													width={54}
 													height={54}
 												/>
 											</td>
 											<td>
-												{i.products.map((prod: string) => (
-													<div
-														key={prod}
-														className={classNames('fw-bold', {
-															'link-dark': !darkModeStatus,
-															'link-light': darkModeStatus,
-														})}>
-														{prod}
-													</div>
-												))}
+												<div
+													className={classNames('fw-bold', {
+														'link-dark': !darkModeStatus,
+														'link-light': darkModeStatus,
+													})}>
+													{i.name}
+												</div>
 											</td>
 											<td>
 												<div className='fs-6'>{i.date.format('LLL')}</div>
 											</td>
 											<td>
-												<span>{i.subtotal}</span>
+												<div
+													className={classNames('fw-bold', {
+														'link-dark': !darkModeStatus,
+														'link-light': darkModeStatus,
+													})}>
+													{i.category}
+												</div>
+											</td>
+											<td>
+												<span>{i.price}</span>
+											</td>
+											<td className='h5'>
+												<Badge color={'success'}>{i.brand}</Badge>
 											</td>
 											<td className='h5'>
 												<Badge color={'info'}>{i.seller}</Badge>
@@ -112,7 +131,7 @@ const InitiatedPurchases = () => {
 						</table>
 					</CardBody>
 					<PaginationButtons
-						data={initiatedCheckoutData}
+						data={addToWishListData}
 						label='Data Credentials'
 						setCurrentPage={setCurrentPage}
 						currentPage={currentPage}
@@ -125,4 +144,4 @@ const InitiatedPurchases = () => {
 	);
 };
 
-export default InitiatedPurchases;
+export default FavoriteProducts;

@@ -32,32 +32,32 @@ import Pic7 from '../../../assets/img/wanna/richie/richie7.png';
 import Pic8 from '../../../assets/img/wanna/richie/richie8.png';
 import Modal, { ModalBody, ModalHeader, ModalTitle } from '../../../components/bootstrap/Modal';
 import useDarkMode from '../../../hooks/useDarkMode';
-import useOmnio from '../../../contexts/omnioContext';
+import useOmnio from '../../../contexts/omnioBrandContext';
 
 const DashboardPage = () => {
 	const { darkModeStatus } = useDarkMode();
-	const { userData, saveProfile } = useOmnio();
+	const { profile, saveProfile } = useOmnio();
 
 	const formik = useFormik({
 		initialValues: {
-			formPrefix: userData?.profile?.prefix,
-			formName: userData?.profile?.firstName,
-			formMiddleName: userData?.profile?.middleName,
-			formSurName: userData?.profile?.surname,
-			formEmailAddress: userData?.profile?.email,
-			formPhone: userData?.profile?.phone,
-			formAddressLine: userData?.profile?.address?.line,
-			formAddressLine2: userData?.profile?.address?.line2,
-			formCity: userData?.profile?.address?.city,
-			formState: userData?.profile?.address?.country,
-			formZIP: userData?.profile?.address?.zip,
+			formPrefix: profile?.prefix,
+			formName: profile?.firstName,
+			formMiddleName: profile?.middleName,
+			formSurName: profile?.surname,
+			formEmailAddress: profile?.email,
+			formPhone: profile?.phone,
+			formAddressLine: profile?.address?.line,
+			formAddressLine2: profile?.address?.line2,
+			formCity: profile?.address?.city,
+			formState: profile?.address?.country,
+			formZIP: profile?.address?.zip,
 			formCurrentPassword: '',
 			formNewPassword: '',
 			formConfirmNewPassword: '',
 		},
 		enableReinitialize: true,
 		onSubmit: async (values) => {
-			const profile = {
+			const updatedProfile = {
 				prefix: values.formPrefix,
 				firstName: values.formName,
 				middleName: values.formMiddleName,
@@ -73,7 +73,7 @@ const DashboardPage = () => {
 				},
 			};
 			try {
-				await saveProfile(profile);
+				await saveProfile(updatedProfile);
 				showNotification(
 					<span className='d-flex align-items-center'>
 						<Icon icon='Info' size='lg' className='me-1' />

@@ -8,16 +8,16 @@ import Card, {
 	CardLabel,
 	CardTitle,
 } from '../../../../components/bootstrap/Card';
-import useOmnio from '../../../../contexts/omnioContext';
+import useOmnio from '../../../../contexts/omnioConsumerContext';
 import PaginationButtons, {
 	dataPagination,
 	PER_COUNT,
 } from '../../../../components/PaginationButtons';
-import useDarkMode from '../../../../hooks/useDarkMode';
 import classNames from 'classnames';
 import Badge from '../../../../components/bootstrap/Badge';
+import useDarkMode from '../../../../hooks/useDarkMode';
 
-interface IAddToCartRow {
+interface IPurchaseProductRow {
 	id: string | number;
 	image: string;
 	name: string;
@@ -30,39 +30,40 @@ interface IAddToCartRow {
 	date: Moment;
 }
 
-const AddToCart = () => {
+const PurchaseHistory = () => {
 	const { userData } = useOmnio();
-	const [currentPage, setCurrentPage] = useState<number>(1);
-	const [perPage, setPerPage] = useState<number>(PER_COUNT['10']);
-	const { darkModeStatus } = useDarkMode();
 
-	const addToCartData: IAddToCartRow[] = [];
-	userData?.add_to_cart?.forEach((addToCart) => {
-		const product = addToCart?.data?.product;
-		addToCartData.push({
-			id: product?.gtin,
-			image: product?.image,
-			name: product?.name,
-			credentialType: 'Add to Cart',
-			category: product?.category,
-			description: product?.description,
-			price: product?.unit_price,
-			brand: product?.brand_id,
-			seller: addToCart?.data?.seller,
-			date: moment(addToCart?.date),
+	const purchaseProductsHistoryData: IPurchaseProductRow[] = [];
+	userData?.purchase_history?.forEach((purchase) => {
+		purchase?.data?.products?.forEach((product) => {
+			purchaseProductsHistoryData.push({
+				id: product?.gtin,
+				image: product?.image,
+				name: product?.name,
+				credentialType: 'Purchase',
+				category: product?.category,
+				description: product?.description,
+				price: product?.unit_price,
+				brand: product?.brand_id,
+				seller: purchase?.data?.seller,
+				date: moment(purchase?.date),
+			});
 		});
 	});
 
+	const [currentPage, setCurrentPage] = useState<number>(1);
+	const [perPage, setPerPage] = useState<number>(PER_COUNT['10']);
+	const { darkModeStatus } = useDarkMode();
 	return (
 		<PageWrapper>
 			<Page container='fluid'>
 				<Card stretch>
 					<CardHeader borderSize={1}>
-						<CardLabel icon='AddShoppingCart' iconColor='info'>
-							<CardTitle>Add to Cart</CardTitle>
+						<CardLabel icon='WebAsset' iconColor='info'>
+							<CardTitle>Purchase Products History</CardTitle>
 						</CardLabel>
 						<CardLabel>
-							A data credential is generated when a product is added to your cart.
+							A data credential is generated when you initiate a purchase.
 						</CardLabel>
 					</CardHeader>
 					<CardBody className='table-responsive' isScrollable>
@@ -80,14 +81,11 @@ const AddToCart = () => {
 								</tr>
 							</thead>
 							<tbody>
-								{/*addToCartData.map((i) => (
-									<CommonTableRow
-										key={count++}
-										// eslint-disable-next-line react/jsx-props-no-spreading
-										{...i}
-									/>
-								))*/}
-								{dataPagination(addToCartData, currentPage, perPage).map((i) => (
+								{dataPagination(
+									purchaseProductsHistoryData,
+									currentPage,
+									perPage,
+								).map((i) => (
 									<tr key={i.id}>
 										<td>
 											<div className='fs-6'>{i.id}</div>
@@ -136,7 +134,7 @@ const AddToCart = () => {
 						</table>
 					</CardBody>
 					<PaginationButtons
-						data={addToCartData}
+						data={purchaseProductsHistoryData}
 						label='Data Credentials'
 						setCurrentPage={setCurrentPage}
 						currentPage={currentPage}
@@ -149,4 +147,4 @@ const AddToCart = () => {
 	);
 };
 
-export default AddToCart;
+export default PurchaseHistory;

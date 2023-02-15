@@ -1,32 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
-import Page from '../../../../layout/Page/Page';
-import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
+import Page from '../../../layout/Page/Page';
+import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
 import SubHeader, {
 	SubHeaderLeft,
 	SubHeaderRight,
 	SubheaderSeparator,
-} from '../../../../layout/SubHeader/SubHeader';
-import Button from '../../../../components/bootstrap/Button';
-import CommonGridProductItem from '../../../_common/CommonGridProductItem';
-import tableData from '../../../../common/data/dummyProductData';
+} from '../../../layout/SubHeader/SubHeader';
+import Button from '../../../components/bootstrap/Button';
+import CommonGridProductItem from '../../_common/CommonGridProductItem';
+import tableData from '../../../common/data/dummyProductData';
 import OffCanvas, {
 	OffCanvasBody,
 	OffCanvasHeader,
 	OffCanvasTitle,
-} from '../../../../components/bootstrap/OffCanvas';
+} from '../../../components/bootstrap/OffCanvas';
 import Card, {
 	CardBody,
 	CardHeader,
 	CardLabel,
 	CardTitle,
-} from '../../../../components/bootstrap/Card';
-import Badge from '../../../../components/bootstrap/Badge';
-import Input from '../../../../components/bootstrap/forms/Input';
-import PlaceholderImage from '../../../../components/extras/PlaceholderImage';
-import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
-import { demoPagesMenu } from '../../../../menu';
-import Breadcrumb from '../../../../components/bootstrap/Breadcrumb';
+} from '../../../components/bootstrap/Card';
+import Badge from '../../../components/bootstrap/Badge';
+import Input from '../../../components/bootstrap/forms/Input';
+import PlaceholderImage from '../../../components/extras/PlaceholderImage';
+import FormGroup from '../../../components/bootstrap/forms/FormGroup';
+import { BrandMenu } from '../../../menu';
 
 interface IValues {
 	name: string;
@@ -72,7 +71,7 @@ const validate = (values: IValues) => {
 	return errors;
 };
 
-const ProductsGridPage = () => {
+const ProductsCatalog = () => {
 	const [data, setData] = useState(tableData);
 	const [editItem, setEditItem] = useState<IValues | null>(null);
 	const [editPanel, setEditPanel] = useState<boolean>(false);
@@ -122,18 +121,9 @@ const ProductsGridPage = () => {
 	}, [editItem]);
 
 	return (
-		<PageWrapper title={demoPagesMenu.sales.subMenu.productsGrid.text}>
+		<PageWrapper title={BrandMenu.productCatalog.text}>
 			<SubHeader>
 				<SubHeaderLeft>
-					<Breadcrumb
-						list={[
-							{ title: demoPagesMenu.sales.text, to: demoPagesMenu.sales.path },
-							{
-								title: demoPagesMenu.sales.subMenu.productsGrid.text,
-								to: demoPagesMenu.sales.subMenu.productsGrid.path,
-							},
-						]}
-					/>
 					<SubheaderSeparator />
 					<span className='text-muted'>{data.length} items</span>
 				</SubHeaderLeft>
@@ -146,7 +136,7 @@ const ProductsGridPage = () => {
 							setEditItem(null);
 							setEditPanel(true);
 						}}>
-						Add New
+						Add
 					</Button>
 				</SubHeaderRight>
 			</SubHeader>
@@ -328,4 +318,4 @@ const ProductsGridPage = () => {
 	);
 };
 
-export default ProductsGridPage;
+export default ProductsCatalog;

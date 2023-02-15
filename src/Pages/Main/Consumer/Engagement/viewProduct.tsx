@@ -8,7 +8,7 @@ import Card, {
 	CardLabel,
 	CardTitle,
 } from '../../../../components/bootstrap/Card';
-import useOmnio from '../../../../contexts/omnioContext';
+import useOmnio from '../../../../contexts/omnioConsumerContext';
 import PaginationButtons, {
 	dataPagination,
 	PER_COUNT,
@@ -16,55 +16,50 @@ import PaginationButtons, {
 import classNames from 'classnames';
 import Badge from '../../../../components/bootstrap/Badge';
 import useDarkMode from '../../../../hooks/useDarkMode';
+import { IProduct } from '../../../../omnio/models/product/product';
 
-interface IPurchaseProductRow {
-	id: string | number;
+interface IViewProductRow {
+	id: string;
 	image: string;
 	name: string;
+	url: string;
 	credentialType: string;
-	category: string;
-	description: string;
-	price: number;
 	brand: string;
 	seller: string;
 	date: Moment;
 }
 
-const PurchaseHistory = () => {
+const DashboardBookingPage = () => {
 	const { userData } = useOmnio();
 
-	const purchaseProductsHistoryData: IPurchaseProductRow[] = [];
-	userData?.purchase_history?.forEach((purchase) => {
-		purchase?.data?.products?.forEach((product) => {
-			purchaseProductsHistoryData.push({
-				id: product?.gtin,
-				image: product?.image,
-				name: product?.name,
-				credentialType: 'Purchase',
-				category: product?.category,
-				description: product?.description,
-				price: product?.unit_price,
-				brand: product?.brand_id,
-				seller: purchase?.data?.seller,
-				date: moment(purchase?.date),
-			});
+	const viewProductData: IViewProductRow[] = [];
+	userData?.content_view?.forEach((content) => {
+		const product: IProduct = content?.data?.product;
+		viewProductData.push({
+			id: product?.gtin,
+			name: product?.name,
+			image: product?.image,
+			url: content?.data?.url,
+			credentialType: 'View Product',
+			brand: product?.brand_id,
+			seller: content?.data?.seller,
+			date: moment(content?.date),
 		});
 	});
 
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [perPage, setPerPage] = useState<number>(PER_COUNT['10']);
 	const { darkModeStatus } = useDarkMode();
+
 	return (
 		<PageWrapper>
 			<Page container='fluid'>
 				<Card stretch>
 					<CardHeader borderSize={1}>
 						<CardLabel icon='WebAsset' iconColor='info'>
-							<CardTitle>Purchase Products History</CardTitle>
+							<CardTitle>View Product</CardTitle>
 						</CardLabel>
-						<CardLabel>
-							A data credential is generated when you initiate a purchase.
-						</CardLabel>
+						<CardLabel>A credential is generated when you view a product.</CardLabel>
 					</CardHeader>
 					<CardBody className='table-responsive' isScrollable>
 						<table className='table table-modern table-hover'>
@@ -74,18 +69,13 @@ const PurchaseHistory = () => {
 									<th scope='col'>Image</th>
 									<th scope='col'>Name</th>
 									<th scope='col'>Date</th>
-									<th scope='col'>Category</th>
-									<th scope='col'>Price</th>
+									<th scope='col'>URL</th>
 									<th scope='col'>Brand</th>
 									<th scope='col'>Seller</th>
 								</tr>
 							</thead>
 							<tbody>
-								{dataPagination(
-									purchaseProductsHistoryData,
-									currentPage,
-									perPage,
-								).map((i) => (
+								{dataPagination(viewProductData, currentPage, perPage).map((i) => (
 									<tr key={i.id}>
 										<td>
 											<div className='fs-6'>{i.id}</div>
@@ -111,16 +101,7 @@ const PurchaseHistory = () => {
 											<div className='fs-6'>{i.date.format('LLL')}</div>
 										</td>
 										<td>
-											<div
-												className={classNames('fw-bold', {
-													'link-dark': !darkModeStatus,
-													'link-light': darkModeStatus,
-												})}>
-												{i.category}
-											</div>
-										</td>
-										<td>
-											<span>{i.price}</span>
+											<span>{i.url}</span>
 										</td>
 										<td className='h5'>
 											<Badge color={'success'}>{i.brand}</Badge>
@@ -134,7 +115,7 @@ const PurchaseHistory = () => {
 						</table>
 					</CardBody>
 					<PaginationButtons
-						data={purchaseProductsHistoryData}
+						data={viewProductData}
 						label='Data Credentials'
 						setCurrentPage={setCurrentPage}
 						currentPage={currentPage}
@@ -147,4 +128,4 @@ const PurchaseHistory = () => {
 	);
 };
 
-export default PurchaseHistory;
+export default DashboardBookingPage;

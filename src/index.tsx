@@ -6,13 +6,13 @@ import './styles/styles.scss';
 import App from './App/App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeContextProvider } from './contexts/themeContext';
-import { AuthContextProvider } from './contexts/authContext';
-import { OmnioContextProvider } from './contexts/omnioContext';
+import { OmnioBrandContextProvider } from './contexts/omnioBrandContext';
+import { OmnioConsumerContextProvider } from './contexts/omnioConsumerContext';
 import './i18n';
 
 const children = (
-	<AuthContextProvider>
-		<OmnioContextProvider>
+	<OmnioBrandContextProvider>
+		<OmnioConsumerContextProvider>
 			<ThemeContextProvider>
 				<Router>
 					<React.StrictMode>
@@ -20,8 +20,8 @@ const children = (
 					</React.StrictMode>
 				</Router>
 			</ThemeContextProvider>
-		</OmnioContextProvider>
-	</AuthContextProvider>
+		</OmnioConsumerContextProvider>
+	</OmnioBrandContextProvider>
 );
 
 const container = document.getElementById('root');

@@ -7,8 +7,9 @@ import Card, { CardBody } from '../../../components/bootstrap/Card';
 import Button from '../../../components/bootstrap/Button';
 import useDarkMode from '../../../hooks/useDarkMode';
 import Spinner from '../../../components/bootstrap/Spinner';
-import useOmnio from '../../../contexts/omnioContext';
-import { ConsumerMenu } from '../../../menu';
+import useOmnioBrand from '../../../contexts/omnioBrandContext';
+import useOmnioConsumer from '../../../contexts/omnioConsumerContext';
+import { BrandProfileMenu, ConsumerProfileMenu } from '../../../menu';
 
 interface ILoginHeaderProps {
 	consumerUserMode?: boolean;
@@ -18,25 +19,28 @@ const LoginHeader: FC<ILoginHeaderProps> = ({ consumerUserMode }) => {
 		return (
 			<>
 				<div className='text-center h1 fw-bold mt-5'>Welcome,</div>
-				<div className='text-center h4 text-muted mb-5'>Setup your web3 brand!</div>
+				<div className='text-center h4 text-muted mb-5'>
+					Manage your web3 consumer data!
+				</div>
 			</>
 		);
 	}
 	return (
 		<>
 			<div className='text-center h1 fw-bold mt-5'>Welcome,</div>
-			<div className='text-center h4 text-muted mb-5'>Manage your web3 consumer data!</div>
+			<div className='text-center h4 text-muted mb-5'>Setup your web3 brand!</div>
 		</>
 	);
 };
 
 interface ILoginProps {
-	isSignUp?: boolean;
+	isLoginConsumer?: boolean;
 }
-const Login: FC<ILoginProps> = ({ isSignUp }) => {
-	const [consumerUserMode, setConsumerUserMode] = useState<boolean>(false);
+const Login: FC<ILoginProps> = ({ isLoginConsumer }) => {
+	const [consumerUserMode, setConsumerUserMode] = useState<boolean>(isLoginConsumer || true);
 
-	const { connectWithOmnio, omnioConnected, loading } = useOmnio();
+	const { connectConsumerWithOmnio, omnioConsumerConnected, loading } = useOmnioConsumer();
+	const { connectBrandWithOmnio, omnioBrandConnected, brandLoading } = useOmnioBrand();
 
 	const { darkModeStatus } = useDarkMode();
 
@@ -44,15 +48,23 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 
 	const handleLogInWithWallet = async () => {
 		try {
-			await connectWithOmnio();
+			if (consumerUserMode) {
+				await connectConsumerWithOmnio();
+			} else {
+				await connectBrandWithOmnio();
+			}
 		} catch (error: unknown) {
 			console.error(error);
 		}
 	};
 
 	useEffect(() => {
-		omnioConnected && navigate(ConsumerMenu.dashboard.path);
-	}, [omnioConnected, navigate]);
+		if (omnioBrandConnected) {
+			navigate(BrandProfileMenu.profile.path);
+		} else if (omnioConsumerConnected) {
+			navigate(ConsumerProfileMenu.profile.path);
+		}
+	}, [omnioBrandConnected, omnioConsumerConnected, navigate]);
 
 	return (
 		<PageWrapper
@@ -72,7 +84,7 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 									<div className='col'>
 										<Button
 											color={darkModeStatus ? 'light' : 'dark'}
-											isLight={!consumerUserMode}
+											isLight={consumerUserMode}
 											className='rounded-1 w-100'
 											size='lg'
 											onClick={() => {
@@ -84,7 +96,7 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 									<div className='col'>
 										<Button
 											color={darkModeStatus ? 'light' : 'dark'}
-											isLight={consumerUserMode}
+											isLight={!consumerUserMode}
 											className='rounded-1 w-100'
 											size='lg'
 											onClick={() => {
@@ -112,7 +124,9 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 												})}
 												icon='CustomEthereum'
 												onClick={handleLogInWithWallet}>
-												{loading && <Spinner isSmall inButton isGrow />}
+												{(loading || brandLoading) && (
+													<Spinner isSmall inButton isGrow />
+												)}
 												Connect with wallet
 											</Button>
 										</div>
@@ -146,10 +160,10 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 	);
 };
 Login.propTypes = {
-	isSignUp: PropTypes.bool,
+	isLoginConsumer: PropTypes.bool,
 };
 Login.defaultProps = {
-	isSignUp: false,
+	isLoginConsumer: true,
 };
 
 export default Login;

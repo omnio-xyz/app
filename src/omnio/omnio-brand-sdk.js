@@ -1,25 +1,33 @@
-import { Integration } from './integration';
+import { Ceramic } from './ceramic';
+import encryptedDataModelAliases from './models/encrypted-data/ceramic/aliases.json';
 
-class Omnio {
-	integration;
+class OmnioBrand {
+	chain;
 
-	constructor() {
-		this.integration = new Integration();
+	nodeUrl;
+
+	ceramic;
+
+	modelDefinitionName;
+
+	constructor(chain = 'mumbai', nodeUrl = 'https://ceramic-clay.3boxlabs.com') {
+		this.chain = chain;
+		this.nodeUrl = nodeUrl;
+		this.ceramic = new Ceramic(encryptedDataModelAliases, nodeUrl);
+		this.modelDefinitionName = Object.keys(encryptedDataModelAliases.definitions)[0];
 	}
 
-	async saveUserConsumerProfile(profile) {
-		let userOmnioData = await JSON.parse(await this.integration.readAndDecrypt());
-		userOmnioData = {
-			...userOmnioData,
-			profile: this.mergeWithExistingProfile(userOmnioData?.profile, profile),
-		};
+	async saveProfile(profile) {
+		let brandProfile = await this.ceramic.get(this.modelDefinitionName);
 
-		await this.integration.encryptAndWrite(JSON.stringify(userOmnioData));
-		return userOmnioData;
+		brandProfile = this.mergeWithExistingProfile(brandProfile, profile);
+
+		await this.ceramic.update(this.modelDefinitionName, brandProfile);
+		return brandProfile;
 	}
 
-	async getUserData() {
-		return JSON.parse(await this.integration.readAndDecrypt());
+	async getProfile() {
+		return this.ceramic.get(this.modelDefinitionName);
 	}
 
 	mergeWithExistingProfile(existingProfile, profileUpdated) {
@@ -42,6 +50,6 @@ class Omnio {
 	}
 }
 
-const omnio = new Omnio();
+const omnio = new OmnioBrand();
 
 export default omnio;

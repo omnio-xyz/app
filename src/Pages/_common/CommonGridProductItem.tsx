@@ -19,7 +19,7 @@ import Badge from '../../components/bootstrap/Badge';
 import { priceFormat } from '../../helpers/helpers';
 import showNotification from '../../components/extras/showNotification';
 import Icon from '../../components/icon/Icon';
-import { demoPagesMenu } from '../../menu';
+import { BrandMenu } from '../../menu';
 import useDarkMode from '../../hooks/useDarkMode';
 import { ApexOptions } from 'apexcharts';
 
@@ -150,6 +150,7 @@ const CommonGridProductItem: FC<ICommonGridProductItemProps> = ({
 					</div>
 				</div>
 			</CardBody>
+			{/*
 			<CardFooter className='shadow-3d-container'>
 				<Button
 					color='dark'
@@ -158,10 +159,11 @@ const CommonGridProductItem: FC<ICommonGridProductItemProps> = ({
 					}`}
 					size='lg'
 					tag='a'
-					to={`../${demoPagesMenu.sales.subMenu.productID.path}/${id}`}>
+					to={`../${BrandMenu.sales.subMenu.productID.path}/${id}`}>
 					View Product
 				</Button>
 			</CardFooter>
+			*/}
 		</Card>
 	);
 };

@@ -8,58 +8,62 @@ import Card, {
 	CardLabel,
 	CardTitle,
 } from '../../../../components/bootstrap/Card';
-import useOmnio from '../../../../contexts/omnioContext';
+import useOmnio from '../../../../contexts/omnioConsumerContext';
 import PaginationButtons, {
 	dataPagination,
 	PER_COUNT,
 } from '../../../../components/PaginationButtons';
+import useDarkMode from '../../../../hooks/useDarkMode';
 import classNames from 'classnames';
 import Badge from '../../../../components/bootstrap/Badge';
-import useDarkMode from '../../../../hooks/useDarkMode';
-import { IProduct } from '../../../../omnio/models/product/product';
 
-interface IViewProductRow {
-	id: string;
+interface IAddToCartRow {
+	id: string | number;
 	image: string;
 	name: string;
-	url: string;
 	credentialType: string;
+	category: string;
+	description: string;
+	price: number;
 	brand: string;
 	seller: string;
 	date: Moment;
 }
 
-const DashboardBookingPage = () => {
+const AddToCart = () => {
 	const { userData } = useOmnio();
-
-	const viewProductData: IViewProductRow[] = [];
-	userData?.content_view?.forEach((content) => {
-		const product: IProduct = content?.data?.product;
-		viewProductData.push({
-			id: product?.gtin,
-			name: product?.name,
-			image: product?.image,
-			url: content?.data?.url,
-			credentialType: 'View Product',
-			brand: product?.brand_id,
-			seller: content?.data?.seller,
-			date: moment(content?.date),
-		});
-	});
-
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [perPage, setPerPage] = useState<number>(PER_COUNT['10']);
 	const { darkModeStatus } = useDarkMode();
+
+	const addToCartData: IAddToCartRow[] = [];
+	userData?.add_to_cart?.forEach((addToCart) => {
+		const product = addToCart?.data?.product;
+		addToCartData.push({
+			id: product?.gtin,
+			image: product?.image,
+			name: product?.name,
+			credentialType: 'Add to Cart',
+			category: product?.category,
+			description: product?.description,
+			price: product?.unit_price,
+			brand: product?.brand_id,
+			seller: addToCart?.data?.seller,
+			date: moment(addToCart?.date),
+		});
+	});
 
 	return (
 		<PageWrapper>
 			<Page container='fluid'>
 				<Card stretch>
 					<CardHeader borderSize={1}>
-						<CardLabel icon='WebAsset' iconColor='info'>
-							<CardTitle>View Product</CardTitle>
+						<CardLabel icon='AddShoppingCart' iconColor='info'>
+							<CardTitle>Add to Cart</CardTitle>
 						</CardLabel>
-						<CardLabel>A credential is generated when you view a product.</CardLabel>
+						<CardLabel>
+							A data credential is generated when a product is added to your cart.
+						</CardLabel>
 					</CardHeader>
 					<CardBody className='table-responsive' isScrollable>
 						<table className='table table-modern table-hover'>
@@ -69,13 +73,21 @@ const DashboardBookingPage = () => {
 									<th scope='col'>Image</th>
 									<th scope='col'>Name</th>
 									<th scope='col'>Date</th>
-									<th scope='col'>URL</th>
+									<th scope='col'>Category</th>
+									<th scope='col'>Price</th>
 									<th scope='col'>Brand</th>
 									<th scope='col'>Seller</th>
 								</tr>
 							</thead>
 							<tbody>
-								{dataPagination(viewProductData, currentPage, perPage).map((i) => (
+								{/*addToCartData.map((i) => (
+									<CommonTableRow
+										key={count++}
+										// eslint-disable-next-line react/jsx-props-no-spreading
+										{...i}
+									/>
+								))*/}
+								{dataPagination(addToCartData, currentPage, perPage).map((i) => (
 									<tr key={i.id}>
 										<td>
 											<div className='fs-6'>{i.id}</div>
@@ -101,7 +113,16 @@ const DashboardBookingPage = () => {
 											<div className='fs-6'>{i.date.format('LLL')}</div>
 										</td>
 										<td>
-											<span>{i.url}</span>
+											<div
+												className={classNames('fw-bold', {
+													'link-dark': !darkModeStatus,
+													'link-light': darkModeStatus,
+												})}>
+												{i.category}
+											</div>
+										</td>
+										<td>
+											<span>{i.price}</span>
 										</td>
 										<td className='h5'>
 											<Badge color={'success'}>{i.brand}</Badge>
@@ -115,7 +136,7 @@ const DashboardBookingPage = () => {
 						</table>
 					</CardBody>
 					<PaginationButtons
-						data={viewProductData}
+						data={addToCartData}
 						label='Data Credentials'
 						setCurrentPage={setCurrentPage}
 						currentPage={currentPage}
@@ -128,4 +149,4 @@ const DashboardBookingPage = () => {
 	);
 };
 
-export default DashboardBookingPage;
+export default AddToCart;
