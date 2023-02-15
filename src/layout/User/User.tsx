@@ -2,7 +2,7 @@ import React, { useState, useContext, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
-import { demoPagesMenu, launchMenu } from '../../menu';
+import { launchMenu } from '../../menu';
 import { DropdownItem, DropdownMenu } from '../../components/bootstrap/Dropdown';
 import Button from '../../components/bootstrap/Button';
 import useDarkMode from '../../hooks/useDarkMode';

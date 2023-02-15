@@ -1,10 +1,11 @@
-import React, { lazy } from 'react';
+import { lazy } from 'react';
 import { RouteProps } from 'react-router-dom';
 import {
   launchMenu,
   consumerProfileMenu,
   consumerDataMenu,
-  demoPagesMenu,
+  consumerOnboardingMenu,
+  brandOnboardingMenu,
   brandProfileMenu,
   brandStudioMenu,
 } from '../menu';
@@ -16,13 +17,13 @@ const LANDING = {
 };
 
 const SINGLE = {
-  FLUID: lazy(() => import('../pages/Main/oldSearch')),
+  FLUID: lazy(() => import('../pages/brand/brandOnboarding')),
 };
 
 const EDIT = {
   MODERN: lazy(() => import('../pages/consumer/viewProduct')),
   FLUID: lazy(() => import('../pages/consumer/favoriteProduct')),
-  WIZARD: lazy(() => import('../pages/account/consumerOnboarding')),
+  WIZARD: lazy(() => import('../pages/consumer/consumerOnboarding')),
 };
 
 const AUTH = {
@@ -31,23 +32,22 @@ const AUTH = {
 
 const APP = {
   KNOWLEDGE: {
-    GRID: lazy(() => import('../pages/Main/brand/brandProfile')),
+    GRID: lazy(() => import('../pages/brand/brandProfile')),
   },
   SALES: {
-    PRODUCTS_GRID: lazy(() => import('../pages/Main/brand/brandStudio/productCatalog')),
+    PRODUCTS_GRID: lazy(() => import('../pages/brand/productCatalog')),
     PRODUCTS_VIEW: lazy(() => import('../pages/consumer/product')),
   },
   APPOINTMENT: {
     EMPLOYEE_LIST: lazy(() => import('../pages/consumer/requests')),
-    EMPLOYEE_VIEW: lazy(() => import('../pages/Main/brand/appointment/EmployeePage')),
     APPOINTMENT_LIST: lazy(
       () => import('../pages/consumer/addtoCart'),
     ),
   },
   CRM: {
     CRM_DASHBOARD: lazy(() => import('../pages/consumer/initiatePurchase')),
-    CUSTOMERS: lazy(() => import('../pages/Main/brand/query')),
-    CUSTOMER: lazy(() => import('../pages/Main/brand/crm/Customer')),
+    CUSTOMERS: lazy(() => import('../pages/brand/query')),
+
   },
 };
 
@@ -127,8 +127,13 @@ const presentation: RouteProps[] = [
 
 
   {
-    path: demoPagesMenu.editPages.subMenu.editWizard.path,
+    path: consumerOnboardingMenu.launch.path,
     element: <EDIT.WIZARD />,
+  },
+
+  {
+    path: brandOnboardingMenu.launch.path,
+    element: <SINGLE.FLUID />,
   },
 
   /**
@@ -159,22 +164,16 @@ const presentation: RouteProps[] = [
    * App > Sales
    */
   {
-    path: demoPagesMenu.sales.subMenu.productsGrid.path,
+    path: brandStudioMenu.profile.subMenu.productsGrid.path,
     element: <APP.SALES.PRODUCTS_GRID />,
   },
+
   {
-    path: `${demoPagesMenu.sales.subMenu.productID.path}/:id`,
+    path: `${brandStudioMenu.profile.subMenu.productID.path}/:id`,
     element: <APP.SALES.PRODUCTS_VIEW />,
   },
 
-  /**
-   * App > CRM
-   */
 
-  {
-    path: `${demoPagesMenu.crm.subMenu.customerID.path}/:id`,
-    element: <APP.CRM.CUSTOMER />,
-  },
 ];
 
 const contents = [...presentation];

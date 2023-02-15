@@ -1,6 +1,5 @@
 import Button from '../../components/bootstrap/Button';
 import Card, { CardBody, CardHeader, CardLabel, CardTitle } from '../../components/bootstrap/Card';
-import CustomerEditModal from '../Main/brand/crm/CustomerEditModal';
 import data from '../../common/mockData/mockFavoriteProductData';
 import Icon from '../../components/icon/Icon';
 import Input from '../../components/bootstrap/forms/Input';
@@ -148,7 +147,6 @@ const favoriteProduct = () => {
           </div>
         </div>
       </Page>
-      <CustomerEditModal setIsOpen={setEditModalStatus} isOpen={editModalStatus} id='0' />
     </PageWrapper>
   );
 };

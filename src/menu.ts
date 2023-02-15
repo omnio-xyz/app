@@ -13,7 +13,7 @@ export const brandOnboardingMenu = {
   launch: {
     id: 'launch',
     text: 'Launch',
-    path: 'edit-pages/wizard',
+    path: 'edit-pages/wizarddd',
     icon: 'Login',
   },
 };
@@ -35,10 +35,30 @@ export const brandStudioMenu = {
   },
   profile: {
     id: 'sales',
-    text: 'Product Catalog',
+    text: 'Sales',
     path: 'sales/grid',
     icon: 'Store',
-    subMenu: null,
+    subMenu: {
+      productsGrid: {
+        id: 'productsGrid',
+        text: 'Products Grid',
+        path: 'sales/grid',
+        icon: 'CalendarViewMonth',
+      },
+      productID: {
+        id: 'productID',
+        text: 'productID',
+        path: 'product',
+        hide: true,
+      },
+      product: {
+        id: 'product',
+        text: 'Product',
+        path: 'sales/product/1',
+        icon: 'QrCode2',
+        hide: true,
+      },
+    },
   },
   addBillingInformation: {
     id: 'pageView',
@@ -128,81 +148,5 @@ export const consumerDataMenu = {
     text: 'productID',
     path: 'product',
     hide: true,
-  },
-};
-
-export const demoPagesMenu = {
-  pages: {
-    id: 'pages',
-    text: 'Pages',
-    icon: 'Extension',
-  },
-  editPages: {
-    id: 'editPages',
-    text: 'Edit Pages',
-    path: 'edit-pages',
-    icon: 'drive_file_rename_outline ',
-    subMenu: {
-      editWizard: {
-        id: 'editWizard',
-        text: 'Wizard Edit',
-        path: 'edit-pages/wizard',
-        icon: 'LinearScale',
-      },
-    },
-  },
-
-  app: {
-    id: 'app',
-    text: 'Apps',
-    icon: 'Extension',
-  },
-  sales: {
-    id: 'sales',
-    text: 'Sales',
-    path: 'sales/grid',
-    icon: 'Store',
-    subMenu: {
-      productsGrid: {
-        id: 'productsGrid',
-        text: 'Products Grid',
-        path: 'sales/grid',
-        icon: 'CalendarViewMonth',
-      },
-      productID: {
-        id: 'productID',
-        text: 'productID',
-        path: 'product',
-        hide: true,
-      },
-      product: {
-        id: 'product',
-        text: 'Product',
-        path: 'sales/product/1',
-        icon: 'QrCode2',
-        hide: true,
-      },
-    },
-  },
-  crm: {
-    id: 'crm',
-    text: 'CRM',
-    path: 'crm',
-    icon: 'Contacts',
-    subMenu: {
-      customerID: {
-        id: 'customerID',
-        text: 'customerID',
-        path: 'crm/customer',
-        hide: true,
-      },
-      customer: {
-        id: 'customer',
-        text: 'Customer',
-        path: 'crm/customer/1',
-        icon: 'Badge',
-        hide: true,
-      },
-    },
   },
 };

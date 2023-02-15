@@ -13,9 +13,9 @@
 	$color-scale: $alert-color-scale
 ) {
 	@each $state, $value in $theme-colors {
-		$background: shift-color($value, $bg-scale);
+		$background: #E6E0FC;
 		$border: shift-color($value, $border-scale);
-		$color: shift-color($value, $color-scale);
+		$color: #000000;
 
 		$dark-background: if(
 			$variation == light,

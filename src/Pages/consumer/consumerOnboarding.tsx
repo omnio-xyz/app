@@ -13,7 +13,7 @@ import showNotification from '../../components/extras/showNotification';
 import User1Img from '../../assets/wanna/wanna2.png';
 import User1Webp from '../../assets/wanna/wanna2.webp';
 import Wizard, { WizardItem } from '../../components/Wizard';
-import { demoPagesMenu } from '../../menu';
+import { consumerOnboardingMenu } from '../../menu';
 import { FC, useState } from 'react';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
@@ -173,33 +173,18 @@ const EditWizardPage = () => {
   });
 
   return (
-    <PageWrapper title={demoPagesMenu.editPages.subMenu.editWizard.text}>
+    <PageWrapper title={consumerOnboardingMenu.launch.text}>
       <Page container='fluid'>
         <div className='row h-100 pb-3'>
-          <div className='col-lg-4 col-md-6'>
+
+          <div className='col-lg-6 col-md-6'>
             <Card stretch>
-              <CardHeader>
-                <CardLabel icon='AccountCircle'>
-                  <CardTitle>User Information</CardTitle>
-                </CardLabel>
-              </CardHeader>
               <CardBody isScrollable>
-                <div className='row g-3'>
-                  <div className='col-12'>
-                    <Button
-                      icon='Contacts'
-                      color='info'
-                      className='w-100 p-3'
-                      isLight={TABS.ACCOUNT_DETAIL !== activeTab}
-                      onClick={() => setActiveTab(TABS.ACCOUNT_DETAIL)}>
-                      {TABS.ACCOUNT_DETAIL}
-                    </Button>
-                  </div>
-                </div>
               </CardBody>
             </Card>
           </div>
-          <div className='col-lg-8 col-md-6'>
+
+          <div className='col-lg-6 col-md-6'>
             {TABS.ACCOUNT_DETAIL === activeTab && (
               <Wizard
                 isHeader

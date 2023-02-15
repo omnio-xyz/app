@@ -34,7 +34,6 @@
 	@include padding(map.get($subheader, padding-y) map.get($subheader, padding-x));
 	@include backdrop-filter-blur(map.get($subheader, blur));
 
-	position: sticky;
 	z-index: math.round($zindex-sticky - 1);
 	top: 0;
 	display: flex;

@@ -5,7 +5,6 @@ import Brand from '../../../layout/Brand/Brand';
 import Navigation, { NavigationLine } from '../../../layout/Navigation/Navigation';
 import User from '../../../layout/User/User';
 import {
-	demoPagesMenu,
 	brandProfileMenu,
 	consumerDataMenu,
 	consumerProfileMenu,
@@ -46,7 +45,6 @@ const DefaultAside = () => {
 						<Navigation menu={brandProfileMenu} id='aside-docMenu' />
 						<NavigationLine />
 						<Navigation menu={brandStudioMenu} id='aside-demo-pages' />
-            <Navigation menu={demoPagesMenu} id='aside-demo-pages' />
 					</>
 				)}
 			</AsideBody>

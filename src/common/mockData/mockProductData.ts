@@ -14,8 +14,8 @@ const productData: {
 	{
 		id: 1,
 		image: BeveledCone,
-		name: 'Beveled Cone',
-		category: '3D Shapes',
+		name: 'Product #1',
+		category: 'Product Category',
 		series: [
 			{
 				data: [25, 66, 41, 89, 63],
@@ -29,8 +29,8 @@ const productData: {
 	{
 		id: 2,
 		image: BeveledCone,
-		name: 'Cloud Ball',
-		category: '3D Shapes',
+		name: 'Product #2',
+		category: 'Product Category',
 		series: [
 			{
 				data: [12, 24, 33, 12, 48],
@@ -44,8 +44,8 @@ const productData: {
 	{
 		id: 3,
 		image: BeveledCone,
-		name: 'Quadrilateral',
-		category: '3D Shapes',
+		name: 'Product #3',
+		category: 'Product Category',
 		series: [
 			{
 				data: [34, 32, 36, 34, 34],
@@ -59,8 +59,8 @@ const productData: {
 	{
 		id: 4,
 		image: BeveledCone,
-		name: 'Bendy Rectangle',
-		category: '3D Shapes',
+		name: 'Product #4',
+		category: 'Product Category',
 		series: [
 			{
 				data: [54, 34, 42, 23, 12],
@@ -74,8 +74,8 @@ const productData: {
 	{
 		id: 5,
 		image: BeveledCone,
-		name: 'Bendy Rectangle',
-		category: '3D Shapes',
+		name: 'Product #5',
+		category: 'Product Category',
 		series: [
 			{
 				data: [23, 21, 12, 34, 14],
@@ -89,8 +89,8 @@ const productData: {
 	{
 		id: 6,
 		image: BeveledCone,
-		name: 'Bendy Rectangle',
-		category: '3D Shapes',
+		name: 'Product #6',
+		category: 'Product Category',
 		series: [
 			{
 				data: [23, 13, 34, 41, 38],
@@ -104,8 +104,8 @@ const productData: {
 	{
 		id: 7,
 		image: BeveledCone,
-		name: 'Octahedron',
-		category: '3D Shapes',
+		name: 'Product #7',
+		category: 'Product Category',
 		series: [
 			{
 				data: [21, 34, 23, 12, 67],
@@ -119,8 +119,8 @@ const productData: {
 	{
 		id: 8,
 		image: BeveledCone,
-		name: 'Triangle',
-		category: '3D Shapes',
+		name: 'Product #8',
+		category: 'Product Category',
 		series: [
 			{
 				data: [18, 32, 26, 15, 34],
@@ -134,8 +134,8 @@ const productData: {
 	{
 		id: 9,
 		image: BeveledCone,
-		name: 'SquiglyGlobe',
-		category: '3D Shapes',
+		name: 'Product #9',
+		category: 'Product Category',
 		series: [
 			{
 				data: [18, 32, 26, 15, 34],
@@ -149,8 +149,8 @@ const productData: {
 	{
 		id: 10,
 		image: BeveledCone,
-		name: 'Dodecagon',
-		category: '3D Shapes',
+		name: 'Product #10',
+		category: 'Product Category',
 		series: [
 			{
 				data: [18, 32, 26, 15, 34],
@@ -164,8 +164,8 @@ const productData: {
 	{
 		id: 11,
 		image: BeveledCone,
-		name: 'Beveled Cube',
-		category: '3D Shapes',
+		name: 'Product #11',
+		category: 'Product Category',
 		series: [
 			{
 				data: [18, 32, 26, 15, 34],
@@ -179,8 +179,8 @@ const productData: {
 	{
 		id: 12,
 		image: BeveledCone,
-		name: 'Cylinder',
-		category: '3D Shapes',
+		name: 'Product #12',
+		category: 'Product Category',
 		series: [
 			{
 				data: [18, 32, 26, 15, 34],

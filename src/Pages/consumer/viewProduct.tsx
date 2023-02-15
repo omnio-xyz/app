@@ -1,7 +1,6 @@
 import Button from '../../components/bootstrap/Button';
 import Card, { CardBody, CardHeader, CardLabel } from '../../components/bootstrap/Card';
 import classNames from 'classnames';
-import CustomerEditModal from '../Main/brand/crm/CustomerEditModal';
 import data from '../../common/mockData/mockViewProductData';
 import Icon from '../../components/icon/Icon';
 import Input from '../../components/bootstrap/forms/Input';
@@ -13,7 +12,7 @@ import SubHeader, { SubHeaderLeft } from '../../layout/SubHeader/SubHeader';
 import useDarkMode from '../../hooks/useDarkMode';
 import useSortableData from '../../hooks/useSortableData';
 import { brandStudioMenu } from '../../menu';
-import { consumerDataMenu, demoPagesMenu } from '../../menu';
+import { consumerDataMenu } from '../../menu';
 import { getColorNameWithIndex } from '../../common/data/enumColors';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
@@ -152,7 +151,7 @@ const viewProduct = () => {
               </CardBody>
               <PaginationButtons
                 data={filteredData}
-                label='Data Credentials'
+                label='Credentials'
                 setCurrentPage={setCurrentPage}
                 currentPage={currentPage}
                 perPage={perPage}
@@ -162,7 +161,6 @@ const viewProduct = () => {
           </div>
         </div>
       </Page>
-      <CustomerEditModal setIsOpen={setEditModalStatus} isOpen={editModalStatus} id='0' />
     </PageWrapper>
   );
 };

@@ -11,7 +11,7 @@ import showNotification from '../../components/extras/showNotification';
 import SubHeader, { SubHeaderLeft, SubHeaderRight, SubheaderSeparator } from '../../layout/SubHeader/SubHeader';
 import tableData from '../../common/mockData/mockProductData';
 import useDarkMode from '../../hooks/useDarkMode';
-import { demoPagesMenu } from '../../menu';
+import { brandStudioMenu } from '../../menu';
 import { priceFormat } from '../../helpers/helpers';
 import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
@@ -123,7 +123,7 @@ const brandProduct = () => {
   }, [editItem]);
 
   return (
-    <PageWrapper title={demoPagesMenu.sales.subMenu.product.text}>
+    <PageWrapper title={brandStudioMenu.profile.subMenu.product.text}>
       <SubHeader>
         <SubHeaderLeft>
           <Button color='info' isLink icon='ArrowBack' onClick={() => navigate(-1)}>
