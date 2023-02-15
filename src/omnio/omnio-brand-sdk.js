@@ -1,33 +1,57 @@
 import { Ceramic } from './ceramic';
-import encryptedDataModelAliases from './models/encrypted-data/ceramic/aliases.json';
+import publicDataModelAliases from './models/brand/ceramic/aliases.json';
 
 class OmnioBrand {
-	chain;
-
 	nodeUrl;
 
 	ceramic;
 
 	modelDefinitionName;
 
-	constructor(chain = 'mumbai', nodeUrl = 'https://ceramic-clay.3boxlabs.com') {
-		this.chain = chain;
+	constructor(nodeUrl = 'https://ceramic-clay.3boxlabs.com') {
 		this.nodeUrl = nodeUrl;
-		this.ceramic = new Ceramic(encryptedDataModelAliases, nodeUrl);
-		this.modelDefinitionName = Object.keys(encryptedDataModelAliases.definitions)[0];
+		this.ceramic = new Ceramic(publicDataModelAliases, nodeUrl);
+		this.modelDefinitionName = Object.keys(publicDataModelAliases.definitions)[0];
 	}
 
 	async saveProfile(profile) {
-		let brandProfile = await this.ceramic.get(this.modelDefinitionName);
+		let brandData = await this.ceramic.get(this.modelDefinitionName);
+		brandData = {
+			...brandData,
+			profile: this.mergeWithExistingProfile(brandData?.profile, profile),
+		};
 
-		brandProfile = this.mergeWithExistingProfile(brandProfile, profile);
-
-		await this.ceramic.update(this.modelDefinitionName, brandProfile);
-		return brandProfile;
+		await this.ceramic.update(this.modelDefinitionName, brandData);
+		return profile;
 	}
 
 	async getProfile() {
-		return this.ceramic.get(this.modelDefinitionName);
+		const brandData = await this.ceramic.get(this.modelDefinitionName);
+		if (brandData == null || !brandData?.data) {
+			return null;
+		}
+
+		return brandData.data?.profile;
+	}
+
+	async saveProducts(products) {
+		let brandData = await this.ceramic.get(this.modelDefinitionName);
+		brandData = {
+			...brandData,
+			products: this.mergeWithExistingProducts(brandData?.products, products),
+		};
+
+		await this.ceramic.update(this.modelDefinitionName, brandData);
+		return products;
+	}
+
+	async getProducts() {
+		const brandData = await this.ceramic.get(this.modelDefinitionName);
+		if (brandData == null || !brandData?.data) {
+			return null;
+		}
+
+		return brandData.data?.products;
 	}
 
 	mergeWithExistingProfile(existingProfile, profileUpdated) {
@@ -47,6 +71,10 @@ class OmnioBrand {
 				zip: profileUpdated.address?.zip ?? existingProfile?.address?.zip,
 			},
 		};
+	}
+
+	mergeWithExistingProducts(existingProducts, productsUpdated) {
+		return Array.from(new Set([...(existingProducts || []), ...(productsUpdated || [])]));
 	}
 }
 

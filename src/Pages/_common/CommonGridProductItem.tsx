@@ -2,14 +2,12 @@ import React, { FC } from 'react';
 import Card, {
 	CardActions,
 	CardBody,
-	CardFooter,
 	CardHeader,
 	CardLabel,
 	CardSubTitle,
 	CardTitle,
 } from '../../components/bootstrap/Card';
 import Button from '../../components/bootstrap/Button';
-import Chart from '../../components/extras/Chart';
 import Dropdown, {
 	DropdownItem,
 	DropdownMenu,
@@ -17,81 +15,50 @@ import Dropdown, {
 } from '../../components/bootstrap/Dropdown';
 import Badge from '../../components/bootstrap/Badge';
 import { priceFormat } from '../../helpers/helpers';
-import showNotification from '../../components/extras/showNotification';
-import Icon from '../../components/icon/Icon';
-import { BrandMenu } from '../../menu';
 import useDarkMode from '../../hooks/useDarkMode';
-import { ApexOptions } from 'apexcharts';
 
 interface ICommonGridProductItemProps {
 	id: string | number;
 	name: string;
 	category: string;
 	img: string;
-	color: string;
-	series: ApexOptions['series'];
-	price: number;
+	unit_price: number;
+	brand_id: string;
 	editAction: any;
 	deleteAction: any;
 }
+
+function shortenText(str: string): string {
+	var endValue = Math.floor(parseInt('200px') / 10);
+	return str.substring(0, endValue) + '...';
+}
+
 const CommonGridProductItem: FC<ICommonGridProductItemProps> = ({
 	id,
 	name,
 	category,
 	img,
-	color,
-	series,
-	price,
+	unit_price,
+	brand_id,
 	editAction,
 	deleteAction,
 }) => {
-	const { themeStatus, darkModeStatus } = useDarkMode();
-
-	const dummyOptions: ApexOptions = {
-		colors: [color],
-		chart: {
-			type: 'line',
-			width: 100,
-			height: 35,
-			sparkline: {
-				enabled: true,
-			},
-		},
-		tooltip: {
-			theme: 'dark',
-			fixed: {
-				enabled: false,
-			},
-			x: {
-				show: false,
-			},
-			y: {
-				title: {
-					// eslint-disable-next-line @typescript-eslint/no-unused-vars
-					formatter(seriesName: string) {
-						return '';
-					},
-				},
-			},
-		},
-		stroke: {
-			curve: 'smooth',
-			width: 2,
-		},
-	};
+	const { themeStatus } = useDarkMode();
 	return (
 		<Card>
 			<CardHeader>
 				<CardLabel>
 					<CardTitle>
-						{name}{' '}
-						{price && (
+						<Badge color='info' isLight className='ms-2'>
+							{'GTIN: ' + id}
+						</Badge>
+						{unit_price && (
 							<Badge color='success' isLight className='ms-2'>
-								{priceFormat(price)}
+								{priceFormat(unit_price)}
 							</Badge>
 						)}
 					</CardTitle>
-					<CardSubTitle>{category}</CardSubTitle>
+					<CardSubTitle>{shortenText(name)}</CardSubTitle>
 				</CardLabel>
 				<CardActions>
 					<Dropdown>
@@ -102,21 +69,6 @@ const CommonGridProductItem: FC<ICommonGridProductItemProps> = ({
 							<DropdownItem>
 								<Button icon='Edit' onClick={() => editAction()}>
 									Edit
-								</Button>
-							</DropdownItem>
-							<DropdownItem>
-								<Button
-									icon='FileCopy'
-									onClick={() => {
-										showNotification(
-											<span className='d-flex align-items-center'>
-												<Icon icon='Info' size='lg' className='me-1' />
-												<span>{name} duplicated.</span>
-											</span>,
-											`A copy of the ${name} product was created.`,
-										);
-									}}>
-									Duplicate
 								</Button>
 							</DropdownItem>
 							<DropdownItem isDivider />
@@ -133,37 +85,14 @@ const CommonGridProductItem: FC<ICommonGridProductItemProps> = ({
 				<img
 					src={img}
 					alt=''
-					width={128}
-					height={128}
+					height={56}
+					style={{ maxHeight: 56 }}
 					className='mx-auto d-block img-fluid mb-3'
 				/>
 				<div className='row align-items-center'>
-					<div className='col'>Monthly sales</div>
-					<div className='col-auto'>
-						<Chart
-							series={series}
-							options={dummyOptions}
-							type={dummyOptions.chart?.type}
-							height={dummyOptions.chart?.height}
-							width={dummyOptions.chart?.width}
-						/>
-					</div>
+					<div className='col'>{category}</div>
 				</div>
 			</CardBody>
-			{/*
-			<CardFooter className='shadow-3d-container'>
-				<Button
-					color='dark'
-					className={`w-100 mb-4 shadow-3d-up-hover shadow-3d-${
-						darkModeStatus ? 'light' : 'dark'
-					}`}
-					size='lg'
-					tag='a'
-					to={`../${BrandMenu.sales.subMenu.productID.path}/${id}`}>
-					View Product
-				</Button>
-			</CardFooter>
-			*/}
 		</Card>
 	);
 };

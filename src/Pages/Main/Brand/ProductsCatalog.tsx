@@ -9,7 +9,6 @@ import SubHeader, {
 } from '../../../layout/SubHeader/SubHeader';
 import Button from '../../../components/bootstrap/Button';
 import CommonGridProductItem from '../../_common/CommonGridProductItem';
-import tableData from '../../../common/data/dummyProductData';
 import OffCanvas, {
 	OffCanvasBody,
 	OffCanvasHeader,
@@ -26,6 +25,7 @@ import Input from '../../../components/bootstrap/forms/Input';
 import PlaceholderImage from '../../../components/extras/PlaceholderImage';
 import FormGroup from '../../../components/bootstrap/forms/FormGroup';
 import { BrandMenu } from '../../../menu';
+import useOmnioBrand from '../../../contexts/omnioBrandContext';
 
 interface IValues {
 	name: string;
@@ -72,18 +72,16 @@ const validate = (values: IValues) => {
 };
 
 const ProductsCatalog = () => {
-	const [data, setData] = useState(tableData);
 	const [editItem, setEditItem] = useState<IValues | null>(null);
 	const [editPanel, setEditPanel] = useState<boolean>(false);
 
 	function handleRemove(id: number) {
-		const newData = data.filter((item) => item.id !== id);
-		setData(newData);
+		return; //TODO
 	}
 
 	function handleEdit(id: number) {
-		const newData = data.filter((item) => item.id === id);
-		setEditItem(newData[0]);
+		return; //TODO
+
 	}
 
 	const formik = useFormik({
@@ -99,6 +97,8 @@ const ProductsCatalog = () => {
 			setEditPanel(false);
 		},
 	});
+
+	const { products } = useOmnioBrand();
 
 	useEffect(() => {
 		if (editItem) {
@@ -125,7 +125,7 @@ const ProductsCatalog = () => {
 			<SubHeader>
 				<SubHeaderLeft>
 					<SubheaderSeparator />
-					<span className='text-muted'>{data.length} items</span>
+					<span className='text-muted'>{products?.length} items</span>
 				</SubHeaderLeft>
 				<SubHeaderRight>
 					<Button
@@ -143,21 +143,19 @@ const ProductsCatalog = () => {
 			<Page>
 				<div className='display-4 fw-bold py-3'>All Products</div>
 				<div className='row'>
-					{data.map((item) => (
-						<div key={item.id} className='col-xxl-3 col-xl-4 col-md-6'>
+					{products?.map((product) => (
+						<div key={product.gtin} className='col-xxl-3 col-xl-4 col-md-6'>
 							<CommonGridProductItem
-								id={item.id}
-								name={item.name}
-								category={item.category}
-								img={item.image}
-								color={item.color}
-								series={item.series}
-								price={item.price}
+								id={product.gtin}
+								name={product.name}
+								category={product.category}
+								img={product.image}
+								unit_price={product.unit_price}
+								brand_id={product.brand_id}
 								editAction={() => {
 									setEditPanel(true);
-									handleEdit(item.id);
 								}}
-								deleteAction={() => handleRemove(item.id)}
+								deleteAction={() => []}
 							/>
 						</div>
 					))}

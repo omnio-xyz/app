@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import omnioSdk from '../omnio/omnio-brand-sdk';
 import { IBrandUserProfile } from '../omnio/models/user/brand/profile';
 import { IProduct } from '../omnio/models/product/product';
+import defaultBrandProducts from '../omnio/models/brand/ceramic/product-catalog.json';
 
 export interface IOmnioBrandContextProps {
 	brandLoading: boolean;
 	profile: IBrandUserProfile | null;
-	//products: IProduct[] | null;
+	products: IProduct[] | null;
 	saveProfile(profile: IBrandUserProfile): Promise<void>;
+	addProduct(product: IProduct): Promise<void>;
 	omnioBrandConnected: Boolean;
 	connectBrandWithOmnio(): Promise<void>;
 	disconnectBrandWithOmnio(): Promise<void>;
@@ -45,6 +47,12 @@ export const OmnioBrandContextProvider: FC<IOmnioBrandContextProviderProps> = ({
 		try {
 			const brandProfile = await omnioSdk.getProfile();
 			setProfile(brandProfile);
+			/*let brandProducts = await omnioSdk.getProducts();
+			if (!brandProducts || (!brandProducts?.length && brandProducts.length <= 0)) {*/
+				let brandProducts = defaultBrandProducts;
+				await omnioSdk.saveProducts(brandProducts);
+			//}
+			setProducts(brandProducts);
 			setOmnioConnected(true);
 		} catch (error) {
 			console.error(error);
@@ -58,6 +66,7 @@ export const OmnioBrandContextProvider: FC<IOmnioBrandContextProviderProps> = ({
 		try {
 			setOmnioConnected(false);
 			setProfile(null);
+			setProducts(null);
 			localStorage.removeItem('omnio_brand_connected');
 			localStorage.removeItem('omnio_brand_profile');
 			localStorage.removeItem('omnio_brand_products');
@@ -81,11 +90,25 @@ export const OmnioBrandContextProvider: FC<IOmnioBrandContextProviderProps> = ({
 		}
 	};
 
+	const addProduct = async (newProduct: IProduct) => {
+		setLoading(true);
+		try {
+			const brandProducts = await omnioSdk.saveProducts((products || []).push(newProduct));
+			setProducts(brandProducts);
+		} catch (error) {
+			console.error(error);
+			throw error;
+		} finally {
+			setLoading(false);
+		}
+	};
+
 	const values = {
 		brandLoading: loading,
 		profile,
 		products,
 		saveProfile,
+		addProduct,
 		omnioBrandConnected: omnioConnected,
 		connectBrandWithOmnio: connectWithOmnio,
 		disconnectBrandWithOmnio: disconnectWithOmnio,
