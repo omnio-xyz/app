@@ -1,6 +1,6 @@
-import { RouteProps } from 'react-router-dom';
 import DefaultAside from '../pages/Layout/Console/DefaultConsole';
-import { launchMenu, consumerOnboardingMenu } from '../menu';
+import { consumerOnboardingMenu, launchMenu } from '../menu';
+import { RouteProps } from 'react-router-dom';
 
 const asides: RouteProps[] = [
 	{ path: launchMenu.launch.path, element: null },

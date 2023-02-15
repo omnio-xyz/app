@@ -89,7 +89,7 @@ const KnowledgeGridPage = () => {
   );
 
   return (
-    <PageWrapper>
+    <PageWrapper >
       <Page container='fluid'>
         <div className='row h-100'>
           <div className='col-lg-4'>

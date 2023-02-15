@@ -58,7 +58,7 @@ const validate = (values: IValues) => {
   return errors;
 };
 
-type TTabs = 'Summary' | 'Edit';
+type TTabs = 'Product Identity' | 'Edit';
 interface ITabs {
   [key: string]: TTabs;
 }
@@ -74,7 +74,7 @@ const ProductViewPage = () => {
   const data = itemData[0];
 
   const TABS: ITabs = {
-    SUMMARY: 'Summary',
+    SUMMARY: 'Product Identity',
     EDIT: 'Edit',
   };
   const [activeTab, setActiveTab] = useState(TABS.SUMMARY);
@@ -123,8 +123,7 @@ const ProductViewPage = () => {
     <PageWrapper title={brandStudioMenu.profile.subMenu.product.text}>
       <SubHeader>
         <SubHeaderLeft>
-          <Button color='info' isLink icon='ArrowBack' onClick={() => navigate(-1)}>
-            Back to List
+          <Button color='dark' isLight icon='ArrowBack' onClick={() => navigate(-1)}>
           </Button>
           <SubheaderSeparator />
         </SubHeaderLeft>
@@ -167,7 +166,7 @@ const ProductViewPage = () => {
                     color='danger'
                     isLight
                     className='w-100 p-3'>
-                    Delete
+                    Delete Credential
                   </Button>
                 </CardFooterLeft>
               </CardFooter>

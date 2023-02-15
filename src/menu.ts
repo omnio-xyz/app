@@ -1,9 +1,9 @@
 export const launchMenu = {
   launch: {
-    id: 'launch',
-    text: 'Launch',
-    path: 'auth-pages/login',
     icon: 'Login',
+    id: 'launch',
+    path: 'auth-pages/login',
+    text: 'Launch',
   },
 };
 
@@ -13,7 +13,7 @@ export const brandOnboardingMenu = {
   launch: {
     id: 'launch',
     text: 'Launch',
-    path: 'edit-pages/wizarddd',
+    path: 'brand/onboarding',
     icon: 'Login',
   },
 };
@@ -21,8 +21,8 @@ export const brandOnboardingMenu = {
 export const brandProfileMenu = {
   knowledge: {
     id: 'knowledge',
-    text: 'Profile',
-    path: 'knowledge/grid',
+    text: 'Brand Profile',
+    path: 'brand/profile',
     icon: 'Person',
   },
 };
@@ -41,7 +41,7 @@ export const brandStudioMenu = {
     subMenu: {
       productsGrid: {
         id: 'productsGrid',
-        text: 'Products Grid',
+        text: 'Purchase History',
         path: 'sales/grid',
         icon: 'CalendarViewMonth',
       },

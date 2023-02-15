@@ -1,44 +1,21 @@
-import Alert from '../../components/bootstrap/Alert';
 import AuthContext from '../../contexts/authContext';
 import Button from '../../components/bootstrap/Button';
 import Card, { CardBody } from '../../components/bootstrap/Card';
 import classNames from 'classnames';
-import FormGroup from '../../components/bootstrap/forms/FormGroup';
-import Input from '../../components/bootstrap/forms/Input';
 import Page from '../../layout/Page/Page';
 import PageWrapper from '../../layout/PageWrapper/PageWrapper';
 import PropTypes from 'prop-types';
-import Spinner from '../../components/bootstrap/Spinner';
 import useDarkMode from '../../hooks/useDarkMode';
 import USERS, { getUserDataWithUsername } from '../../common/data/userDummyData';
 import { FC, useCallback, useContext, useState } from 'react';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 
-interface ILoginHeaderProps {
-  isNewUser?: boolean;
-}
-const LoginHeader: FC<ILoginHeaderProps> = ({ isNewUser }) => {
-  if (isNewUser) {
-    return (
-      <>
-        <div className='text-center h1 fw-bold mt-5'>Create Account,</div>
-        <div className='text-center h4 text-muted mb-5'>Sign up to get started!</div>
-      </>
-    );
-  }
-  return (
-    <>
-      <div className='text-center h1 fw-bold mt-5'>Welcome,</div>
-      <div className='text-center h4 text-muted mb-5'>Sign in to continue!</div>
-    </>
-  );
-};
 
 interface ILoginProps {
   isSignUp?: boolean;
 }
-const Login: FC<ILoginProps> = ({ isSignUp }) => {
+const Launch: FC<ILoginProps> = ({ isSignUp }) => {
   const { setUser } = useContext(AuthContext);
 
   const { darkModeStatus } = useDarkMode();
@@ -116,141 +93,24 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
       className={classNames({ bg: !singUpStatus, 'bg-light': singUpStatus })}>
       <Page container='fluid'>
         <div className='row h-100 pb-3 align-items-center justify-content-center'>
-        <div className="container">
-        <div className='row'>
+          <div className="container">
+            <div className='row'>
 
 
 
-          <div className='col-xl- col-lg-6 col-md-8 shadow-3d-container'>
-            <Card className='shadow-3d-dark' data-tour='login-page'>
-              <CardBody>
-                <div
-                  className={classNames('rounded-3', {
-                    'bg-l10-dark': !darkModeStatus,
-                    'bg-dark': darkModeStatus,
-                  })}>
-                  <div className='row row-cols-2 g-3 pb-3 px-3 mt-0'>
-                    <div className='col'>
-                      <Button
-                        color={darkModeStatus ? 'light' : 'dark'}
-                        isLight={singUpStatus}
-                        className='rounded-1 w-100'
-                        size='lg'
-                        onClick={() => {
-                          setSignInPassword(false);
-                          setSingUpStatus(!singUpStatus);
-                        }}>
-                        Brand
-                      </Button>
-                    </div>
-                    <div className='col'>
-                      <Button
-                        color={darkModeStatus ? 'light' : 'dark'}
-                        isLight={!singUpStatus}
-                        className='rounded-1 w-100'
-                        size='lg'
-                        onClick={() => {
-                          setSignInPassword(false);
-                          setSingUpStatus(!singUpStatus);
-                        }}>
-                        Consumer
-                      </Button>
-                    </div>
-                  </div>
-                </div>
+              <div className='col-xl- col-lg-6 col-md-8 shadow-3d-container'>
+                <Card className='shadow-3d-dark' data-tour='login-page'>
+                  <CardBody>
+                  </CardBody>
+                </Card>
+              </div>
 
-                <LoginHeader isNewUser={singUpStatus} />
+              <div className="col-sm-3">
+                <div className='row'>
 
-                <Alert isLight icon='Lock' isDismissible>
-                  <div className='row'>
-                    <div className='col-12'>
-                      <strong>Username:</strong> {USERS.JOHN.username}
-                    </div>
-                    <div className='col-12'>
-                      <strong>Password:</strong> {USERS.JOHN.password}
-                    </div>
-                  </div>
-                </Alert>
-                <form className='row g-4'>
-                  {singUpStatus ? (
-                    <></>
-                  ) : (
-                    <>
-                      <div className='col-12'>
-                        <FormGroup
-                          id='loginUsername'
-                          isFloating
-                          label='Your email or username'
-                          className={classNames({
-                            'd-none': signInPassword,
-                          })}>
-                          <Input
-                            autoComplete='username'
-                            value={formik.values.loginUsername}
-                            isTouched={formik.touched.loginUsername}
-                            invalidFeedback={formik.errors.loginUsername}
-                            isValid={formik.isValid}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            onFocus={() => {
-                              formik.setErrors({});
-                            }}
-                          />
-                        </FormGroup>
-                        {signInPassword && (
-                          <div className='text-center h4 mb-3 fw-bold'>
-                            Hi, {formik.values.loginUsername}.
-                          </div>
-                        )}
-                        <FormGroup
-                          id='loginPassword'
-                          isFloating
-                          label='Password'
-                          className={classNames({
-                            'd-none': !signInPassword,
-                          })}>
-                          <Input
-                            type='password'
-                            autoComplete='current-password'
-                            value={formik.values.loginPassword}
-                            isTouched={formik.touched.loginPassword}
-                            invalidFeedback={formik.errors.loginPassword}
-                            validFeedback='Looks good!'
-                            isValid={formik.isValid}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                          />
-                        </FormGroup>
-                      </div>
-                      <div className='col-12'>
-                        {!signInPassword ? (
-                          <Button
-                            color='warning'
-                            className='w-100 py-3'
-                            isDisable={!formik.values.loginUsername}
-                            onClick={handleContinue}>
-                            {isLoading && (
-                              <Spinner isSmall inButton isGrow />
-                            )}
-                            Continue
-                          </Button>
-                        ) : (
-                          <Button
-                            color='warning'
-                            className='w-100 py-3'
-                            onClick={formik.handleSubmit}>
-                            Login
-                          </Button>
-                        )}
-                      </div>
-                    </>
-                  )}
-
-                  {/* BEGIN :: Social Login */}
-                  {!signInPassword && (
-                    <>
-                      <div className='col-12 mt-3 text-center text-muted'>OR</div>
-                      <div className='col-12'>
+                  <div className='col-lg-6 col-md-6'>
+                    <Card stretch>
+                      <CardBody isScrollable>
                         <Button
                           isOutline
                           color={darkModeStatus ? 'light' : 'dark'}
@@ -259,67 +119,52 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
                             'border-dark': darkModeStatus,
                           })}
                           icon='CustomGoogle'
-                          onClick={handleOnClick}>
-                          Sign-In with Ethereum
+                          onClick={formik.handleSubmit}>
+                          Sign-In with Etshereum
                         </Button>
+                      </CardBody>
+                      <div className='text-center'>
+                        <a
+                          href='/'
+                          className={classNames('text-decoration-none me-3', {
+                            'link-light': singUpStatus,
+                            'link-dark': !singUpStatus,
+                          })}>
+                          Privacy Policy
+                        </a>
+                        <a
+                          href='/'
+                          className={classNames('link-light text-decoration-none', {
+                            'link-light': singUpStatus,
+                            'link-dark': !singUpStatus,
+                          })}>
+                          Terms of Use
+                        </a>
                       </div>
-                    </>
-                  )}
-                  {/* END :: Social Login */}
-                </form>
-              </CardBody>
-              <div className='text-center'>
-                <a
-                  href='/'
-                  className={classNames('text-decoration-none me-3', {
-                    'link-light': singUpStatus,
-                    'link-dark': !singUpStatus,
-                  })}>
-                  Privacy Policy
-                </a>
-                <a
-                  href='/'
-                  className={classNames('link-light text-decoration-none', {
-                    'link-light': singUpStatus,
-                    'link-dark': !singUpStatus,
-                  })}>
-                  Terms of Use
-                </a>
+                    </Card>
+                  </div>
+
+                  <div className='col-lg-6 col-md-6'>
+                    <Card stretch>
+                      <CardBody isScrollable>
+                      </CardBody>
+                    </Card>
+                  </div>
+
+                </div>
               </div>
-            </Card>
-          </div>
-
-          <div className="col-sm-3">
-          <div className='row'>
-
-          <div className='col-lg-6 col-md-6'>
-            <Card stretch>
-              <CardBody isScrollable>
-              </CardBody>
-            </Card>
-          </div>
-
-          <div className='col-lg-6 col-md-6'>
-            <Card stretch>
-              <CardBody isScrollable>
-              </CardBody>
-            </Card>
-          </div>
-
-          </div>
-          </div>
-          </div>
+            </div>
           </div>
         </div>
       </Page>
     </PageWrapper>
   );
 };
-Login.propTypes = {
+Launch.propTypes = {
   isSignUp: PropTypes.bool,
 };
-Login.defaultProps = {
+Launch.defaultProps = {
   isSignUp: false,
 };
 
-export default Login;
+export default Launch;

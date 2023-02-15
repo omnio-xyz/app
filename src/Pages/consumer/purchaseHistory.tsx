@@ -1,71 +1,115 @@
+import Badge from '../../components/bootstrap/Badge';
 import Button from '../../components/bootstrap/Button';
-import Card, { CardActions, CardBody, CardFooter, CardHeader, CardLabel, CardTitle } from '../../components/bootstrap/Card';
-import Checks, { ChecksGroup } from '../../components/bootstrap/forms/Checks';
-import CommonFilterTag from '../_common/CommonFilterTag';
-import CommonTableRow from '../_common/CommonTableRow';
-import data from '../../common/mockData/mockProductData';
-import Dropdown, { DropdownItem, DropdownMenu, DropdownToggle } from '../../components/bootstrap/Dropdown';
+import Card, { CardBody, CardHeader, CardLabel, CardTitle } from '../../components/bootstrap/Card';
+import CommonGridProductItem from '../_common/CommonGridProductItem';
 import FormGroup from '../../components/bootstrap/forms/FormGroup';
 import Icon from '../../components/icon/Icon';
 import Input from '../../components/bootstrap/forms/Input';
-import InputGroup, { InputGroupText } from '../../components/bootstrap/forms/InputGroup';
-import Label from '../../components/bootstrap/forms/Label';
+import OffCanvas, { OffCanvasBody, OffCanvasHeader, OffCanvasTitle } from '../../components/bootstrap/OffCanvas';
 import Page from '../../layout/Page/Page';
 import PageWrapper from '../../layout/PageWrapper/PageWrapper';
-import PaginationButtons, { dataPagination, PER_COUNT } from '../../components/PaginationButtons';
-import Popovers from '../../components/bootstrap/Popovers';
-import Select from '../../components/bootstrap/forms/Select';
-import SubHeader, { SubHeaderLeft, SubHeaderRight, SubheaderSeparator } from '../../layout/SubHeader/SubHeader';
-import useDarkMode from '../../hooks/useDarkMode';
-import useSelectTable from '../../hooks/useSelectTable';
+import PlaceholderImage from '../../components/extras/PlaceholderImage';
+import SubHeader, { SubHeaderLeft, SubHeaderRight } from '../../layout/SubHeader/SubHeader';
+import tableData from '../../common/mockData/mockProductData';
+import { brandStudioMenu } from '../../menu';
+import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
-import { useState } from 'react';
 
-const DashboardBookingPage = () => {
-  const { themeStatus, darkModeStatus } = useDarkMode();
+interface IValues {
+  name: string;
+  price: number;
+  stock: number;
+  category: string;
+  image?: string | null;
+}
+const validate = (values: IValues) => {
+  const errors = {
+    name: '',
+    price: '',
+    stock: '',
+    category: '',
+  };
 
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [perPage, setPerPage] = useState<number>(PER_COUNT['10']);
+  if (!values.name) {
+    errors.name = 'Required';
+  } else if (values.name.length < 3) {
+    errors.name = 'Must be 3 characters or more';
+  } else if (values.name.length > 20) {
+    errors.name = 'Must be 20 characters or less';
+  }
 
-  const [date, setDate] = useState<Date>(new Date());
+  if (!values.price) {
+    errors.price = 'Required';
+  } else if (values.price < 0) {
+    errors.price = 'Price should not be 0';
+  }
 
-  const [filterMenu, setFilterMenu] = useState<boolean>(false);
+  if (!values.stock) {
+    errors.stock = 'Required';
+  }
+
+  if (!values.category) {
+    errors.category = 'Required';
+  } else if (values.category.length < 3) {
+    errors.category = 'Must be 3 characters or more';
+  } else if (values.category.length > 20) {
+    errors.category = 'Must be 20 characters or less';
+  }
+
+  return errors;
+};
+
+const ProductsGridPage = () => {
+  const [data, setData] = useState(tableData);
+  const [editItem, setEditItem] = useState<IValues | null>(null);
+  const [editPanel, setEditPanel] = useState<boolean>(false);
+
+  function handleRemove(id: number) {
+    const newData = data.filter((item) => item.id !== id);
+    setData(newData);
+  }
+
+  function handleEdit(id: number) {
+    const newData = data.filter((item) => item.id === id);
+    setEditItem(newData[0]);
+  }
+
   const formik = useFormik({
     initialValues: {
-      searchInput: '',
-      minPrice: '',
-      maxPrice: '',
-      categoryName: '3D Shapes',
-      companyA: true,
-      companyB: true,
-      companyC: true,
-      companyD: true,
+      name: '',
+      price: 0,
+      stock: 0,
+      category: '',
     },
+    validate,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     onSubmit: (values) => {
-      setFilterMenu(false);
-      // alert(JSON.stringify(values, null, 2));
+      setEditPanel(false);
     },
   });
 
-  const filteredData = data.filter(
-    (f) =>
-      // Category
-      f.category === formik.values.categoryName &&
-      // Price
-      (formik.values.minPrice === '' || f.price > Number(formik.values.minPrice)) &&
-      (formik.values.maxPrice === '' || f.price < Number(formik.values.maxPrice)) &&
-      //	Company
-      ((formik.values.companyA ? f.store === 'Company A' : false) ||
-        (formik.values.companyB ? f.store === 'Company B' : false) ||
-        (formik.values.companyC ? f.store === 'Company C' : false) ||
-        (formik.values.companyD ? f.store === 'Company D' : false)),
-  );
-
-  const { selectTable, SelectAllCheck } = useSelectTable(filteredData);
+  useEffect(() => {
+    if (editItem) {
+      formik.setValues({
+        name: editItem.name,
+        price: editItem.price,
+        stock: editItem.stock,
+        category: editItem.category,
+      });
+    }
+    return () => {
+      formik.setValues({
+        name: '',
+        price: 0,
+        stock: 0,
+        category: '',
+      });
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [editItem]);
 
   return (
-    <PageWrapper>
+    <PageWrapper title={brandStudioMenu.profile.subMenu.productsGrid.text}>
       <SubHeader>
         <SubHeaderLeft>
           <label
@@ -79,78 +123,187 @@ const DashboardBookingPage = () => {
             className='border-0 shadow-none bg-transparent'
             placeholder='Search Product'
             onChange={formik.handleChange}
-            value={formik.values.searchInput}
+            value={''}
           />
         </SubHeaderLeft>
+        <SubHeaderRight>
+        </SubHeaderRight>
       </SubHeader>
       <Page container='fluid'>
-        <Card stretch>
-          <CardHeader borderSize={1}>
-            <CardLabel icon='WebAsset' iconColor='info'>
-              <CardTitle>Purchase History</CardTitle>
-            </CardLabel>
-            <CardActions>
-              <Dropdown className='d-inline'>
-                <DropdownToggle hasIcon={false}>
-                  <Button color={themeStatus} icon='MoreHoriz' />
-                </DropdownToggle>
-                <DropdownMenu isAlignmentEnd>
-                  <DropdownItem>
-                    <Button icon='Edit'>Edit</Button>
-                  </DropdownItem>
-                  <DropdownItem>
-                    <Button icon='Delete'>Delete</Button>
-                  </DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-            </CardActions>
-          </CardHeader>
-          <CardBody isScrollable className='table-responsive'>
-            <table className='table table-modern table-hover'>
-              <thead>
-                <tr>
-                  <th scope='col'>{SelectAllCheck}</th>
-                  <th scope='col'>#</th>
-                  <th scope='col'>Image</th>
-                  <th scope='col'>Name</th>
-                  <th scope='col'>Sales</th>
-                  <th scope='col'>Stock</th>
-                  <th scope='col'>Price</th>
-                  <th scope='col'>Product Category</th>
-                  <th scope='col' className='text-end'>
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredData.map((i) => (
-                  <CommonTableRow
-                    key={i.id}
-                    // eslint-disable-next-line react/jsx-props-no-spreading
-                    {...i}
-                    selectName='selectedList'
-                    selectOnChange={selectTable.handleChange}
-                    selectChecked={selectTable.values.selectedList.includes(
-                      // @ts-ignore
-                      i.id.toString(),
-                    )}
-                  />
-                ))}
-              </tbody>
-            </table>
-          </CardBody>
-          <PaginationButtons
-            data={filteredData}
-            label='Data Credentials'
-            setCurrentPage={setCurrentPage}
-            currentPage={currentPage}
-            perPage={perPage}
-            setPerPage={setPerPage}
-          />
-        </Card>
+        <div className='row'>
+          {data.map((item) => (
+            <div key={item.id} className='col-xxl-3 col-xl-4 col-md-6'>
+              <CommonGridProductItem
+                id={item.id}
+                name={item.name}
+                category={item.category}
+                img={item.image}
+                color={item.color}
+                series={item.series}
+                price={item.price}
+                editAction={() => {
+                  setEditPanel(true);
+                  handleEdit(item.id);
+                }}
+                deleteAction={() => handleRemove(item.id)}
+              />
+            </div>
+          ))}
+        </div>
       </Page>
+
+      <OffCanvas
+        setOpen={setEditPanel}
+        isOpen={editPanel}
+        isRightPanel
+        tag='form'
+        noValidate
+        onSubmit={formik.handleSubmit}>
+        <OffCanvasHeader setOpen={setEditPanel}>
+          <OffCanvasTitle id='edit-panel'>
+            {editItem?.name || 'New Product'}{' '}
+            {editItem?.name ? (
+              <Badge color='primary' isLight>
+                Edit
+              </Badge>
+            ) : (
+              <Badge color='success' isLight>
+                New
+              </Badge>
+            )}
+          </OffCanvasTitle>
+        </OffCanvasHeader>
+        <OffCanvasBody>
+          <Card>
+            <CardHeader>
+              <CardLabel icon='Photo' iconColor='info'>
+                <CardTitle>Product Image</CardTitle>
+              </CardLabel>
+            </CardHeader>
+            <CardBody>
+              <div className='row'>
+                <div className='col-12'>
+                  {editItem?.image ? (
+                    <img
+                      src={editItem.image}
+                      alt=''
+                      width={128}
+                      height={128}
+                      className='mx-auto d-block img-fluid mb-3'
+                    />
+                  ) : (
+                    <PlaceholderImage
+                      width={128}
+                      height={128}
+                      className='mx-auto d-block img-fluid mb-3 rounded'
+                    />
+                  )}
+                </div>
+                <div className='col-12'>
+                  <div className='row g-4'>
+                    <div className='col-12'>
+                      <Input type='file' autoComplete='photo' />
+                    </div>
+                    <div className='col-12'>
+                      {editItem && (
+                        <Button
+                          color='dark'
+                          isLight
+                          icon='Delete'
+                          className='w-100'
+                          onClick={() => {
+                            setEditItem({ ...editItem, image: null });
+                          }}>
+                          Delete Image
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </CardBody>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardLabel icon='Description' iconColor='success'>
+                <CardTitle>Product Details</CardTitle>
+              </CardLabel>
+            </CardHeader>
+            <CardBody>
+              <div className='row g-4'>
+                <div className='col-12'>
+                  <FormGroup id='name' label='Name' isFloating>
+                    <Input
+                      placeholder='Name'
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.name}
+                      isValid={formik.isValid}
+                      isTouched={formik.touched.name}
+                      invalidFeedback={formik.errors.name}
+                      validFeedback='Looks good!'
+                    />
+                  </FormGroup>
+                </div>
+                <div className='col-12'>
+                  <FormGroup id='price' label='Price' isFloating>
+                    <Input
+                      placeholder='Price'
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.price}
+                      isValid={formik.isValid}
+                      isTouched={formik.touched.price}
+                      invalidFeedback={formik.errors.price}
+                      validFeedback='Looks good!'
+                    />
+                  </FormGroup>
+                </div>
+                <div className='col-12'>
+                  <FormGroup id='stock' label='Stock' isFloating>
+                    <Input
+                      placeholder='Stock'
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.stock}
+                      isValid={formik.isValid}
+                      isTouched={formik.touched.stock}
+                      invalidFeedback={formik.errors.stock}
+                      validFeedback='Looks good!'
+                    />
+                  </FormGroup>
+                </div>
+                <div className='col-12'>
+                  <FormGroup id='category' label='Category' isFloating>
+                    <Input
+                      placeholder='Category'
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.category}
+                      isValid={formik.isValid}
+                      isTouched={formik.touched.category}
+                      invalidFeedback={formik.errors.category}
+                      validFeedback='Looks good!'
+                    />
+                  </FormGroup>
+                </div>
+              </div>
+            </CardBody>
+          </Card>
+        </OffCanvasBody>
+        <div className='p-3'>
+          <Button
+            color='info'
+            icon='Save'
+            type='submit'
+            isDisable={!formik.isValid && !!formik.submitCount}>
+            Save
+          </Button>
+        </div>
+      </OffCanvas>
     </PageWrapper>
   );
 };
 
-export default DashboardBookingPage;
+export default ProductsGridPage;

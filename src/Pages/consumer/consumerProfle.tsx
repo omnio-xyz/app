@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import FormGroup from '../../components/bootstrap/forms/FormGroup';
 import Icon from '../../components/icon/Icon';
 import Input from '../../components/bootstrap/forms/Input';
-import Modal, { ModalBody, ModalHeader, ModalTitle } from '../../components/bootstrap/Modal';
 import Page from '../../layout/Page/Page';
 import PageWrapper from '../../layout/PageWrapper/PageWrapper';
 import Pic from '../../assets/wanna/richie/richie.png';
@@ -55,38 +54,10 @@ const DashboardPage = () => {
 
   const colors = ['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'dark'];
   const [selectedImage, setSelectedImage] = useState<string | undefined>(undefined);
-  const [gallerySeeAll, setGallerySeeAll] = useState(false);
 
   const images: { id: string; img: string }[] = [
     { id: 'Pic', img: Pic },
   ];
-
-  const GALLERY = (
-    <div className='row g-4'>
-      {images.map((item, index) => (
-        <div key={item.id} className='col-xxl-2 col-lg-3 col-md-6'>
-          <button
-            type='button'
-            onClick={() => setSelectedImage(item.img)}
-            className={classNames(
-              'ratio ratio-1x1',
-              'rounded-2',
-              'border-0',
-              `bg-l${darkModeStatus ? 'o25' : '25'}-${colors[index % 7]}`,
-              `bg-l${darkModeStatus ? 'o50' : '10'}-${colors[index % 7]}-hover`,
-            )}>
-            <img
-              src={item.img}
-              alt={item.id}
-              width='100%'
-              height='auto'
-              className='object-fit-contain p-4'
-            />
-          </button>
-        </div>
-      ))}
-    </div>
-  );
 
   return (
     <PageWrapper>
@@ -118,7 +89,7 @@ const DashboardPage = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className='col-12'>
                     <div className='row g-3'>
                       <div className='col-12'>
@@ -162,10 +133,13 @@ const DashboardPage = () => {
           </div>
           <div className='col-xxl-8 col-xl-6'>
             <Card hasTab stretch>
+
               <CardTabItem id='profile' title='Identity' icon='Contacts'>
                 <Alert isLight className='border-0' shadow='md' icon='LocalPolice'>
                   The information is not shared with third parties.
                 </Alert>
+                
+
                 <Card
                   className='rounded-2'
                   tag='form'
@@ -256,11 +230,7 @@ const DashboardPage = () => {
                     </CardFooterRight>
                   </CardFooter>
                 </Card>
-              </CardTabItem>
-              <CardTabItem id='address' title='Context' icon='HolidayVillage'>
-                <Alert isLight className='border-0' shadow='md' icon='LocalPolice'>
-                  The information is not shared with third parties.
-                </Alert>
+
                 <Card
                   className='rounded-2'
                   tag='form'
@@ -337,11 +307,7 @@ const DashboardPage = () => {
                     </CardFooterRight>
                   </CardFooter>
                 </Card>
-              </CardTabItem>
-              <CardTabItem id='profile2' title='Purchase Intention' icon='Lock'>
-                <Alert isLight className='border-0' shadow='md' icon='LocalPolice'>
-                  The information is not shared with third parties.
-                </Alert>
+
                 <Card
                   className='rounded-2'
                   tag='form'
@@ -401,93 +367,15 @@ const DashboardPage = () => {
                     </CardFooterRight>
                   </CardFooter>
                 </Card>
+
+
               </CardTabItem>
-              <CardTabItem id='profile2' title='Purchase Intention' icon='Lock'>
-                <Alert isLight className='border-0' shadow='md' icon='LocalPolice'>
-                  The information is not shared with third parties.
-                </Alert>
-                <Card
-                  className='rounded-2'
-                  tag='form'
-                  onSubmit={formik.handleSubmit}>
-                  <CardHeader>
-                    <CardLabel icon='Lock'>
-                      <CardTitle>Change Password</CardTitle>
-                    </CardLabel>
-                  </CardHeader>
-                  <CardBody>
-                    <div className='row g-4'>
-                      <FormGroup
-                        className='col-lg-4'
-                        id='formCurrentPassword'
-                        label='Current Password'>
-                        <Input
-                          type='password'
-                          placeholder='Current Password'
-                          autoComplete='current-password'
-                          onChange={formik.handleChange}
-                          value={formik.values.formCurrentPassword}
-                        />
-                      </FormGroup>
-                      <div className='w-100 m-0' />
-                      <FormGroup
-                        className='col-lg-4'
-                        id='formNewPassword'
-                        label='New Password'>
-                        <Input
-                          type='password'
-                          placeholder='New Password'
-                          autoComplete='new-password'
-                          onChange={formik.handleChange}
-                          value={formik.values.formNewPassword}
-                        />
-                      </FormGroup>
-                      <div className='w-100 m-0' />
-                      <FormGroup
-                        className='col-lg-4'
-                        id='formConfirmNewPassword'
-                        label='Confirm New Password'>
-                        <Input
-                          type='password'
-                          placeholder='Confirm New Password'
-                          autoComplete='new-password'
-                          onChange={formik.handleChange}
-                          value={formik.values.formConfirmNewPassword}
-                        />
-                      </FormGroup>
-                    </div>
-                  </CardBody>
-                  <CardFooter>
-                    <CardFooterRight>
-                      <Button type='submit' color='info' icon='Save'>
-                        Change Password
-                      </Button>
-                    </CardFooterRight>
-                  </CardFooter>
-                </Card>
-              </CardTabItem>
+
+              
+
             </Card>
           </div>
         </div>
-
-        <Modal setIsOpen={setSelectedImage} isOpen={!!selectedImage} isCentered>
-          <ModalHeader setIsOpen={setSelectedImage}>
-            <ModalTitle id='preview'>Preview</ModalTitle>
-          </ModalHeader>
-          <ModalBody>
-            <img src={selectedImage} alt='eneme' />
-          </ModalBody>
-        </Modal>
-        <Modal
-          setIsOpen={setGallerySeeAll}
-          isOpen={gallerySeeAll}
-          fullScreen
-          titleId='gallery-full'>
-          <ModalHeader setIsOpen={setGallerySeeAll}>
-            <ModalTitle id='gallery-full'>Gallery</ModalTitle>
-          </ModalHeader>
-          <ModalBody>{GALLERY}</ModalBody>
-        </Modal>
       </Page>
     </PageWrapper>
   );
