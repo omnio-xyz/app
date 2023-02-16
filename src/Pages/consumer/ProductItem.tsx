@@ -1,6 +1,5 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Card, {
-  CardActions,
   CardBody,
   CardFooter,
   CardHeader,
@@ -9,13 +8,11 @@ import Card, {
   CardTitle,
 } from '../../components/bootstrap/Card';
 import Button from '../../components/bootstrap/Button';
-import Chart from '../../components/extras/Chart';
 import Dropdown, {
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
 } from '../../components/bootstrap/Dropdown';
-import Badge from '../../components/bootstrap/Badge';
 import { priceFormat } from '../../helpers/helpers';
 import showNotification from '../../components/extras/showNotification';
 import Icon from '../../components/icon/Icon';

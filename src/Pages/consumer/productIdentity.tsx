@@ -58,7 +58,7 @@ const validate = (values: IValues) => {
   return errors;
 };
 
-type TTabs = 'Product Identity' | 'Edit';
+type TTabs = 'Product Identity' | 'Live';
 interface ITabs {
   [key: string]: TTabs;
 }
@@ -75,7 +75,7 @@ const ProductViewPage = () => {
 
   const TABS: ITabs = {
     SUMMARY: 'Product Identity',
-    EDIT: 'Edit',
+    EDIT: 'Live',
   };
   const [activeTab, setActiveTab] = useState(TABS.SUMMARY);
 
