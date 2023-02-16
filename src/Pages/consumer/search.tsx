@@ -68,81 +68,9 @@ const Search = () => {
             <Card stretch>
               <CardHeader borderSize={1}>
                 <CardLabel>
-                  A data credential is generated when you search for a product.
+                  A credential is generated when you search for a product.
                 </CardLabel>
               </CardHeader>
-              <CardBody isScrollable className='table-responsive'>
-                <table className='table table-modern table-hover'>
-                  <thead>
-                    <tr>
-                      <th />
-                      <th>Data Credential</th>
-                      <th>Moment</th>
-                      <th>Source</th>
-                      <td />
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {dataPagination(items, currentPage, perPage).map((i) => (
-                      <tr key={i.id}>
-                        <td>
-                          <div className='d-flex align-items-center'>
-                            <div className='flex-shrink-0'>
-                              <div
-                                className='ratio ratio-1x1 me-3'
-                                style={{ width: 48 }}>
-                                <div
-                                  className={`bg-l${darkModeStatus
-                                    ? 'o25'
-                                    : '25'
-                                    }-${getColorNameWithIndex(
-                                      i.id,
-                                    )} text-${getColorNameWithIndex(
-                                      i.id,
-                                    )} rounded-2 d-flex align-items-center justify-content-center`}>
-                                  <Icon icon='Search' />
-                                </div>
-                              </div>
-                            </div>
-                            <div className='flex-grow-1'>
-                              <div className='fs-6 fw-bold'>
-                                {i.name}
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                        <td>
-                          <div className='fs-6'>
-                            {i.type}
-                          </div>
-                        </td>
-                        <td>
-                          <div>{i.membershipDate.format('LLL')}</div>
-                        </td>
-                        <td>
-                          {i.payout}
-                        </td>
-                        <td className='text-end'>
-                          <Button
-                            icon='Delete'
-                            color='dark'
-                            isLight
-                            shadow='sm'
-                          />
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </CardBody>
-              <PaginationButtons
-                data={filteredData}
-                label='Data Credentials'
-                setCurrentPage={setCurrentPage}
-                currentPage={currentPage}
-                perPage={perPage}
-                setPerPage={setPerPage}
-              />
             </Card>
           </div>
         </div>
