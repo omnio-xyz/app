@@ -10,23 +10,6 @@ const viewProduct = () => {
         <div className='row h-100'>
           <div className='col-12'>
             <Card stretch>
-
-              <div className="container">
-                <div className="row h-100">
-                  <div className="col-6">
-                    <Card stretch>
-                      Test
-                    </Card>
-                  </div>
-                  <div className="col-6">
-                    <Card stretch>
-                      Test
-                    </Card>
-                  </div>
-                </div>
-              </div>
-
-
             </Card>
           </div>
         </div>

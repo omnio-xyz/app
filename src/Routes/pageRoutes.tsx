@@ -8,6 +8,7 @@ const Brand = {
   Profile: lazy(() => import('../pages/brand/brandProfile')),
   productCatalog: lazy(() => import('../pages/brand/productCatalog')),
   Query: lazy(() => import('../pages/brand/query')),
+  brandProduct: lazy(() => import('../pages/brand/brandProduct')),
 };
 
 const Consumer = {
@@ -147,7 +148,7 @@ const presentation: RouteProps[] = [
 
   {
     path: `${brandStudioMenu.productID.path}/:id`,
-    element: <Consumer.Product />,
+    element: <Brand.brandProduct />,
   },
 
 

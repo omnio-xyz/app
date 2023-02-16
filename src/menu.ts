@@ -35,9 +35,9 @@ export const brandStudioMenu = {
   },
   productsGrid: {
     id: 'productsGrid',
-    text: 'Purchase History',
-    path: 'sales/grid',
-    icon: 'CalendarViewMonth',
+    text: 'Catalog',
+    path: 'catalog',
+    icon: 'Grid3X3',
   },
   addBillingInformation: {
     id: 'pageView',
