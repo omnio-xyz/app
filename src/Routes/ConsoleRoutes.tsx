@@ -1,4 +1,4 @@
-import DefaultAside from '../pages/Layout/Console/DefaultConsole';
+import DefaultAside from '../pages/layout/Console/DefaultConsole';
 import { consumerOnboardingMenu, launchMenu } from '../menu';
 import { RouteProps } from 'react-router-dom';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import footers from '../../routes/footerRoutes';
+import footers from '../../routes/FooterRoutes';
 
 const FooterRoutes = () => {
 	return (
