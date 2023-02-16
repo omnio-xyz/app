@@ -1,7 +1,7 @@
 import Badge from '../../components/bootstrap/Badge';
 import Button from '../../components/bootstrap/Button';
 import Card, { CardBody, CardHeader, CardLabel, CardTitle } from '../../components/bootstrap/Card';
-import CommonGridProductItem from '../_common/CommonGridProductItem';
+import CatalogItem from '../_common/CatalogItem';
 import FormGroup from '../../components/bootstrap/forms/FormGroup';
 import Input from '../../components/bootstrap/forms/Input';
 import OffCanvas, { OffCanvasBody, OffCanvasHeader, OffCanvasTitle } from '../../components/bootstrap/OffCanvas';
@@ -108,7 +108,7 @@ const ProductsGridPage = () => {
 	}, [editItem]);
 
 	return (
-		<PageWrapper title={brandStudioMenu.productsGrid.text}>
+		<PageWrapper title={brandStudioMenu.Catalog.text}>
 			<SubHeader>
 				<SubHeaderLeft>
 				</SubHeaderLeft>
@@ -127,7 +127,7 @@ const ProductsGridPage = () => {
 				<div className='row'>
 					{data.map((item) => (
 						<div key={item.id} className='col-xxl-3 col-xl-4 col-md-6'>
-							<CommonGridProductItem
+							<CatalogItem
 								id={item.id}
 								name={item.name}
 								category={item.category}

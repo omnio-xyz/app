@@ -30,10 +30,10 @@ export const brandProfileMenu = {
 export const brandStudioMenu = {
   demo: {
     id: 'demo',
-    text: 'Brand Studio',
+    text: 'Brand Stdudio',
     icon: 'Extension',
   },
-  productsGrid: {
+  Catalog: {
     id: 'productsGrid',
     text: 'Catalog',
     path: 'catalog',
@@ -47,15 +47,8 @@ export const brandStudioMenu = {
   },
   productID: {
     id: 'productID',
-    text: 'productID',
-    path: 'product',
-    hide: true,
-  },
-  product: {
-    id: 'product',
-    text: 'Product',
-    path: 'sales/product/1',
-    icon: 'QrCode2',
+    text: 'Product Identity',
+    path: 'catalog',
     hide: true,
   },
 };

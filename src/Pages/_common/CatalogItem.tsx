@@ -34,7 +34,7 @@ interface ICommonGridProductItemProps {
   editAction: any;
   deleteAction: any;
 }
-const CommonGridProductItem: FC<ICommonGridProductItemProps> = ({
+const CatalogItem: FC<ICommonGridProductItemProps> = ({
   id,
   name,
   category,
@@ -151,4 +151,4 @@ const CommonGridProductItem: FC<ICommonGridProductItemProps> = ({
   );
 };
 
-export default CommonGridProductItem;
+export default CatalogItem;

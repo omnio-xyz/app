@@ -123,7 +123,7 @@ const brandProduct = () => {
   }, [editItem]);
 
   return (
-    <PageWrapper title={brandStudioMenu.product.text}>
+    <PageWrapper title={brandStudioMenu.productID.text}>
       <SubHeader>
         <SubHeaderLeft>
           <Button color='info' isLink icon='ArrowBack' onClick={() => navigate(-1)}>
@@ -303,7 +303,7 @@ const brandProduct = () => {
                   <CardHeader>
                     <CardLabel icon='Edit' iconColor='success'>
                       <CardTitle>Edit</CardTitle>
-                      <CardSubTitle>Product Details</CardSubTitle>
+                      <CardSubTitle>Product Identity</CardSubTitle>
                     </CardLabel>
                   </CardHeader>
                   <CardBody isScrollable>

@@ -8,7 +8,7 @@ import showNotification from '../../components/extras/showNotification';
 import SubHeader, { SubHeaderLeft, SubHeaderRight, SubheaderSeparator } from '../../layout/SubHeader/SubHeader';
 import tableData from '../../common/mockData/mockProductData';
 import useDarkMode from '../../hooks/useDarkMode';
-import { brandStudioMenu } from '../../menu';
+import { consumerDataMenu } from '../../menu';
 import { priceFormat } from '../../helpers/helpers';
 import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
@@ -120,7 +120,7 @@ const ProductViewPage = () => {
   }, [editItem]);
 
   return (
-    <PageWrapper title={brandStudioMenu.product.text}>
+    <PageWrapper title={consumerDataMenu.productIdentity.text}>
       <SubHeader>
         <SubHeaderLeft>
           <Button color='dark' isLight icon='ArrowBack' onClick={() => navigate(-1)}>
