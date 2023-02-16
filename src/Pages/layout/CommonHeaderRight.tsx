@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import { useTour } from '@reactour/tour';
-import Button, { IButtonProps } from '../../../components/bootstrap/Button';
-import { HeaderRight } from '../../../layout/Header/Header';
+import Button, { IButtonProps } from '../../components/bootstrap/Button';
+import { HeaderRight } from '../../layout/Header/Header';
 import OffCanvas, {
 	OffCanvasBody,
 	OffCanvasHeader,
 	OffCanvasTitle,
-} from '../../../components/bootstrap/OffCanvas';
-import Alert from '../../../components/bootstrap/Alert';
-import Icon from '../../../components/icon/Icon';
-import ThemeContext from '../../../contexts/themeContext';
-import showNotification from '../../../components/extras/showNotification';
-import useDarkMode from '../../../hooks/useDarkMode';
-import Popovers from '../../../components/bootstrap/Popovers';
+} from '../../components/bootstrap/OffCanvas';
+import Alert from '../../components/bootstrap/Alert';
+import Icon from '../../components/icon/Icon';
+import ThemeContext from '../../contexts/themeContext';
+import showNotification from '../../components/extras/showNotification';
+import useDarkMode from '../../hooks/useDarkMode';
+import Popovers from '../../components/bootstrap/Popovers';
 
 interface ICommonHeaderRightProps {
 	beforeChildren?: ReactNode;

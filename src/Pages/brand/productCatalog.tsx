@@ -1,7 +1,7 @@
 import Badge from '../../components/bootstrap/Badge';
 import Button from '../../components/bootstrap/Button';
 import Card, { CardBody, CardHeader, CardLabel, CardTitle } from '../../components/bootstrap/Card';
-import CatalogItem from '../_common/CatalogItem';
+import CatalogItem from './CatalogItem';
 import FormGroup from '../../components/bootstrap/forms/FormGroup';
 import Input from '../../components/bootstrap/forms/Input';
 import OffCanvas, { OffCanvasBody, OffCanvasHeader, OffCanvasTitle } from '../../components/bootstrap/OffCanvas';

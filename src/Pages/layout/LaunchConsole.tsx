@@ -1,13 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import Brand from '../../../layout/Brand/Brand';
-import Navigation, { NavigationLine } from '../../../layout/Navigation/Navigation';
-import User from '../../../layout/User/User';
-import { launchMenu, consumerDataMenu } from '../../../menu';
-import ThemeContext from '../../../contexts/themeContext';
+import Brand from '../../layout/Brand/Brand';
+import Navigation, { NavigationLine } from '../../layout/Navigation/Navigation';
+import User from '../../layout/User/User';
+import { launchMenu, consumerDataMenu } from '../../menu';
+import ThemeContext from '../../contexts/themeContext';
 
-import useDarkMode from '../../../hooks/useDarkMode';
-import Aside, { AsideBody, AsideFoot, AsideHead } from '../../../layout/Aside/Aside';
+import useDarkMode from '../../hooks/useDarkMode';
+import Aside, { AsideBody, AsideFoot, AsideHead } from '../../layout/Aside/Aside';
 
 const LaunchConsole = () => {
 	const { asideStatus, setAsideStatus } = useContext(ThemeContext);

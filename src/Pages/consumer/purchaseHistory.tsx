@@ -1,7 +1,7 @@
 import Badge from '../../components/bootstrap/Badge';
 import Button from '../../components/bootstrap/Button';
 import Card, { CardBody, CardHeader, CardLabel, CardTitle } from '../../components/bootstrap/Card';
-import ProductItem from '../_common/ProductItem';
+import ProductItem from './ProductItem';
 import FormGroup from '../../components/bootstrap/forms/FormGroup';
 import Icon from '../../components/icon/Icon';
 import Input from '../../components/bootstrap/forms/Input';

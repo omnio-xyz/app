@@ -130,7 +130,7 @@ export const consumerDataMenu = {
   },
   productIdentity: {
     id: 'productID',
-    text: 'productID',
+    text: 'Product',
     path: 'product',
     hide: true,
   },

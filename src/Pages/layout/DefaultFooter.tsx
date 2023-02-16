@@ -1,5 +1,5 @@
-import Footer from '../../../layout/Footer/Footer';
-import useDarkMode from '../../../hooks/useDarkMode';
+import Footer from '../../layout/Footer/Footer';
+import useDarkMode from '../../hooks/useDarkMode';
 
 const DefaultFooter = () => {
   const { darkModeStatus } = useDarkMode();
