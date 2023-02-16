@@ -21,7 +21,7 @@ const Consumer = {
     initiatePurchase: lazy(() => import('../pages/consumer/initiatePurchase')),
   },
   purchaseHistory: lazy(() => import('../pages/consumer/purchaseHistory')),
-  Product: lazy(() => import('../pages/consumer/product')),
+  Product: lazy(() => import('../pages/consumer/productIdentity')),
   Requests: lazy(() => import('../pages/consumer/requests')),
 };
 

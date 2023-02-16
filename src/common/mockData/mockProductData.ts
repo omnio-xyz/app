@@ -9,7 +9,6 @@ const productData: {
 	color: string;
 	stock: number;
 	price: number;
-	store: string;
 }[] = [
 	{
 		id: 1,
@@ -24,7 +23,6 @@ const productData: {
 		color: String(process.env.REACT_APP_SUCCESS_COLOR),
 		stock: 30,
 		price: 14.5,
-		store: 'Company A',
 	},
 	{
 		id: 2,
@@ -39,7 +37,6 @@ const productData: {
 		color: String(process.env.REACT_APP_SUCCESS_COLOR),
 		stock: 300,
 		price: 12,
-		store: 'Company A',
 	},
 	{
 		id: 3,
@@ -54,7 +51,6 @@ const productData: {
 		color: String(process.env.REACT_APP_WARNING_COLOR),
 		stock: 300,
 		price: 12.8,
-		store: 'Company D',
 	},
 	{
 		id: 4,
@@ -69,7 +65,6 @@ const productData: {
 		color: String(process.env.REACT_APP_DANGER_COLOR),
 		stock: 300,
 		price: 16,
-		store: 'Company C',
 	},
 	{
 		id: 5,
@@ -84,7 +79,6 @@ const productData: {
 		color: String(process.env.REACT_APP_DANGER_COLOR),
 		stock: 300,
 		price: 16,
-		store: 'Company A',
 	},
 	{
 		id: 6,
@@ -99,7 +93,6 @@ const productData: {
 		color: String(process.env.REACT_APP_SUCCESS_COLOR),
 		stock: 300,
 		price: 16,
-		store: 'Company C',
 	},
 	{
 		id: 7,
@@ -114,7 +107,6 @@ const productData: {
 		color: String(process.env.REACT_APP_SUCCESS_COLOR),
 		stock: 300,
 		price: 18,
-		store: 'Company B',
 	},
 	{
 		id: 8,
@@ -129,7 +121,6 @@ const productData: {
 		color: String(process.env.REACT_APP_SUCCESS_COLOR),
 		stock: 300,
 		price: 16,
-		store: 'Company B',
 	},
 	{
 		id: 9,
@@ -144,7 +135,6 @@ const productData: {
 		color: String(process.env.REACT_APP_SUCCESS_COLOR),
 		stock: 300,
 		price: 16,
-		store: 'Company C',
 	},
 	{
 		id: 10,
@@ -159,7 +149,6 @@ const productData: {
 		color: String(process.env.REACT_APP_SUCCESS_COLOR),
 		stock: 219,
 		price: 16,
-		store: 'Company A',
 	},
 	{
 		id: 11,
@@ -174,7 +163,6 @@ const productData: {
 		color: String(process.env.REACT_APP_SUCCESS_COLOR),
 		stock: 219,
 		price: 16,
-		store: 'Company A',
 	},
 	{
 		id: 12,
@@ -189,7 +177,6 @@ const productData: {
 		color: String(process.env.REACT_APP_SUCCESS_COLOR),
 		stock: 219,
 		price: 16,
-		store: 'Company B',
 	},
 ];
 export default productData;

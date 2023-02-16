@@ -13,7 +13,6 @@ import useDarkMode from '../../hooks/useDarkMode';
 import useSortableData from '../../hooks/useSortableData';
 import { brandStudioMenu } from '../../menu';
 import { consumerDataMenu } from '../../menu';
-import { getColorNameWithIndex } from '../../common/data/enumColors';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { useState } from 'react';
@@ -39,7 +38,7 @@ const viewProduct = () => {
 
   const filteredData = data.filter(
     (f) =>
-      f.name.toLowerCase().includes(formik.values.searchInput.toLowerCase())
+      f.productName.toLowerCase().includes(formik.values.searchInput.toLowerCase())
   );
 
   const { items, requestSort, getClassNamesFor } = useSortableData(filteredData);
@@ -87,37 +86,27 @@ const viewProduct = () => {
                   </thead>
                   <tbody>
                     {dataPagination(items, currentPage, perPage).map((i) => (
-                      <tr key={i.id}>
+                      <tr key={i.productID}>
                         <td>
                           <div className='d-flex align-items-center'>
                             <div className='flex-shrink-0'>
                               <div
                                 className='ratio ratio-1x1 me-3'
-                                style={{ width: 48 }}>
-                                <div
-                                  className={`bg-l${darkModeStatus
-                                    ? 'o25'
-                                    : '25'
-                                    }-${getColorNameWithIndex(
-                                      i.id,
-                                    )} text-${getColorNameWithIndex(
-                                      i.id,
-                                    )} rounded-2 d-flex align-items-center justify-content-center`}>
-                                  <Link to={`../${consumerDataMenu.product.path}/${i.id}`}>
-                                    <Icon icon='Search' />
-                                  </Link>
-                                </div>
+                                style={{ width: 75 }}>
+                                <Link to={`../${consumerDataMenu.productIdentity.path}/${i.productID}`}>
+                                  <img src={i.productImage} width={75} height={75} />
+                                </Link>
                               </div>
                             </div>
                             <div className='flex-grow-1'>
                               <div className='fs-6'>
                                 <Link
-                                  to={`../${consumerDataMenu.product.path}/${i.id}`}
+                                  to={`../${consumerDataMenu.productIdentity.path}/${i.productID}`}
                                   className={classNames('fw-bold', {
                                     'link-dark': !darkModeStatus,
                                     'link-light': darkModeStatus,
                                   })}>
-                                  {i.name}
+                                  {i.productName}
                                 </Link>
                               </div>
                             </div>
@@ -129,7 +118,7 @@ const viewProduct = () => {
                           </div>
                         </td>
                         <td>
-                          <div>{i.membershipDate.format('LLL')}</div>
+                          <div>{i.issueDate.format('LLL')}</div>
                         </td>
                         <td>
                           <a href="https://demo.omnio.xyz/" target="_blank">
@@ -138,7 +127,7 @@ const viewProduct = () => {
                         </td>
                         <td className='text-end'>
                           <Button
-                            icon='Delete'
+                            icon='MoreHoriz'
                             color='dark'
                             isLight
                             shadow='sm'

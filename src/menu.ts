@@ -143,7 +143,7 @@ export const consumerDataMenu = {
     icon: 'Notifications',
     subMenu: null,
   },
-  product: {
+  productIdentity: {
     id: 'productID',
     text: 'productID',
     path: 'product',
