@@ -16,7 +16,7 @@ import logo from '../../assets/img/human.svg';
 
 const User = () => {
 	const { userData, disconnectConsumerWithOmnio } = useOmnioConsumer();
-	const { profile, disconnectBrandWithOmnio } = useOmnioBrand();
+	const { brandProfile, disconnectBrandWithOmnio } = useOmnioBrand();
 
 	const navigate = useNavigate();
 	const handleItem = useNavigationItemHandle();
@@ -37,8 +37,8 @@ const User = () => {
 				</div>
 				<div className='user-info'>
 					<div className='user-name d-flex align-items-center'>
-						{`${userData?.profile?.firstName || profile?.firstName || 'Omnio'} ${
-							userData?.profile?.surname || profile?.surname || 'User'
+						{`${userData?.profile?.firstName || brandProfile?.name || 'Omnio'} ${
+							userData?.profile?.surname || 'User'
 						}`}
 						<Icon icon='Verified' className='ms-1' color='info' />
 					</div>

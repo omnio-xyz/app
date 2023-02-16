@@ -1,18 +1,7 @@
-interface UserProfileAddress {
-	line?: string;
-	line2?: string;
-	city?: string;
-	country?: string;
-	zip?: string;
-}
-
 export interface IBrandUserProfile {
-	username?: string;
-	prefix?: string;
-	firstName?: string;
-	middleName?: string;
-	surname?: string;
-	email?: string;
-	phone?: string;
-	address?: UserProfileAddress;
+	name?: string;
+	description?: string;
+	contactEmail?: string;
+	url?: string;
+	logoImageUrl?: string;
 }

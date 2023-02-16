@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useFormik } from 'formik';
-import classNames from 'classnames';
 import { useMeasure } from 'react-use';
 import Button from '../../../components/bootstrap/Button';
 import Page from '../../../layout/Page/Page';
@@ -22,21 +21,11 @@ import showNotification from '../../../components/extras/showNotification';
 import Icon from '../../../components/icon/Icon';
 import Alert from '../../../components/bootstrap/Alert';
 import Avatar from '../../../components/Avatar';
-import Pic from '../../../assets/img/wanna/richie/richie.png';
-import Pic2 from '../../../assets/img/wanna/richie/richie2.png';
-import Pic3 from '../../../assets/img/wanna/richie/richie3.png';
-import Pic4 from '../../../assets/img/wanna/richie/richie4.png';
-import Pic5 from '../../../assets/img/wanna/richie/richie5.png';
-import Pic6 from '../../../assets/img/wanna/richie/richie6.png';
-import Pic7 from '../../../assets/img/wanna/richie/richie7.png';
-import Pic8 from '../../../assets/img/wanna/richie/richie8.png';
-import Modal, { ModalBody, ModalHeader, ModalTitle } from '../../../components/bootstrap/Modal';
-import useDarkMode from '../../../hooks/useDarkMode';
 import useOmnio from '../../../contexts/omnioConsumerContext';
+import Spinner from '../../../components/bootstrap/Spinner';
 
 const DashboardPage = () => {
-	const { darkModeStatus } = useDarkMode();
-	const { userData, saveProfile } = useOmnio();
+	const { userData, saveProfile, loading } = useOmnio();
 
 	const formik = useFormik({
 		initialValues: {
@@ -88,48 +77,6 @@ const DashboardPage = () => {
 		},
 	});
 	const [ref] = useMeasure<HTMLDivElement>();
-
-	const colors = ['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'dark'];
-	const [selectedImage, setSelectedImage] = useState<string | undefined>(undefined);
-	const [gallerySeeAll, setGallerySeeAll] = useState(false);
-
-	const images: { id: string; img: string }[] = [
-		{ id: 'Pic', img: Pic },
-		{ id: 'Pic2', img: Pic2 },
-		{ id: 'Pic3', img: Pic3 },
-		{ id: 'Pic4', img: Pic4 },
-		{ id: 'Pic5', img: Pic5 },
-		{ id: 'Pic6', img: Pic6 },
-		{ id: 'Pic7', img: Pic7 },
-		{ id: 'Pic8', img: Pic8 },
-	];
-
-	const GALLERY = (
-		<div className='row g-4'>
-			{images.map((item, index) => (
-				<div key={item.id} className='col-xxl-2 col-lg-3 col-md-6'>
-					<button
-						type='button'
-						onClick={() => setSelectedImage(item.img)}
-						className={classNames(
-							'ratio ratio-1x1',
-							'rounded-2',
-							'border-0',
-							`bg-l${darkModeStatus ? 'o25' : '25'}-${colors[index % 7]}`,
-							`bg-l${darkModeStatus ? 'o50' : '10'}-${colors[index % 7]}-hover`,
-						)}>
-						<img
-							src={item.img}
-							alt={item.id}
-							width='100%'
-							height='auto'
-							className='object-fit-contain p-4'
-						/>
-					</button>
-				</div>
-			))}
-		</div>
-	);
 
 	return (
 		<PageWrapper>
@@ -199,19 +146,6 @@ const DashboardPage = () => {
 										</div>
 									</div>
 								</div>
-							</CardBody>
-						</Card>
-						<Card>
-							<CardHeader>
-								<CardLabel>
-									<CardTitle>About Omnio</CardTitle>
-								</CardLabel>
-							</CardHeader>
-							<CardBody>
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-									vitae velit efficitur nulla dignissim commodo nec vitae odio.
-								</p>
 							</CardBody>
 						</Card>
 					</div>
@@ -305,7 +239,12 @@ const DashboardPage = () => {
 									</CardBody>
 									<CardFooter>
 										<CardFooterRight>
-											<Button type='submit' color='primary' icon='Save'>
+											<Button
+												type='submit'
+												color='primary'
+												icon='Save'
+												isDisable={!formik.isValid && loading}>
+												{loading && <Spinner isSmall inButton isGrow />}
 												Save
 											</Button>
 										</CardFooterRight>
@@ -396,25 +335,6 @@ const DashboardPage = () => {
 						</Card>
 					</div>
 				</div>
-
-				<Modal setIsOpen={setSelectedImage} isOpen={!!selectedImage} isCentered>
-					<ModalHeader setIsOpen={setSelectedImage}>
-						<ModalTitle id='preview'>Preview</ModalTitle>
-					</ModalHeader>
-					<ModalBody>
-						<img src={selectedImage} alt='eneme' />
-					</ModalBody>
-				</Modal>
-				<Modal
-					setIsOpen={setGallerySeeAll}
-					isOpen={gallerySeeAll}
-					fullScreen
-					titleId='gallery-full'>
-					<ModalHeader setIsOpen={setGallerySeeAll}>
-						<ModalTitle id='gallery-full'>Gallery</ModalTitle>
-					</ModalHeader>
-					<ModalBody>{GALLERY}</ModalBody>
-				</Modal>
 			</Page>
 		</PageWrapper>
 	);

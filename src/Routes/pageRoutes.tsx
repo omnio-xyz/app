@@ -17,7 +17,7 @@ const CONSUMER_ENGAGEMENT = {
 };
 
 const BRAND = {
-	PROFILE: lazy(() => import('../Pages/Main/Brand/Profile')),
+	PROFILE: lazy(() => import('../Pages/Main/Brand/BrandProfile')),
 	CATALOG: lazy(() => import('../Pages/Main/Brand/ProductsCatalog')),
 };
 

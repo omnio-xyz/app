@@ -7,7 +7,7 @@ import defaultBrandProducts from '../omnio/models/brand/ceramic/product-catalog.
 
 export interface IOmnioBrandContextProps {
 	brandLoading: boolean;
-	profile: IBrandUserProfile | null;
+	brandProfile: IBrandUserProfile | null;
 	products: IProduct[] | null;
 	saveProfile(profile: IBrandUserProfile): Promise<void>;
 	addProduct(product: IProduct): Promise<void>;
@@ -25,7 +25,7 @@ interface IOmnioBrandContextProviderProps {
 export const OmnioBrandContextProvider: FC<IOmnioBrandContextProviderProps> = ({ children }) => {
 	const [omnioConnected, setOmnioConnected] = useState<Boolean>(false);
 	const [loading, setLoading] = useState<boolean>(false);
-	const [profile, setProfile] = useState<IBrandUserProfile | null>(
+	const [brandProfile, setBrandProfile] = useState<IBrandUserProfile | null>(
 		JSON.parse(localStorage.getItem('omnio_brand_profile')!) || null,
 	);
 	const [products, setProducts] = useState<IProduct[] | null>(
@@ -37,8 +37,8 @@ export const OmnioBrandContextProvider: FC<IOmnioBrandContextProviderProps> = ({
 	}, [omnioConnected]);
 
 	useEffect(() => {
-		localStorage.setItem('omnio_brand_profile', JSON.stringify(profile));
-	}, [profile]);
+		localStorage.setItem('omnio_brand_profile', JSON.stringify(brandProfile));
+	}, [brandProfile]);
 
 	useEffect(() => {
 		localStorage.setItem('omnio_brand_products', JSON.stringify(products));
@@ -47,8 +47,8 @@ export const OmnioBrandContextProvider: FC<IOmnioBrandContextProviderProps> = ({
 	const connectWithOmnio = async () => {
 		setLoading(true);
 		try {
-			const brandProfile = await omnioSdk.getProfile();
-			setProfile(brandProfile);
+			const brandProfileUpdated = await omnioSdk.getProfile();
+			setBrandProfile(brandProfileUpdated);
 			let brandProducts = await omnioSdk.getProducts();
 			if (!brandProducts || (!brandProducts?.length && brandProducts.length <= 0)) {
 				brandProducts = defaultBrandProducts;
@@ -67,7 +67,7 @@ export const OmnioBrandContextProvider: FC<IOmnioBrandContextProviderProps> = ({
 		setLoading(true);
 		try {
 			setOmnioConnected(false);
-			setProfile(null);
+			setBrandProfile(null);
 			setProducts(null);
 			localStorage.removeItem('omnio_brand_connected');
 			localStorage.removeItem('omnio_brand_profile');
@@ -82,8 +82,8 @@ export const OmnioBrandContextProvider: FC<IOmnioBrandContextProviderProps> = ({
 	const saveProfile = async (updatedProfile: IBrandUserProfile) => {
 		setLoading(true);
 		try {
-			const brandProfile = await omnioSdk.saveProfile(updatedProfile);
-			setProfile(brandProfile);
+			const brandProfileUpdated = await omnioSdk.saveProfile(updatedProfile);
+			setBrandProfile(brandProfileUpdated);
 		} catch (error) {
 			console.error(error);
 			throw error;
@@ -137,7 +137,7 @@ export const OmnioBrandContextProvider: FC<IOmnioBrandContextProviderProps> = ({
 
 	const values = {
 		brandLoading: loading,
-		profile,
+		brandProfile,
 		products,
 		saveProfile,
 		addProduct,
