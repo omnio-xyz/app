@@ -1,4 +1,4 @@
-import BeveledCone from '../../assets/abstract/beveled-cone.png';
+import mockProductImage from '../../assets/mockProductImage.png';
 
 const productData: {
 	id: number;
@@ -13,7 +13,7 @@ const productData: {
 }[] = [
 	{
 		id: 1,
-		image: BeveledCone,
+		image: mockProductImage,
 		name: 'Product #1',
 		category: 'Product Category',
 		series: [
@@ -28,7 +28,7 @@ const productData: {
 	},
 	{
 		id: 2,
-		image: BeveledCone,
+		image: mockProductImage,
 		name: 'Product #2',
 		category: 'Product Category',
 		series: [
@@ -43,7 +43,7 @@ const productData: {
 	},
 	{
 		id: 3,
-		image: BeveledCone,
+		image: mockProductImage,
 		name: 'Product #3',
 		category: 'Product Category',
 		series: [
@@ -58,7 +58,7 @@ const productData: {
 	},
 	{
 		id: 4,
-		image: BeveledCone,
+		image: mockProductImage,
 		name: 'Product #4',
 		category: 'Product Category',
 		series: [
@@ -73,7 +73,7 @@ const productData: {
 	},
 	{
 		id: 5,
-		image: BeveledCone,
+		image: mockProductImage,
 		name: 'Product #5',
 		category: 'Product Category',
 		series: [
@@ -88,7 +88,7 @@ const productData: {
 	},
 	{
 		id: 6,
-		image: BeveledCone,
+		image: mockProductImage,
 		name: 'Product #6',
 		category: 'Product Category',
 		series: [
@@ -103,7 +103,7 @@ const productData: {
 	},
 	{
 		id: 7,
-		image: BeveledCone,
+		image: mockProductImage,
 		name: 'Product #7',
 		category: 'Product Category',
 		series: [
@@ -118,7 +118,7 @@ const productData: {
 	},
 	{
 		id: 8,
-		image: BeveledCone,
+		image: mockProductImage,
 		name: 'Product #8',
 		category: 'Product Category',
 		series: [
@@ -133,7 +133,7 @@ const productData: {
 	},
 	{
 		id: 9,
-		image: BeveledCone,
+		image: mockProductImage,
 		name: 'Product #9',
 		category: 'Product Category',
 		series: [
@@ -148,7 +148,7 @@ const productData: {
 	},
 	{
 		id: 10,
-		image: BeveledCone,
+		image: mockProductImage,
 		name: 'Product #10',
 		category: 'Product Category',
 		series: [
@@ -163,7 +163,7 @@ const productData: {
 	},
 	{
 		id: 11,
-		image: BeveledCone,
+		image: mockProductImage,
 		name: 'Product #11',
 		category: 'Product Category',
 		series: [
@@ -178,7 +178,7 @@ const productData: {
 	},
 	{
 		id: 12,
-		image: BeveledCone,
+		image: mockProductImage,
 		name: 'Product #12',
 		category: 'Product Category',
 		series: [

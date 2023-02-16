@@ -125,7 +125,7 @@ const viewProduct = () => {
                         </td>
                         <td>
                           <div className='fs-6'>
-                            {i.type}
+                            View Product
                           </div>
                         </td>
                         <td>
@@ -133,7 +133,7 @@ const viewProduct = () => {
                         </td>
                         <td>
                           <a href="https://demo.omnio.xyz/" target="_blank">
-                            {i.payout}
+                            Omnio Demo
                           </a>
                         </td>
                         <td className='text-end'>
