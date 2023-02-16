@@ -30,9 +30,14 @@ import { IProduct } from '../../../omnio/models/product/product';
 import showNotification from '../../../components/extras/showNotification';
 import Icon from '../../../components/icon/Icon';
 import Spinner from '../../../components/bootstrap/Spinner';
+import imgBbClient from '../../../common/clients/img-bb-client';
 
 const validateValues = (values: IProduct) => {
 	const errors: { [key: string]: string } = {};
+
+	if (!values.gtin) {
+		errors.gtin = 'Required';
+	}
 
 	if (!values.name) {
 		errors.name = 'Required';
@@ -49,7 +54,6 @@ const validateValues = (values: IProduct) => {
 	if (!values.category) {
 		errors.category = 'Required';
 	}
-
 	return errors;
 };
 
@@ -174,134 +178,150 @@ const ProductsCatalog = () => {
 						)}
 					</OffCanvasTitle>
 				</OffCanvasHeader>
-				{brandLoading ? (
-					<div className='row align-items-center'>
-						<Spinner isGrow />
-					</div>
-				) : (
-					<>
-						<OffCanvasBody>
-							<Card>
-								<CardHeader>
-									<CardLabel icon='Photo' iconColor='info'>
-										<CardTitle>Product Image</CardTitle>
-									</CardLabel>
-								</CardHeader>
-								<CardBody>
-									<div className='row'>
-										<div className='col-12'>
-											{editedProduct?.image ? (
-												<img
-													src={editedProduct.image}
-													alt=''
-													width={128}
-													height={128}
-													className='mx-auto d-block img-fluid mb-3'
-												/>
-											) : (
-												<PlaceholderImage
-													width={128}
-													height={128}
-													className='mx-auto d-block img-fluid mb-3 rounded'
-												/>
-											)}
-										</div>
-										<div className='col-12'>
-											<div className='row g-4'>
-												<div className='col-12'>
-													<Input type='file' autoComplete='photo' />
-												</div>
-												<div className='col-12'>
-													{editedProduct && (
-														<Button
-															color='dark'
-															isLight
-															icon='Delete'
-															className='w-100'
-															onClick={() => {
-																setEditedProduct({
-																	...editedProduct,
-																	image: '',
-																});
-															}}>
-															Delete Image
-														</Button>
-													)}
-												</div>
-											</div>
-										</div>
-									</div>
-								</CardBody>
-							</Card>
-
-							<Card>
-								<CardHeader>
-									<CardLabel icon='Description' iconColor='success'>
-										<CardTitle>Product Details</CardTitle>
-									</CardLabel>
-								</CardHeader>
-								<CardBody>
+				<OffCanvasBody>
+					<Card>
+						<CardHeader>
+							<CardLabel icon='Photo' iconColor='info'>
+								<CardTitle>Product Image</CardTitle>
+							</CardLabel>
+						</CardHeader>
+						<CardBody>
+							<div className='row'>
+								<div className='col-12'>
+									{!!formik.values.image ? (
+										<img
+											src={formik.values.image}
+											alt=''
+											width={128}
+											height={128}
+											className='mx-auto d-block img-fluid mb-3'
+										/>
+									) : (
+										<PlaceholderImage
+											width={128}
+											height={128}
+											className='mx-auto d-block img-fluid mb-3 rounded'
+										/>
+									)}
+								</div>
+								<div className='col-12'>
 									<div className='row g-4'>
 										<div className='col-12'>
-											<FormGroup id='name' label='Name' isFloating>
-												<Input
-													placeholder='Name'
-													onChange={formik.handleChange}
-													value={formik.values.name}
-													isValid={formik.isValid}
-													isTouched={formik.touched.name}
-													invalidFeedback={formik.errors.name}
-													validFeedback='Looks good!'
-												/>
-											</FormGroup>
+											<Input
+												type='file'
+												autoComplete='photo'
+												onChange={async (event: any) => {
+													const imageUrl = await imgBbClient.uploadImage(
+														event?.target.files[0],
+													);
+													await formik.setFieldValue('image', imageUrl);
+												}}
+												isValid={formik.isValid}
+												isTouched={formik.touched.image}
+												invalidFeedback={formik.errors.image}
+												validFeedback='Looks good!'
+											/>
 										</div>
 										<div className='col-12'>
-											<FormGroup id='price' label='Unit price' isFloating>
-												<Input
-													placeholder='Unit price'
-													type='number'
-													onChange={(event: any) => {
-														formik.setFieldValue(
-															'unit_price',
-															event?.target.value,
-														);
-													}}
-													value={formik.values.unit_price}
-													isValid={formik.isValid}
-													isTouched={formik.touched.unit_price}
-													invalidFeedback={formik.errors.unit_price}
-													validFeedback='Looks good!'
-												/>
-											</FormGroup>
-										</div>
-										<div className='col-12'>
-											<FormGroup id='category' label='Category' isFloating>
-												<Input
-													placeholder='Category'
-													onChange={formik.handleChange}
-													value={formik.values.category}
-													isValid={formik.isValid}
-													isTouched={formik.touched.category}
-													invalidFeedback={formik.errors.category}
-													validFeedback='Looks good!'
-												/>
-											</FormGroup>
+											{editedProduct && (
+												<Button
+													color='dark'
+													isLight
+													icon='Delete'
+													className='w-100'
+													onClick={() => {
+														formik.setFieldValue('image', '');
+													}}>
+													Delete Image
+												</Button>
+											)}
 										</div>
 									</div>
-								</CardBody>
-							</Card>
-						</OffCanvasBody>
-						<div className='p-3'>
-							<Button
-								color='info'
-								icon='Save'
-								type='submit'
-								isDisable={!formik.isValid && brandLoading}>
-								Save
-							</Button>
-						</div>
-					</>
-				)}
+								</div>
+							</div>
+						</CardBody>
+					</Card>
+
+					<Card>
+						<CardHeader>
+							<CardLabel icon='Description' iconColor='success'>
+								<CardTitle>Product Details</CardTitle>
+							</CardLabel>
+						</CardHeader>
+						<CardBody>
+							<div className='row g-4'>
+								<div className='col-12'>
+									<FormGroup id='gtin' label='GTIN' isFloating>
+										<Input
+											placeholder='GTIN'
+											onChange={formik.handleChange}
+											value={formik.values.gtin}
+											isValid={formik.isValid}
+											isTouched={formik.touched.gtin}
+											invalidFeedback={formik.errors.gtin}
+											validFeedback='Looks good!'
+										/>
+									</FormGroup>
+								</div>
+								<div className='col-12'>
+									<FormGroup id='name' label='Name' isFloating>
+										<Input
+											placeholder='Name'
+											onChange={formik.handleChange}
+											value={formik.values.name}
+											isValid={formik.isValid}
+											isTouched={formik.touched.name}
+											invalidFeedback={formik.errors.name}
+											validFeedback='Looks good!'
+										/>
+									</FormGroup>
+								</div>
+								<div className='col-12'>
+									<FormGroup id='price' label='Unit price' isFloating>
+										<Input
+											placeholder='Unit price'
+											type='number'
+											onChange={(event: any) => {
+												formik.setFieldValue(
+													'unit_price',
+													event?.target.value,
+												);
+											}}
+											value={formik.values.unit_price}
+											isValid={formik.isValid}
+											isTouched={formik.touched.unit_price}
+											invalidFeedback={formik.errors.unit_price}
+											validFeedback='Looks good!'
+										/>
+									</FormGroup>
+								</div>
+								<div className='col-12'>
+									<FormGroup id='category' label='Category' isFloating>
+										<Input
+											placeholder='Category'
+											onChange={formik.handleChange}
+											value={formik.values.category}
+											isValid={formik.isValid}
+											isTouched={formik.touched.category}
+											invalidFeedback={formik.errors.category}
+											validFeedback='Looks good!'
+										/>
+									</FormGroup>
+								</div>
+							</div>
+						</CardBody>
+					</Card>
+				</OffCanvasBody>
+				<div className='p-3'>
+					<Button
+						color='info'
+						icon='Save'
+						type='submit'
+						isDisable={!formik.isValid && brandLoading}>
+						{brandLoading && <Spinner isSmall inButton isGrow />}
+						Save
+					</Button>
+				</div>
 			</OffCanvas>
 		</PageWrapper>
 	);

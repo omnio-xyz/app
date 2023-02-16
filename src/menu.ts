@@ -71,7 +71,7 @@ export const BrandProfileMenu = {
 		id: 'brand',
 		text: 'Brand',
 		path: '/brand',
-		icon: 'Sell',
+		icon: 'LocalOffer',
 		subMenu: null,
 	},
 };

@@ -56,9 +56,10 @@ class OmnioBrand {
 
 	sortProducts(products) {
 		return [...products].sort(function (productA, productB) {
-			if (productA.gtin > productB.gtin) return 1;
-			if (productA.gtin < productB) return -1;
-			return 0;
+			return productA.gtin.localeCompare(productB.gtin, undefined, {
+				numeric: true,
+				sensitivity: 'base',
+			});
 		});
 	}
 
