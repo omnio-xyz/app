@@ -95,7 +95,7 @@ export const OmnioBrandContextProvider: FC<IOmnioBrandContextProviderProps> = ({
 	const addProduct = async (newProduct: IProduct) => {
 		setLoading(true);
 		try {
-			const brandProducts = await omnioSdk.saveProducts((products || []).push(newProduct));
+			const brandProducts = await omnioSdk.saveProducts([...(products ?? []), newProduct]);
 			setProducts(brandProducts);
 		} catch (error) {
 			console.error(error);

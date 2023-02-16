@@ -38,11 +38,11 @@ class OmnioBrand {
 		let brandData = await this.ceramic.get(this.modelDefinitionName);
 		brandData = {
 			...brandData,
-			products: newProducts,
+			products: this.sortProducts(newProducts),
 		};
 
 		await this.ceramic.update(this.modelDefinitionName, brandData);
-		return newProducts;
+		return brandData.products;
 	}
 
 	async getProducts() {
@@ -52,6 +52,14 @@ class OmnioBrand {
 		}
 
 		return brandData.products;
+	}
+
+	sortProducts(products) {
+		return [...products].sort(function (productA, productB) {
+			if (productA.gtin > productB.gtin) return 1;
+			if (productA.gtin < productB) return -1;
+			return 0;
+		});
 	}
 
 	mergeWithExistingProfile(existingProfile, profileUpdated) {

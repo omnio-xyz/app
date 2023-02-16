@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import Page from '../../../layout/Page/Page';
 import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
@@ -27,17 +27,12 @@ import FormGroup from '../../../components/bootstrap/forms/FormGroup';
 import { BrandMenu } from '../../../menu';
 import useOmnioBrand from '../../../contexts/omnioBrandContext';
 import { IProduct } from '../../../omnio/models/product/product';
+import showNotification from '../../../components/extras/showNotification';
+import Icon from '../../../components/icon/Icon';
+import Spinner from '../../../components/bootstrap/Spinner';
 
 const validateValues = (values: IProduct) => {
-	const errors = {
-		gtin: '',
-		name: '',
-		description: '',
-		unit_price: '',
-		category: '',
-		image: '',
-		brand_id: '',
-	};
+	const errors: { [key: string]: string } = {};
 
 	if (!values.name) {
 		errors.name = 'Required';
@@ -59,64 +54,71 @@ const validateValues = (values: IProduct) => {
 };
 
 const ProductsCatalog = () => {
-	const [editItem, setEditItem] = useState<IProduct | null>(null);
+	const [editedProduct, setEditedProduct] = useState<IProduct | null>(null);
 	const [editPanel, setEditPanel] = useState<boolean>(false);
-	const { products, removeProduct, editProduct } = useOmnioBrand();
+	const { brandLoading, products, addProduct, editProduct, removeProduct } = useOmnioBrand();
 
-	function handleRemove(product: IProduct) {
-		return removeProduct(product);
+	async function handleRemove(product: IProduct) {
+		await removeProduct(product);
+		showNotificationToUser('Remove Product', 'Product deleted successfully');
 	}
 
 	function handleEdit(product: IProduct) {
+		setEditedProduct(product);
 		setEditPanel(true);
-		return setEditItem(product);
+	}
+
+	function handleAdd() {
+		setEditedProduct(null);
+		setEditPanel(true);
+	}
+
+	function showNotificationToUser(title: string, description: string) {
+		showNotification(
+			<span className='d-flex align-items-center'>
+				<Icon icon='Info' size='lg' className='me-1' />
+				<span>{title}</span>
+			</span>,
+			description,
+		);
 	}
 
 	const formik = useFormik({
 		initialValues: {
-			gtin: '',
-			name: '',
-			description: '',
-			unit_price: 1,
-			category: '',
-			image: '',
+			gtin: editedProduct?.gtin || '',
+			name: editedProduct?.name || '',
+			description: editedProduct?.description || '',
+			unit_price: editedProduct?.unit_price || 1,
+			category: editedProduct?.category || '',
+			image: editedProduct?.image || '',
 			brand_id: 'FakeBrand',
 		},
-		//validate: validateValues,
+		enableReinitialize: true,
+		validate: validateValues,
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		onSubmit: async (values) => {
-			if (editItem) {
-				await editProduct(values);
+			let notificationTitle = '',
+				notificationMessage = '';
+			try {
+				if (editedProduct) {
+					await editProduct(values);
+					notificationTitle = 'Edited Product';
+					notificationMessage = 'Product updated successfully';
+				} else {
+					await addProduct(values);
+					notificationTitle = 'Added Product';
+					notificationMessage = 'Product saved successfully';
+				}
+				setEditPanel(false);
+			} catch (error: unknown) {
+				console.error(error);
+				notificationTitle = 'Error';
+				notificationMessage = 'There was an error when saving the product information';
+			} finally {
+				showNotificationToUser(notificationTitle, notificationMessage);
 			}
-			setEditPanel(false);
 		},
 	});
-
-	useEffect(() => {
-		if (editItem) {
-			formik.setValues({
-				gtin: editItem.gtin,
-				name: editItem.name,
-				description: editItem.description,
-				unit_price: editItem.unit_price,
-				category: editItem.category,
-				image: editItem.image,
-				brand_id: editItem.brand_id,
-			});
-		}
-		return () => {
-			formik.setValues({
-				gtin: '',
-				name: '',
-				description: '',
-				unit_price: 0,
-				category: '',
-				image: '',
-				brand_id: 'FakeBrand',
-			});
-		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [editItem]);
 
 	return (
 		<PageWrapper title={BrandMenu.productCatalog.text}>
@@ -126,14 +128,7 @@ const ProductsCatalog = () => {
 					<span className='text-muted'>{products?.length} items</span>
 				</SubHeaderLeft>
 				<SubHeaderRight>
-					<Button
-						color='dark'
-						isLight
-						icon='Add'
-						onClick={() => {
-							setEditItem(null);
-							setEditPanel(true);
-						}}>
+					<Button color='dark' isLight icon='Add' onClick={handleAdd}>
 						Add
 					</Button>
 				</SubHeaderRight>
@@ -163,11 +158,12 @@ const ProductsCatalog = () => {
 				isOpen={editPanel}
 				isRightPanel
 				tag='form'
+				noValidate
 				onSubmit={formik.handleSubmit}>
 				<OffCanvasHeader setOpen={setEditPanel}>
 					<OffCanvasTitle id='edit-panel'>
-						{editItem?.name || 'New Product'}{' '}
-						{editItem?.name ? (
+						{editedProduct?.name || 'New Product'}{' '}
+						{editedProduct?.name ? (
 							<Badge color='primary' isLight>
 								Edit
 							</Badge>
@@ -178,118 +174,134 @@ const ProductsCatalog = () => {
 						)}
 					</OffCanvasTitle>
 				</OffCanvasHeader>
-				<OffCanvasBody>
-					<Card>
-						<CardHeader>
-							<CardLabel icon='Photo' iconColor='info'>
-								<CardTitle>Product Image</CardTitle>
-							</CardLabel>
-						</CardHeader>
-						<CardBody>
-							<div className='row'>
-								<div className='col-12'>
-									{editItem?.image ? (
-										<img
-											src={editItem.image}
-											alt=''
-											width={128}
-											height={128}
-											className='mx-auto d-block img-fluid mb-3'
-										/>
-									) : (
-										<PlaceholderImage
-											width={128}
-											height={128}
-											className='mx-auto d-block img-fluid mb-3 rounded'
-										/>
-									)}
-								</div>
-								<div className='col-12'>
-									<div className='row g-4'>
+				{brandLoading ? (
+					<div className='row align-items-center'>
+						<Spinner isGrow />
+					</div>
+				) : (
+					<>
+						<OffCanvasBody>
+							<Card>
+								<CardHeader>
+									<CardLabel icon='Photo' iconColor='info'>
+										<CardTitle>Product Image</CardTitle>
+									</CardLabel>
+								</CardHeader>
+								<CardBody>
+									<div className='row'>
 										<div className='col-12'>
-											<Input type='file' autoComplete='photo' />
-										</div>
-										<div className='col-12'>
-											{editItem && (
-												<Button
-													color='dark'
-													isLight
-													icon='Delete'
-													className='w-100'
-													onClick={() => {
-														setEditItem({ ...editItem, image: '' });
-													}}>
-													Delete Image
-												</Button>
+											{editedProduct?.image ? (
+												<img
+													src={editedProduct.image}
+													alt=''
+													width={128}
+													height={128}
+													className='mx-auto d-block img-fluid mb-3'
+												/>
+											) : (
+												<PlaceholderImage
+													width={128}
+													height={128}
+													className='mx-auto d-block img-fluid mb-3 rounded'
+												/>
 											)}
 										</div>
+										<div className='col-12'>
+											<div className='row g-4'>
+												<div className='col-12'>
+													<Input type='file' autoComplete='photo' />
+												</div>
+												<div className='col-12'>
+													{editedProduct && (
+														<Button
+															color='dark'
+															isLight
+															icon='Delete'
+															className='w-100'
+															onClick={() => {
+																setEditedProduct({
+																	...editedProduct,
+																	image: '',
+																});
+															}}>
+															Delete Image
+														</Button>
+													)}
+												</div>
+											</div>
+										</div>
 									</div>
-								</div>
-							</div>
-						</CardBody>
-					</Card>
+								</CardBody>
+							</Card>
 
-					<Card>
-						<CardHeader>
-							<CardLabel icon='Description' iconColor='success'>
-								<CardTitle>Product Details</CardTitle>
-							</CardLabel>
-						</CardHeader>
-						<CardBody>
-							<div className='row g-4'>
-								<div className='col-12'>
-									<FormGroup id='name' label='Name' isFloating>
-										<Input
-											placeholder='Name'
-											onChange={formik.handleChange}
-											value={formik.values.name}
-											isValid={formik.isValid}
-											isTouched={formik.touched.name}
-											invalidFeedback={formik.errors.name}
-											validFeedback='Looks good!'
-										/>
-									</FormGroup>
-								</div>
-								<div className='col-12'>
-									<FormGroup id='price' label='Unit price' isFloating>
-										<Input
-											placeholder='Unit price'
-											type='number'
-											onChange={formik.handleChange}
-											value={formik.values.unit_price}
-											isValid={formik.isValid}
-											isTouched={formik.touched.unit_price}
-											invalidFeedback={formik.errors.unit_price}
-											validFeedback='Looks good!'
-										/>
-									</FormGroup>
-								</div>
-								<div className='col-12'>
-									<FormGroup id='category' label='Category' isFloating>
-										<Input
-											placeholder='Category'
-											onChange={formik.handleChange}
-											value={formik.values.category}
-											isValid={formik.isValid}
-											isTouched={formik.touched.category}
-											invalidFeedback={formik.errors.category}
-											validFeedback='Looks good!'
-										/>
-									</FormGroup>
-								</div>
-							</div>
-						</CardBody>
-					</Card>
-				</OffCanvasBody>
-				<div className='p-3'>
-					<Button
-						color='info'
-						icon='Save'
-						type='submit'
-						isDisable={!formik.isValid && !!formik.submitCount}>
-						Save
-					</Button>
-				</div>
+							<Card>
+								<CardHeader>
+									<CardLabel icon='Description' iconColor='success'>
+										<CardTitle>Product Details</CardTitle>
+									</CardLabel>
+								</CardHeader>
+								<CardBody>
+									<div className='row g-4'>
+										<div className='col-12'>
+											<FormGroup id='name' label='Name' isFloating>
+												<Input
+													placeholder='Name'
+													onChange={formik.handleChange}
+													value={formik.values.name}
+													isValid={formik.isValid}
+													isTouched={formik.touched.name}
+													invalidFeedback={formik.errors.name}
+													validFeedback='Looks good!'
+												/>
+											</FormGroup>
+										</div>
+										<div className='col-12'>
+											<FormGroup id='price' label='Unit price' isFloating>
+												<Input
+													placeholder='Unit price'
+													type='number'
+													onChange={(event: any) => {
+														formik.setFieldValue(
+															'unit_price',
+															event?.target.value,
+														);
+													}}
+													value={formik.values.unit_price}
+													isValid={formik.isValid}
+													isTouched={formik.touched.unit_price}
+													invalidFeedback={formik.errors.unit_price}
+													validFeedback='Looks good!'
+												/>
+											</FormGroup>
+										</div>
+										<div className='col-12'>
+											<FormGroup id='category' label='Category' isFloating>
+												<Input
+													placeholder='Category'
+													onChange={formik.handleChange}
+													value={formik.values.category}
+													isValid={formik.isValid}
+													isTouched={formik.touched.category}
+													invalidFeedback={formik.errors.category}
+													validFeedback='Looks good!'
+												/>
+											</FormGroup>
+										</div>
+									</div>
+								</CardBody>
+							</Card>
+						</OffCanvasBody>
+						<div className='p-3'>
+							<Button
+								color='info'
+								icon='Save'
+								type='submit'
+								isDisable={!formik.isValid && brandLoading}>
+								Save
+							</Button>
+						</div>
+					</>
+				)}
 			</OffCanvas>
 		</PageWrapper>
 	);
