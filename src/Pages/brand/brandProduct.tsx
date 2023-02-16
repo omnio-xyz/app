@@ -123,7 +123,7 @@ const brandProduct = () => {
   }, [editItem]);
 
   return (
-    <PageWrapper title={brandStudioMenu.profile.subMenu.product.text}>
+    <PageWrapper title={brandStudioMenu.product.text}>
       <SubHeader>
         <SubHeaderLeft>
           <Button color='info' isLink icon='ArrowBack' onClick={() => navigate(-1)}>

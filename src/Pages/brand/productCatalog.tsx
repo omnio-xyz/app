@@ -108,7 +108,7 @@ const ProductsGridPage = () => {
 	}, [editItem]);
 
 	return (
-		<PageWrapper title={brandStudioMenu.profile.subMenu.productsGrid.text}>
+		<PageWrapper title={brandStudioMenu.productsGrid.text}>
 			<SubHeader>
 				<SubHeaderLeft>
 				</SubHeaderLeft>

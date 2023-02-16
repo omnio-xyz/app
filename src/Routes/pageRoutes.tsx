@@ -141,12 +141,12 @@ const presentation: RouteProps[] = [
    * App > Sales
    */
   {
-    path: brandStudioMenu.profile.subMenu.productsGrid.path,
+    path: brandStudioMenu.productsGrid.path,
     element: <Brand.productCatalog />,
   },
 
   {
-    path: `${brandStudioMenu.profile.subMenu.productID.path}/:id`,
+    path: `${brandStudioMenu.productID.path}/:id`,
     element: <Consumer.Product />,
   },
 

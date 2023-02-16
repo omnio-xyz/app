@@ -32,6 +32,7 @@
    */
 	// Button Icon
 	&-only-icon {
+    border-radius: 50%;
 		@include padding($btn-padding-y 0);
 
 		/**

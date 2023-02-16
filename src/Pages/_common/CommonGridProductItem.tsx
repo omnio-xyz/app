@@ -110,7 +110,7 @@ const CommonGridProductItem: FC<ICommonGridProductItemProps> = ({
             }`}
           size='lg'
           tag='a'
-          to={`../${brandStudioMenu.profile.subMenu.productID.path}/${id}`}>
+          to={`../${brandStudioMenu.productID.path}/${id}`}>
           View Product
         </Button>
         <Dropdown>

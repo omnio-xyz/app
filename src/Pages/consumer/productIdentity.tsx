@@ -120,7 +120,7 @@ const ProductViewPage = () => {
   }, [editItem]);
 
   return (
-    <PageWrapper title={brandStudioMenu.profile.subMenu.product.text}>
+    <PageWrapper title={brandStudioMenu.product.text}>
       <SubHeader>
         <SubHeaderLeft>
           <Button color='dark' isLight icon='ArrowBack' onClick={() => navigate(-1)}>

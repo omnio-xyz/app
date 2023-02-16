@@ -21,7 +21,7 @@ export const brandOnboardingMenu = {
 export const brandProfileMenu = {
   knowledge: {
     id: 'knowledge',
-    text: 'Brand Profile',
+    text: 'Profile',
     path: 'brand/profile',
     icon: 'Person',
   },
@@ -33,38 +33,30 @@ export const brandStudioMenu = {
     text: 'Brand Studio',
     icon: 'Extension',
   },
-  profile: {
-    id: 'sales',
-    text: 'Sales',
+  productsGrid: {
+    id: 'productsGrid',
+    text: 'Purchase History',
     path: 'sales/grid',
-    icon: 'Store',
-    subMenu: {
-      productsGrid: {
-        id: 'productsGrid',
-        text: 'Purchase History',
-        path: 'sales/grid',
-        icon: 'CalendarViewMonth',
-      },
-      productID: {
-        id: 'productID',
-        text: 'productID',
-        path: 'product',
-        hide: true,
-      },
-      product: {
-        id: 'product',
-        text: 'Product',
-        path: 'sales/product/1',
-        icon: 'QrCode2',
-        hide: true,
-      },
-    },
+    icon: 'CalendarViewMonth',
   },
   addBillingInformation: {
     id: 'pageView',
-    text: 'Query',
+    text: 'Query Tool',
     path: 'add-billing-information',
     icon: 'LocationSearching',
+  },
+  productID: {
+    id: 'productID',
+    text: 'productID',
+    path: 'product',
+    hide: true,
+  },
+  product: {
+    id: 'product',
+    text: 'Product',
+    path: 'sales/product/1',
+    icon: 'QrCode2',
+    hide: true,
   },
 };
 
