@@ -4,7 +4,8 @@ import classNames from 'classnames';
 import { ISubHeaderProps } from '../SubHeader/SubHeader';
 import { IPageProps } from '../Page/Page';
 import { useNavigate } from 'react-router-dom';
-import useOmnio from '../../contexts/omnioContext';
+import useOmnioConsumer from '../../contexts/omnioConsumerContext';
+import useOmnioBrand from '../../contexts/omnioBrandContext';
 import { LaunchMenu } from '../../menu';
 
 interface IPageWrapperProps {
@@ -30,11 +31,12 @@ const PageWrapper = forwardRef<HTMLDivElement, IPageWrapperProps>(
 				.setAttribute('content', description || process.env.REACT_APP_META_DESC || '');
 		});
 
-		const { userData } = useOmnio();
+		const { omnioConsumerConnected } = useOmnioConsumer();
+		const { omnioBrandConnected } = useOmnioBrand();
 
 		const navigate = useNavigate();
 		useEffect(() => {
-			if (isProtected && !userData) {
+			if (isProtected && !omnioConsumerConnected && !omnioBrandConnected) {
 				navigate(`../${LaunchMenu.launch.path}`);
 			}
 			return () => {};

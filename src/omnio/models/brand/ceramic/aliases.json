@@ -1,9 +1,9 @@
 {
   "definitions": {
-    "omnioBrand": "kjzl6cwe1jw14anxvfoi6j4uddimdxdm4dbx9ibqwi11ec9b0a1jojp8k0tbkh9"
+    "omnioBrand": "kjzl6cwe1jw14bdasw3v39sna1h2ibov4yl8xpkugws37yssiewkx7m8asq6lcm"
   },
   "schemas": {
-    "Brand": "ceramic://k3y52l7qbv1frxkq2nsptywnlsdtux8itpdz0t1xx49hw56vcfc0b1tkkvq6oof7k"
+    "OmnioBrand": "ceramic://k3y52l7qbv1frxjax74yvhvr8eowh12t7m5tb7khpo7maq5r67g319gn4re998s8w"
   },
   "tiles": {}
 }
