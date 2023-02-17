@@ -92,7 +92,7 @@ const ProductsCatalog = () => {
 			gtin: editedProduct?.gtin || '',
 			name: editedProduct?.name || '',
 			description: editedProduct?.description || '',
-			unit_price: editedProduct?.unit_price || 1,
+			unit_price: editedProduct?.unit_price || 0,
 			category: editedProduct?.category || '',
 			image: editedProduct?.image || '',
 			brand_id: 'FakeBrand',
@@ -250,19 +250,21 @@ const ProductsCatalog = () => {
 						</CardHeader>
 						<CardBody>
 							<div className='row g-4'>
-								<div className='col-12'>
-									<FormGroup id='gtin' label='GTIN' isFloating>
-										<Input
-											placeholder='GTIN'
-											onChange={formik.handleChange}
-											value={formik.values.gtin}
-											isValid={formik.isValid}
-											isTouched={formik.touched.gtin}
-											invalidFeedback={formik.errors.gtin}
-											validFeedback='Looks good!'
-										/>
-									</FormGroup>
-								</div>
+								{!editedProduct && (
+									<div className='col-12'>
+										<FormGroup id='gtin' label='GTIN' isFloating>
+											<Input
+												placeholder='GTIN'
+												onChange={formik.handleChange}
+												value={formik.values.gtin}
+												isValid={formik.isValid}
+												isTouched={formik.touched.gtin}
+												invalidFeedback={formik.errors.gtin}
+												validFeedback='Looks good!'
+											/>
+										</FormGroup>
+									</div>
+								)}
 								<div className='col-12'>
 									<FormGroup id='name' label='Name' isFloating>
 										<Input

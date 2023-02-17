@@ -65,20 +65,11 @@ class OmnioBrand {
 
 	mergeWithExistingProfile(existingProfile, profileUpdated) {
 		return {
-			username: profileUpdated.username ?? existingProfile?.username,
-			prefix: profileUpdated.prefix ?? existingProfile?.prefix,
-			firstName: profileUpdated.firstName ?? existingProfile?.firstName,
-			middleName: profileUpdated.middleName ?? existingProfile?.middleName,
-			surname: profileUpdated.surname ?? existingProfile?.surname,
-			email: profileUpdated.email ?? existingProfile?.email,
-			phone: profileUpdated.phone ?? existingProfile?.phone,
-			address: {
-				line: profileUpdated.address?.line ?? existingProfile?.address?.line,
-				line2: profileUpdated.address?.line2 ?? existingProfile?.address?.line2,
-				city: profileUpdated.address?.city ?? existingProfile?.address?.city,
-				country: profileUpdated.address?.country ?? existingProfile?.address?.country,
-				zip: profileUpdated.address?.zip ?? existingProfile?.address?.zip,
-			},
+			name: profileUpdated.name ?? existingProfile?.name,
+			description: profileUpdated.description ?? existingProfile?.description,
+			contactEmail: profileUpdated.contactEmail ?? existingProfile?.contactEmail,
+			url: profileUpdated.url ?? existingProfile?.url,
+			logoImageUrl: profileUpdated.logoImageUrl ?? existingProfile?.logoImageUrl,
 		};
 	}
 }

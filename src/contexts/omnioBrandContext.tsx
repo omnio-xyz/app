@@ -23,7 +23,9 @@ interface IOmnioBrandContextProviderProps {
 	children: ReactNode;
 }
 export const OmnioBrandContextProvider: FC<IOmnioBrandContextProviderProps> = ({ children }) => {
-	const [omnioConnected, setOmnioConnected] = useState<Boolean>(false);
+	const [omnioConnected, setOmnioConnected] = useState<Boolean>(
+		!!localStorage.getItem('omnio_brand_connected') || false,
+	);
 	const [loading, setLoading] = useState<boolean>(false);
 	const [brandProfile, setBrandProfile] = useState<IBrandUserProfile | null>(
 		JSON.parse(localStorage.getItem('omnio_brand_profile')!) || null,

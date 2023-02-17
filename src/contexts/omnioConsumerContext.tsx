@@ -22,7 +22,9 @@ interface IOmnioConsumerContextProviderProps {
 export const OmnioConsumerContextProvider: FC<IOmnioConsumerContextProviderProps> = ({
 	children,
 }) => {
-	const [omnioConnected, setOmnioConnected] = useState<Boolean>(false);
+	const [omnioConnected, setOmnioConnected] = useState<Boolean>(
+		!!localStorage.getItem('omnio_consumer_connected') || false,
+	);
 	const [loading, setLoading] = useState<boolean>(false);
 	const [userData, setUserData] = useState<IConsumerUser | null>(
 		JSON.parse(localStorage.getItem('omnio_consumer_user_data')!) || null,
@@ -75,6 +77,24 @@ export const OmnioConsumerContextProvider: FC<IOmnioConsumerContextProviderProps
 			setLoading(false);
 		}
 	};
+
+	useEffect(() => {
+		const DELAY_IN_MS = 20000;
+		const loadConsumerData = async () => {
+			try {
+				const omnioUserData = await omnioSdk.getUserData();
+				setUserData(omnioUserData);
+			} catch (error) {
+				console.error(error);
+			}
+		};
+
+		const interval = setInterval(async () => {
+			await loadConsumerData();
+		}, DELAY_IN_MS);
+
+		return () => clearInterval(interval);
+	}, []);
 
 	const values = {
 		loading,

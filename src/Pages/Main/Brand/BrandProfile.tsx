@@ -115,6 +115,16 @@ const DashboardPage = () => {
 													</div>
 												</div>
 											</div>
+											<div className='col-12'>
+												<div className='d-flex align-items-center'>
+													<div className='flex-grow-1 ms-3'>
+														<div className='fs-5 mb-0'>Description</div>
+														<div className='text-muted'>
+															{formik.values.formDescription || ''}
+														</div>
+													</div>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -135,43 +145,68 @@ const DashboardPage = () => {
 									</CardHeader>
 									<CardBody>
 										<div className='row g-4'>
+											<div className='col-md-6'>
+												<FormGroup
+													id='formName'
+													label='Name'
+													style={{ paddingBottom: '5%' }}>
+													<Input
+														placeholder='Brand Name'
+														autoComplete='given-name'
+														onChange={formik.handleChange}
+														value={formik.values.formName}
+													/>
+												</FormGroup>
+												<FormGroup
+													id='formDescription'
+													label='Description'
+													style={{ paddingBottom: '5%' }}>
+													<Input
+														placeholder='Brand Description'
+														autoComplete='additional-name'
+														onChange={formik.handleChange}
+														value={formik.values.formDescription}
+													/>
+												</FormGroup>
+												<FormGroup
+													id='formEmailAddress'
+													label='Contact Email Address'
+													style={{ paddingBottom: '5%' }}>
+													<Input
+														type='email'
+														placeholder='Email'
+														autoComplete='email'
+														onChange={(event: any) => {
+															formik.setFieldValue(
+																'formContactEmail',
+																event?.target.value,
+															);
+														}}
+														value={formik.values.formContactEmail}
+													/>
+												</FormGroup>
+												<FormGroup
+													id='formUrl'
+													label='Home Page Url'
+													style={{ paddingBottom: '5%' }}>
+													<Input
+														type='url'
+														placeholder='Home Page Url'
+														autoComplete='url'
+														onChange={(event: any) => {
+															formik.setFieldValue(
+																'formUrl',
+																event?.target.value,
+															);
+														}}
+														value={formik.values.formUrl}
+													/>
+												</FormGroup>
+											</div>
 											<FormGroup
-												className='col-md-3'
-												id='formName'
-												label='Name'>
-												<Input
-													placeholder='Brand Name'
-													autoComplete='given-name'
-													onChange={formik.handleChange}
-													value={formik.values.formName}
-												/>
-											</FormGroup>
-											<FormGroup
-												className='col-md-3'
-												id='formDescription'
-												label='Description'>
-												<Input
-													placeholder='Brand Description'
-													autoComplete='additional-name'
-													onChange={formik.handleChange}
-													value={formik.values.formDescription}
-												/>
-											</FormGroup>
-											<FormGroup
-												className='col-lg-6'
-												id='formEmailAddress'
-												label='Contact Email Address'>
-												<Input
-													type='email'
-													placeholder='Email'
-													autoComplete='email'
-													onChange={formik.handleChange}
-													value={formik.values.formContactEmail}
-												/>
-											</FormGroup>
-										</div>
-										<div className='row'>
-											<div className='col-12' style={{ marginTop: '5%' }}>
+												className='col-md-6'
+												id='formLogoImageUrl'
+												label='Logo'>
 												{!!formik.values.formLogoImageUrl ? (
 													<img
 														src={formik.values.formLogoImageUrl}
@@ -187,46 +222,37 @@ const DashboardPage = () => {
 														className='mx-auto d-block img-fluid mb-3 rounded'
 													/>
 												)}
-											</div>
-											<div className='col-12'>
-												<div className='row g-4'>
-													<div className='col-12'>
-														<Input
-															type='file'
-															autoComplete='photo'
-															onChange={async (event: any) => {
-																const imageUrl =
-																	await imgBbClient.uploadImage(
-																		event?.target.files[0],
-																	);
-																await formik.setFieldValue(
-																	'formLogoImageUrl',
-																	imageUrl,
-																);
-															}}
-															isTouched={
-																formik.touched.formLogoImageUrl
-															}
-														/>
-													</div>
-													<div className='col-12'>
-														<Button
-															color='dark'
-															isLight
-															style={{ maxWidth: '30%' }}
-															icon='Delete'
-															className='w-100'
-															onClick={() => {
-																formik.setFieldValue(
-																	'formLogoImageUrl',
-																	'',
-																);
-															}}>
-															Delete Image
-														</Button>
-													</div>
-												</div>
-											</div>
+												<Input
+													type='file'
+													autoComplete='photo'
+													style={{ marginTop: '8%' }}
+													onChange={async (event: any) => {
+														const imageUrl =
+															await imgBbClient.uploadImage(
+																event?.target.files[0],
+															);
+														await formik.setFieldValue(
+															'formLogoImageUrl',
+															imageUrl,
+														);
+													}}
+													isTouched={formik.touched.formLogoImageUrl}
+												/>
+												<Button
+													color='dark'
+													isLight
+													icon='Delete'
+													style={{ marginTop: '12%' }}
+													className='w-100'
+													onClick={() => {
+														formik.setFieldValue(
+															'formLogoImageUrl',
+															'',
+														);
+													}}>
+													Delete Image
+												</Button>
+											</FormGroup>
 										</div>
 									</CardBody>
 									<CardFooter>
