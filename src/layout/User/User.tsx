@@ -42,9 +42,11 @@ const User = () => {
 				</div>
 				<div className='user-info'>
 					<div className='user-name d-flex align-items-center'>
-						{`${userData?.profile?.firstName || brandProfile?.name || 'Omnio'} ${
-							userData?.profile?.surname || omnioBrandConnected ? '' : 'User'
-						}`}
+						{`${
+							(omnioBrandConnected
+								? brandProfile?.name
+								: userData?.profile?.firstName) || 'Omnio'
+						} ${omnioBrandConnected ? '' : userData?.profile?.surname || 'User'}`}
 						<Icon icon='Verified' className='ms-1' color='info' />
 					</div>
 				</div>
