@@ -23,7 +23,7 @@ export const OmnioConsumerContextProvider: FC<IOmnioConsumerContextProviderProps
 	children,
 }) => {
 	const [omnioConnected, setOmnioConnected] = useState<Boolean>(
-		!!localStorage.getItem('omnio_consumer_connected') || false,
+		'true' === localStorage.getItem('omnio_consumer_connected')?.toLocaleLowerCase(),
 	);
 	const [loading, setLoading] = useState<boolean>(false);
 	const [userData, setUserData] = useState<IConsumerUser | null>(
@@ -56,8 +56,8 @@ export const OmnioConsumerContextProvider: FC<IOmnioConsumerContextProviderProps
 		try {
 			setOmnioConnected(false);
 			setUserData(null);
-			localStorage.removeItem('omnio_consumer_connected');
-			localStorage.removeItem('omnio_consumer_user_data');
+			await localStorage.removeItem('omnio_consumer_connected');
+			await localStorage.removeItem('omnio_consumer_user_data');
 		} catch (error) {
 			console.error(error);
 		} finally {

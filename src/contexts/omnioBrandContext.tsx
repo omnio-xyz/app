@@ -23,8 +23,8 @@ interface IOmnioBrandContextProviderProps {
 	children: ReactNode;
 }
 export const OmnioBrandContextProvider: FC<IOmnioBrandContextProviderProps> = ({ children }) => {
-	const [omnioConnected, setOmnioConnected] = useState<Boolean>(
-		!!localStorage.getItem('omnio_brand_connected') || false,
+	const [omnioBrandConnected, setOmnioBrandConnected] = useState<Boolean>(
+		'true' === localStorage.getItem('omnio_brand_connected')?.toLocaleLowerCase(),
 	);
 	const [loading, setLoading] = useState<boolean>(false);
 	const [brandProfile, setBrandProfile] = useState<IBrandUserProfile | null>(
@@ -35,8 +35,8 @@ export const OmnioBrandContextProvider: FC<IOmnioBrandContextProviderProps> = ({
 	);
 
 	useEffect(() => {
-		localStorage.setItem('omnio_brand_connected', omnioConnected.toString());
-	}, [omnioConnected]);
+		localStorage.setItem('omnio_brand_connected', omnioBrandConnected.toString());
+	}, [omnioBrandConnected]);
 
 	useEffect(() => {
 		localStorage.setItem('omnio_brand_profile', JSON.stringify(brandProfile));
@@ -57,7 +57,7 @@ export const OmnioBrandContextProvider: FC<IOmnioBrandContextProviderProps> = ({
 				await omnioSdk.saveProducts(brandProducts);
 			}
 			setProducts(brandProducts);
-			setOmnioConnected(true);
+			setOmnioBrandConnected(true);
 		} catch (error) {
 			console.error(error);
 		} finally {
@@ -68,12 +68,12 @@ export const OmnioBrandContextProvider: FC<IOmnioBrandContextProviderProps> = ({
 	const disconnectWithOmnio = async () => {
 		setLoading(true);
 		try {
-			setOmnioConnected(false);
+			setOmnioBrandConnected(false);
 			setBrandProfile(null);
 			setProducts(null);
-			localStorage.removeItem('omnio_brand_connected');
-			localStorage.removeItem('omnio_brand_profile');
-			localStorage.removeItem('omnio_brand_products');
+			await localStorage.removeItem('omnio_brand_connected');
+			await localStorage.removeItem('omnio_brand_profile');
+			await localStorage.removeItem('omnio_brand_products');
 		} catch (error) {
 			console.error(error);
 		} finally {
@@ -145,7 +145,7 @@ export const OmnioBrandContextProvider: FC<IOmnioBrandContextProviderProps> = ({
 		addProduct,
 		removeProduct,
 		editProduct,
-		omnioBrandConnected: omnioConnected,
+		omnioBrandConnected,
 		connectBrandWithOmnio: connectWithOmnio,
 		disconnectBrandWithOmnio: disconnectWithOmnio,
 	};

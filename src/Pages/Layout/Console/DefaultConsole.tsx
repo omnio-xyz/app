@@ -10,7 +10,7 @@ import useOmnioBrand from '../../../contexts/omnioBrandContext';
 const DefaultAside = () => {
 	const { asideStatus, setAsideStatus } = useContext(ThemeContext);
 	const { omnioBrandConnected } = useOmnioBrand();
-
+	console.log("aca ", omnioBrandConnected);
 	return (
 		<Aside>
 			<AsideHead>
