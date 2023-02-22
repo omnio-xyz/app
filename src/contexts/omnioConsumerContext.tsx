@@ -90,11 +90,13 @@ export const OmnioConsumerContextProvider: FC<IOmnioConsumerContextProviderProps
 		};
 
 		const interval = setInterval(async () => {
-			await loadConsumerData();
+			if (omnioConnected) {
+				await loadConsumerData();
+			}
 		}, DELAY_IN_MS);
 
 		return () => clearInterval(interval);
-	}, []);
+	}, [omnioConnected]);
 
 	const values = {
 		loading,
