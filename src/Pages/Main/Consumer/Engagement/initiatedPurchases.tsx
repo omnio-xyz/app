@@ -16,6 +16,8 @@ import PaginationButtons, {
 import classNames from 'classnames';
 import Badge from '../../../../components/bootstrap/Badge';
 import useDarkMode from '../../../../hooks/useDarkMode';
+import Button from '../../../../components/bootstrap/Button';
+import Spinner from '../../../../components/bootstrap/Spinner';
 
 interface IInitiatedPurchaseRow {
 	image: string;
@@ -27,7 +29,7 @@ interface IInitiatedPurchaseRow {
 }
 
 const InitiatedPurchases = () => {
-	const { userData } = useOmnio();
+	const { userData, removeInitiatedCheckoutItem, loading } = useOmnio();
 
 	const initiatedCheckoutData: IInitiatedPurchaseRow[] = [];
 	userData?.initiated_checkouts?.forEach((initiatedCheckout) => {
@@ -62,19 +64,30 @@ const InitiatedPurchases = () => {
 						</CardLabel>
 					</CardHeader>
 					<CardBody className='table-responsive' isScrollable>
-						<table className='table table-modern table-hover'>
-							<thead>
-								<tr>
-									<th scope='col'>Image</th>
-									<th scope='col'>Products</th>
-									<th scope='col'>Date</th>
-									<th scope='col'>Subtotal</th>
-									<th scope='col'>Seller</th>
-								</tr>
-							</thead>
-							<tbody>
-								{dataPagination(initiatedCheckoutData, currentPage, perPage).map(
-									(i) => (
+						{loading ? (
+							<div style={{ display: 'flex', justifyContent: 'center' }}>
+								<Spinner size={45} className='row' />
+							</div>
+						) : (
+							<table className='table table-modern table-hover'>
+								<thead>
+									<tr>
+										<th scope='col'>Image</th>
+										<th scope='col'>Products</th>
+										<th scope='col'>Date</th>
+										<th scope='col'>Subtotal</th>
+										<th scope='col'>Seller</th>
+										<th scope='col' className='text-end'>
+											Actions
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									{dataPagination(
+										initiatedCheckoutData,
+										currentPage,
+										perPage,
+									).map((i) => (
 										<tr key={i.id}>
 											<td>
 												<img
@@ -105,11 +118,25 @@ const InitiatedPurchases = () => {
 											<td className='h5'>
 												<Badge color={'info'}>{i.seller}</Badge>
 											</td>
+											<td className='text-end'>
+												<Button
+													color='dark'
+													isLight
+													icon='Delete'
+													onClick={async () =>
+														removeInitiatedCheckoutItem(
+															(userData?.initiated_checkouts || [])[
+																initiatedCheckoutData.indexOf(i)
+															]!,
+														)
+													}
+												/>
+											</td>
 										</tr>
-									),
-								)}
-							</tbody>
-						</table>
+									))}
+								</tbody>
+							</table>
+						)}
 					</CardBody>
 					<PaginationButtons
 						data={initiatedCheckoutData}

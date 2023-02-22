@@ -57,13 +57,6 @@ export const ConsumerDataMenu = {
 		icon: 'History',
 		subMenu: null,
 	},
-	requests: {
-		id: 'requests',
-		text: 'Requests',
-		path: 'requests',
-		icon: 'Notifications',
-		subMenu: null,
-	},
 };
 
 export const BrandProfileMenu = {

@@ -3,11 +3,19 @@ import PropTypes from 'prop-types';
 import omnioSdk from '../omnio/omnio-consumer-sdk';
 import { IConsumerUser } from '../omnio/models/user/consumer/user';
 import { IConsumerUserProfile } from '../omnio/models/user/consumer/profile';
+import { IWishlistItem } from '../omnio/models/consumerData/wishlistItem/wishlistItem';
+import { IAddToCartItem } from '../omnio/models/consumerData/addToCartItem/addToCartItem';
+import { IContentViewItem } from '../omnio/models/consumerData/contentViewItem/contentViewItem';
+import { IInitiatedCheckoutItem } from '../omnio/models/consumerData/initiatedCheckoutItem/initiatedCheckoutItem';
 
 export interface IOmnioConsumerContextProps {
 	loading: boolean;
 	userData: IConsumerUser | null;
 	saveProfile(profile: IConsumerUserProfile): Promise<void>;
+	removeWishlistItem(item: IWishlistItem): Promise<void>;
+	removeAddToCartItem(item: IAddToCartItem): Promise<void>;
+	removeContentViewItem(item: IContentViewItem): Promise<void>;
+	removeInitiatedCheckoutItem(item: IInitiatedCheckoutItem): Promise<void>;
 	omnioConsumerConnected: Boolean;
 	connectConsumerWithOmnio(): Promise<void>;
 	disconnectConsumerWithOmnio(): Promise<void>;
@@ -78,6 +86,58 @@ export const OmnioConsumerContextProvider: FC<IOmnioConsumerContextProviderProps
 		}
 	};
 
+	const removeAddToCartItem = async (item: IAddToCartItem) => {
+		setLoading(true);
+		try {
+			const omnioUserData = await omnioSdk.removeConsumerDataPoint(item);
+			setUserData(omnioUserData);
+		} catch (error) {
+			console.error(error);
+			throw error;
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	const removeWishlistItem = async (item: IWishlistItem) => {
+		setLoading(true);
+		try {
+			const omnioUserData = await omnioSdk.removeConsumerDataPoint(item);
+			setUserData(omnioUserData);
+		} catch (error) {
+			console.error(error);
+			throw error;
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	const removeContentViewItem = async (item: IContentViewItem) => {
+		setLoading(true);
+		try {
+			const omnioUserData = await omnioSdk.removeConsumerDataPoint(item);
+			setUserData(omnioUserData);
+		} catch (error) {
+			console.error(error);
+			throw error;
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	const removeInitiatedCheckoutItem = async (item: IInitiatedCheckoutItem) => {
+		setLoading(true);
+		try {
+			const omnioUserData = await omnioSdk.removeConsumerDataPoint(item);
+			setUserData(omnioUserData);
+		} catch (error) {
+			console.error(error);
+			throw error;
+		} finally {
+			setLoading(false);
+		}
+	};
+
 	useEffect(() => {
 		const DELAY_IN_MS = 20000;
 		const loadConsumerData = async () => {
@@ -102,6 +162,10 @@ export const OmnioConsumerContextProvider: FC<IOmnioConsumerContextProviderProps
 		loading,
 		userData,
 		saveProfile,
+		removeWishlistItem,
+		removeAddToCartItem,
+		removeContentViewItem,
+		removeInitiatedCheckoutItem,
 		omnioConsumerConnected: omnioConnected,
 		connectConsumerWithOmnio: connectWithOmnio,
 		disconnectConsumerWithOmnio: disconnectWithOmnio,

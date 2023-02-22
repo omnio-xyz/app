@@ -3,6 +3,14 @@ import { Integration } from './integration';
 class OmnioConsumer {
 	integration;
 
+	DATA_FIELD_HOLDER_MAPPER = {
+		add_to_wishlist: 'wishlist',
+		content_view: 'content_view',
+		purchase: 'purchase_history',
+		add_to_cart: 'add_to_cart',
+		initiate_checkout: 'initiated_checkouts',
+	};
+
 	constructor() {
 		this.integration = new Integration();
 	}
@@ -14,6 +22,16 @@ class OmnioConsumer {
 			profile: this.mergeWithExistingProfile(userOmnioData?.profile, profile),
 		};
 
+		await this.integration.encryptAndWrite(JSON.stringify(userOmnioData));
+		return userOmnioData;
+	}
+
+	async removeConsumerDataPoint(dataPoint) {
+		const fieldHolder = this.DATA_FIELD_HOLDER_MAPPER[dataPoint.type];
+		let userOmnioData = await JSON.parse(await this.integration.readAndDecrypt());
+		userOmnioData[fieldHolder] = userOmnioData[fieldHolder].filter(
+			(dp) => dp?.date !== dataPoint?.date,
+		);
 		await this.integration.encryptAndWrite(JSON.stringify(userOmnioData));
 		return userOmnioData;
 	}

@@ -64,13 +64,6 @@ const routes: RouteProps[] = [
 		path: 'initiate-purchase',
 		element: <CONSUMER_ENGAGEMENT.INITIATED_PURCHASES />,
 	},
-	/**
-	 * Requests
-	 */
-	{
-		path: 'requests',
-		element: <CONSUMER.REQUESTS />,
-	},
 
 	/**
 	 * ==== Brand Pages ====

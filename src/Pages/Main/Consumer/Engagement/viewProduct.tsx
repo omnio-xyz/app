@@ -17,6 +17,8 @@ import classNames from 'classnames';
 import Badge from '../../../../components/bootstrap/Badge';
 import useDarkMode from '../../../../hooks/useDarkMode';
 import { IProduct } from '../../../../omnio/models/product/product';
+import Button from '../../../../components/bootstrap/Button';
+import Spinner from '../../../../components/bootstrap/Spinner';
 
 interface IViewProductRow {
 	id: string;
@@ -30,7 +32,7 @@ interface IViewProductRow {
 }
 
 const DashboardBookingPage = () => {
-	const { userData } = useOmnio();
+	const { userData, removeContentViewItem, loading } = useOmnio();
 
 	const viewProductData: IViewProductRow[] = [];
 	userData?.content_view?.forEach((content) => {
@@ -57,62 +59,89 @@ const DashboardBookingPage = () => {
 				<Card stretch>
 					<CardHeader borderSize={1}>
 						<CardLabel icon='WebAsset' iconColor='info'>
-							<CardTitle>View Product</CardTitle>
+							<CardTitle>Viewed Products</CardTitle>
 						</CardLabel>
 						<CardLabel>A credential is generated when you view a product.</CardLabel>
 					</CardHeader>
 					<CardBody className='table-responsive' isScrollable>
-						<table className='table table-modern table-hover'>
-							<thead>
-								<tr>
-									<th scope='col'>GTIN</th>
-									<th scope='col'>Image</th>
-									<th scope='col'>Name</th>
-									<th scope='col'>Date</th>
-									<th scope='col'>URL</th>
-									<th scope='col'>Brand</th>
-									<th scope='col'>Seller</th>
-								</tr>
-							</thead>
-							<tbody>
-								{dataPagination(viewProductData, currentPage, perPage).map((i) => (
-									<tr key={i.id}>
-										<td>
-											<div className='fs-6'>{i.id}</div>
-										</td>
-										<td>
-											<img
-												src={i.image}
-												alt={i.name}
-												width={54}
-												height={54}
-											/>
-										</td>
-										<td>
-											<div
-												className={classNames('fw-bold', {
-													'link-dark': !darkModeStatus,
-													'link-light': darkModeStatus,
-												})}>
-												{i.name}
-											</div>
-										</td>
-										<td>
-											<div className='fs-6'>{i.date.format('LLL')}</div>
-										</td>
-										<td>
-											<span>{i.url}</span>
-										</td>
-										<td className='h5'>
-											<Badge color={'success'}>{i.brand}</Badge>
-										</td>
-										<td className='h5'>
-											<Badge color={'info'}>{i.seller}</Badge>
-										</td>
+						{loading ? (
+							<div style={{ display: 'flex', justifyContent: 'center' }}>
+								<Spinner size={45} className='row' />
+							</div>
+						) : (
+							<table className='table table-modern table-hover'>
+								<thead>
+									<tr>
+										<th scope='col'>GTIN</th>
+										<th scope='col'>Image</th>
+										<th scope='col'>Name</th>
+										<th scope='col'>Date</th>
+										<th scope='col'>URL</th>
+										<th scope='col'>Brand</th>
+										<th scope='col'>Seller</th>
+										<th scope='col' className='text-end'>
+											Actions
+										</th>
 									</tr>
-								))}
-							</tbody>
-						</table>
+								</thead>
+								<tbody>
+									{dataPagination(viewProductData, currentPage, perPage).map(
+										(i) => (
+											<tr key={i.id}>
+												<td>
+													<div className='fs-6'>{i.id}</div>
+												</td>
+												<td>
+													<img
+														src={i.image}
+														alt={i.name}
+														width={54}
+														height={54}
+													/>
+												</td>
+												<td>
+													<div
+														className={classNames('fw-bold', {
+															'link-dark': !darkModeStatus,
+															'link-light': darkModeStatus,
+														})}>
+														{i.name}
+													</div>
+												</td>
+												<td>
+													<div className='fs-6'>
+														{i.date.format('LLL')}
+													</div>
+												</td>
+												<td>
+													<span>{i.url}</span>
+												</td>
+												<td className='h5'>
+													<Badge color={'success'}>{i.brand}</Badge>
+												</td>
+												<td className='h5'>
+													<Badge color={'info'}>{i.seller}</Badge>
+												</td>
+												<td className='text-end'>
+													<Button
+														color='dark'
+														isLight
+														icon='Delete'
+														onClick={async () =>
+															removeContentViewItem(
+																(userData?.content_view || [])[
+																	viewProductData.indexOf(i)
+																]!,
+															)
+														}
+													/>
+												</td>
+											</tr>
+										),
+									)}
+								</tbody>
+							</table>
+						)}
 					</CardBody>
 					<PaginationButtons
 						data={viewProductData}
