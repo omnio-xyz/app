@@ -16,6 +16,10 @@ import PaginationButtons, {
 import classNames from 'classnames';
 import Badge from '../../../../components/bootstrap/Badge';
 import useDarkMode from '../../../../hooks/useDarkMode';
+import { useFormik } from 'formik';
+import SubHeader, { SubHeaderLeft } from '../../../../layout/SubHeader/SubHeader';
+import Icon from '../../../../components/icon/Icon';
+import Input from '../../../../components/bootstrap/forms/Input';
 
 interface IPurchaseProductRow {
 	id: string | number;
@@ -54,8 +58,38 @@ const PurchaseHistory = () => {
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [perPage, setPerPage] = useState<number>(PER_COUNT['10']);
 	const { darkModeStatus } = useDarkMode();
+
+	const formik = useFormik({
+		initialValues: {
+			searchInput: '',
+		},
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		onSubmit: (values) => {},
+	});
+
+	const filteredData = purchaseProductsHistoryData.filter((f) =>
+		f.name.toLowerCase().includes(formik.values.searchInput.toLowerCase()),
+	);
+
 	return (
 		<PageWrapper>
+			<SubHeader>
+				<SubHeaderLeft>
+					<label
+						className='border-0 bg-transparent cursor-pointer me-0'
+						htmlFor='searchInput'>
+						<Icon icon='Search' size='2x' color='primary' />
+					</label>
+					<Input
+						id='searchInput'
+						type='search'
+						className='border-0 shadow-none bg-transparent'
+						placeholder='Search purchase product'
+						onChange={formik.handleChange}
+						value={formik.values.searchInput}
+					/>
+				</SubHeaderLeft>
+			</SubHeader>
 			<Page container='fluid'>
 				<Card stretch>
 					<CardHeader borderSize={1}>
@@ -81,11 +115,7 @@ const PurchaseHistory = () => {
 								</tr>
 							</thead>
 							<tbody>
-								{dataPagination(
-									purchaseProductsHistoryData,
-									currentPage,
-									perPage,
-								).map((i) => (
+								{dataPagination(filteredData, currentPage, perPage).map((i) => (
 									<tr key={i.id}>
 										<td>
 											<div className='fs-6'>{i.id}</div>
@@ -134,7 +164,7 @@ const PurchaseHistory = () => {
 						</table>
 					</CardBody>
 					<PaginationButtons
-						data={purchaseProductsHistoryData}
+						data={filteredData}
 						label='Data Credentials'
 						setCurrentPage={setCurrentPage}
 						currentPage={currentPage}

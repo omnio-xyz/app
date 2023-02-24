@@ -18,6 +18,10 @@ import Badge from '../../../../components/bootstrap/Badge';
 import Button from '../../../../components/bootstrap/Button';
 import useDarkMode from '../../../../hooks/useDarkMode';
 import Spinner from '../../../../components/bootstrap/Spinner';
+import SubHeader, { SubHeaderLeft } from '../../../../layout/SubHeader/SubHeader';
+import Icon from '../../../../components/icon/Icon';
+import { useFormik } from 'formik';
+import Input from '../../../../components/bootstrap/forms/Input';
 
 interface IFavoriteProductRow {
 	id: string | number;
@@ -55,8 +59,38 @@ const FavoriteProducts = () => {
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [perPage, setPerPage] = useState<number>(PER_COUNT['10']);
 	const { darkModeStatus } = useDarkMode();
+
+	const formik = useFormik({
+		initialValues: {
+			searchInput: '',
+		},
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		onSubmit: (values) => {},
+	});
+
+	const filteredData = addToWishListData.filter((f) =>
+		f.name.toLowerCase().includes(formik.values.searchInput.toLowerCase()),
+	);
+
 	return (
 		<PageWrapper>
+			<SubHeader>
+				<SubHeaderLeft>
+					<label
+						className='border-0 bg-transparent cursor-pointer me-0'
+						htmlFor='searchInput'>
+						<Icon icon='Search' size='2x' color='primary' />
+					</label>
+					<Input
+						id='searchInput'
+						type='search'
+						className='border-0 shadow-none bg-transparent'
+						placeholder='Search favorite product'
+						onChange={formik.handleChange}
+						value={formik.values.searchInput}
+					/>
+				</SubHeaderLeft>
+			</SubHeader>
 			<Page container='fluid'>
 				<Card stretch>
 					<CardHeader borderSize={1}>
@@ -90,75 +124,71 @@ const FavoriteProducts = () => {
 									</tr>
 								</thead>
 								<tbody>
-									{dataPagination(addToWishListData, currentPage, perPage).map(
-										(i) => (
-											<tr key={i.id}>
-												<td>
-													<div className='fs-6'>{i.id}</div>
-												</td>
-												<td>
-													<img
-														src={i.image}
-														alt={i.name}
-														width={54}
-														height={54}
-													/>
-												</td>
-												<td>
-													<div
-														className={classNames('fw-bold', {
-															'link-dark': !darkModeStatus,
-															'link-light': darkModeStatus,
-														})}>
-														{i.name}
-													</div>
-												</td>
-												<td>
-													<div className='fs-6'>
-														{i.date.format('LLL')}
-													</div>
-												</td>
-												<td>
-													<div
-														className={classNames('fw-bold', {
-															'link-dark': !darkModeStatus,
-															'link-light': darkModeStatus,
-														})}>
-														{i.category}
-													</div>
-												</td>
-												<td>
-													<span>{i.price}</span>
-												</td>
-												<td className='h5'>
-													<Badge color={'success'}>{i.brand}</Badge>
-												</td>
-												<td className='h5'>
-													<Badge color={'info'}>{i.seller}</Badge>
-												</td>
-												<td className='text-end'>
-													<Button
-														color='dark'
-														isLight
-														icon='Delete'
-														onClick={async () =>
-															removeWishlistItem(
-																(userData?.wishlist || [])[
-																	addToWishListData.indexOf(i)
-																]!,
-															)
-														}
-													/>
-												</td>
-											</tr>
-										),
-									)}
+									{dataPagination(filteredData, currentPage, perPage).map((i) => (
+										<tr key={i.id}>
+											<td>
+												<div className='fs-6'>{i.id}</div>
+											</td>
+											<td>
+												<img
+													src={i.image}
+													alt={i.name}
+													width={54}
+													height={54}
+												/>
+											</td>
+											<td>
+												<div
+													className={classNames('fw-bold', {
+														'link-dark': !darkModeStatus,
+														'link-light': darkModeStatus,
+													})}>
+													{i.name}
+												</div>
+											</td>
+											<td>
+												<div className='fs-6'>{i.date.format('LLL')}</div>
+											</td>
+											<td>
+												<div
+													className={classNames('fw-bold', {
+														'link-dark': !darkModeStatus,
+														'link-light': darkModeStatus,
+													})}>
+													{i.category}
+												</div>
+											</td>
+											<td>
+												<span>{i.price}</span>
+											</td>
+											<td className='h5'>
+												<Badge color={'success'}>{i.brand}</Badge>
+											</td>
+											<td className='h5'>
+												<Badge color={'info'}>{i.seller}</Badge>
+											</td>
+											<td className='text-end'>
+												<Button
+													color='dark'
+													isLight
+													icon='Delete'
+													onClick={async () =>
+														removeWishlistItem(
+															(userData?.wishlist || [])[
+																addToWishListData.indexOf(i)
+															]!,
+														)
+													}
+												/>
+											</td>
+										</tr>
+									))}
 								</tbody>
 							</table>
 						)}
 					</CardBody>
 					<PaginationButtons
-						data={addToWishListData}
+						data={filteredData}
 						label='Data Credentials'
 						setCurrentPage={setCurrentPage}
 						currentPage={currentPage}

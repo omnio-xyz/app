@@ -18,6 +18,10 @@ import Badge from '../../../../components/bootstrap/Badge';
 import useDarkMode from '../../../../hooks/useDarkMode';
 import Button from '../../../../components/bootstrap/Button';
 import Spinner from '../../../../components/bootstrap/Spinner';
+import { useFormik } from 'formik';
+import SubHeader, { SubHeaderLeft } from '../../../../layout/SubHeader/SubHeader';
+import Icon from '../../../../components/icon/Icon';
+import Input from '../../../../components/bootstrap/forms/Input';
 
 interface IInitiatedPurchaseRow {
 	image: string;
@@ -51,8 +55,37 @@ const InitiatedPurchases = () => {
 	const [perPage, setPerPage] = useState<number>(PER_COUNT['10']);
 	const { darkModeStatus } = useDarkMode();
 
+	const formik = useFormik({
+		initialValues: {
+			searchInput: '',
+		},
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		onSubmit: (values) => {},
+	});
+
+	const filteredData = initiatedCheckoutData.filter((f) =>
+		f.products.join().toLowerCase().includes(formik.values.searchInput.toLowerCase()),
+	);
+
 	return (
 		<PageWrapper>
+			<SubHeader>
+				<SubHeaderLeft>
+					<label
+						className='border-0 bg-transparent cursor-pointer me-0'
+						htmlFor='searchInput'>
+						<Icon icon='Search' size='2x' color='primary' />
+					</label>
+					<Input
+						id='searchInput'
+						type='search'
+						className='border-0 shadow-none bg-transparent'
+						placeholder='Search iniatiated purchase product'
+						onChange={formik.handleChange}
+						value={formik.values.searchInput}
+					/>
+				</SubHeaderLeft>
+			</SubHeader>
 			<Page container='fluid'>
 				<Card stretch>
 					<CardHeader borderSize={1}>
@@ -83,11 +116,7 @@ const InitiatedPurchases = () => {
 									</tr>
 								</thead>
 								<tbody>
-									{dataPagination(
-										initiatedCheckoutData,
-										currentPage,
-										perPage,
-									).map((i) => (
+									{dataPagination(filteredData, currentPage, perPage).map((i) => (
 										<tr key={i.id}>
 											<td>
 												<img
@@ -139,7 +168,7 @@ const InitiatedPurchases = () => {
 						)}
 					</CardBody>
 					<PaginationButtons
-						data={initiatedCheckoutData}
+						data={filteredData}
 						label='Data Credentials'
 						setCurrentPage={setCurrentPage}
 						currentPage={currentPage}

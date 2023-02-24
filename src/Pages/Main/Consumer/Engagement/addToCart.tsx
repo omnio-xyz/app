@@ -18,6 +18,10 @@ import classNames from 'classnames';
 import Badge from '../../../../components/bootstrap/Badge';
 import Button from '../../../../components/bootstrap/Button';
 import Spinner from '../../../../components/bootstrap/Spinner';
+import { useFormik } from 'formik';
+import SubHeader, { SubHeaderLeft } from '../../../../layout/SubHeader/SubHeader';
+import Icon from '../../../../components/icon/Icon';
+import Input from '../../../../components/bootstrap/forms/Input';
 
 interface IAddToCartRow {
 	id: string | number;
@@ -55,8 +59,37 @@ const AddToCart = () => {
 		});
 	});
 
+	const formik = useFormik({
+		initialValues: {
+			searchInput: '',
+		},
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		onSubmit: (values) => {},
+	});
+
+	const filteredData = addToCartData.filter((f) =>
+		f.name.toLowerCase().includes(formik.values.searchInput.toLowerCase()),
+	);
+
 	return (
 		<PageWrapper>
+			<SubHeader>
+				<SubHeaderLeft>
+					<label
+						className='border-0 bg-transparent cursor-pointer me-0'
+						htmlFor='searchInput'>
+						<Icon icon='Search' size='2x' color='primary' />
+					</label>
+					<Input
+						id='searchInput'
+						type='search'
+						className='border-0 shadow-none bg-transparent'
+						placeholder='Search added to cart product'
+						onChange={formik.handleChange}
+						value={formik.values.searchInput}
+					/>
+				</SubHeaderLeft>
+			</SubHeader>
 			<Page container='fluid'>
 				<Card stretch>
 					<CardHeader borderSize={1}>
@@ -90,75 +123,71 @@ const AddToCart = () => {
 									</tr>
 								</thead>
 								<tbody>
-									{dataPagination(addToCartData, currentPage, perPage).map(
-										(i) => (
-											<tr key={i.id}>
-												<td>
-													<div className='fs-6'>{i.id}</div>
-												</td>
-												<td>
-													<img
-														src={i.image}
-														alt={i.name}
-														width={54}
-														height={54}
-													/>
-												</td>
-												<td>
-													<div
-														className={classNames('fw-bold', {
-															'link-dark': !darkModeStatus,
-															'link-light': darkModeStatus,
-														})}>
-														{i.name}
-													</div>
-												</td>
-												<td>
-													<div className='fs-6'>
-														{i.date.format('LLL')}
-													</div>
-												</td>
-												<td>
-													<div
-														className={classNames('fw-bold', {
-															'link-dark': !darkModeStatus,
-															'link-light': darkModeStatus,
-														})}>
-														{i.category}
-													</div>
-												</td>
-												<td>
-													<span>{i.price}</span>
-												</td>
-												<td className='h5'>
-													<Badge color={'success'}>{i.brand}</Badge>
-												</td>
-												<td className='h5'>
-													<Badge color={'info'}>{i.seller}</Badge>
-												</td>
-												<td className='text-end'>
-													<Button
-														color='dark'
-														isLight
-														icon='Delete'
-														onClick={async () =>
-															removeAddToCartItem(
-																(userData?.add_to_cart || [])[
-																	addToCartData.indexOf(i)
-																]!,
-															)
-														}
-													/>
-												</td>
-											</tr>
-										),
-									)}
+									{dataPagination(filteredData, currentPage, perPage).map((i) => (
+										<tr key={i.id}>
+											<td>
+												<div className='fs-6'>{i.id}</div>
+											</td>
+											<td>
+												<img
+													src={i.image}
+													alt={i.name}
+													width={54}
+													height={54}
+												/>
+											</td>
+											<td>
+												<div
+													className={classNames('fw-bold', {
+														'link-dark': !darkModeStatus,
+														'link-light': darkModeStatus,
+													})}>
+													{i.name}
+												</div>
+											</td>
+											<td>
+												<div className='fs-6'>{i.date.format('LLL')}</div>
+											</td>
+											<td>
+												<div
+													className={classNames('fw-bold', {
+														'link-dark': !darkModeStatus,
+														'link-light': darkModeStatus,
+													})}>
+													{i.category}
+												</div>
+											</td>
+											<td>
+												<span>{i.price}</span>
+											</td>
+											<td className='h5'>
+												<Badge color={'success'}>{i.brand}</Badge>
+											</td>
+											<td className='h5'>
+												<Badge color={'info'}>{i.seller}</Badge>
+											</td>
+											<td className='text-end'>
+												<Button
+													color='dark'
+													isLight
+													icon='Delete'
+													onClick={async () =>
+														removeAddToCartItem(
+															(userData?.add_to_cart || [])[
+																addToCartData.indexOf(i)
+															]!,
+														)
+													}
+												/>
+											</td>
+										</tr>
+									))}
 								</tbody>
 							</table>
 						)}
 					</CardBody>
 					<PaginationButtons
-						data={addToCartData}
+						data={filteredData}
 						label='Data Credentials'
 						setCurrentPage={setCurrentPage}
 						currentPage={currentPage}
