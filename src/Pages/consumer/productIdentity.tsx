@@ -5,7 +5,7 @@ import Icon from '../../components/icon/Icon';
 import Page from '../../layout/Page/Page';
 import PageWrapper from '../../layout/PageWrapper/PageWrapper';
 import showNotification from '../../components/extras/showNotification';
-import SubHeader, { SubHeaderLeft, SubHeaderRight, SubheaderSeparator } from '../../layout/SubHeader/SubHeader';
+import SubHeader, { SubHeaderLeft, SubheaderSeparator } from '../../layout/SubHeader/SubHeader';
 import tableData from '../../common/mockData/mockProductData';
 import useDarkMode from '../../hooks/useDarkMode';
 import { consumerDataMenu } from '../../menu';
@@ -192,7 +192,7 @@ const ProductViewPage = () => {
                       <div className='col-lg-6'>
                         <Card
                           stretch
-                          shadow='sm'
+                          shadow='none'
                           className={`bg-l${darkModeStatus ? 'o25' : '25'
                             }-primary rounded-2`}>
                           <CardHeader className='bg-transparent'>
@@ -223,7 +223,7 @@ const ProductViewPage = () => {
                       <div className='col-lg-6'>
                         <Card
                           stretch
-                          shadow='sm'
+                          shadow='none'
                           className={`bg-l${darkModeStatus ? 'o25' : '25'
                             }-success rounded-2`}>
                           <CardHeader className='bg-transparent'>
@@ -254,7 +254,7 @@ const ProductViewPage = () => {
                       <div className='col-lg-6'>
                       </div>
                       <div className='col-12 shadow-3d-container'>
-                        <Accordion id='faq' shadow='sm'>
+                        <Accordion id='faq' shadow='none'>
                           <AccordionItem
                             id='faq1'
                             title='Description'>

@@ -126,8 +126,7 @@ const brandProduct = () => {
     <PageWrapper title={brandStudioMenu.productID.text}>
       <SubHeader>
         <SubHeaderLeft>
-          <Button color='info' isLink icon='ArrowBack' onClick={() => navigate(-1)}>
-            Back to List
+          <Button color='dark' isLight icon='ArrowBack' onClick={() => navigate(-1)}>
           </Button>
           <SubheaderSeparator />
         </SubHeaderLeft>

@@ -96,7 +96,7 @@ const ProductItem: FC<ICommonGridProductItemProps> = ({
         />
         <div className='row align-items-center'>
           <div className='col'>
-            {priceFormat(price)}
+            Purchase Price: {priceFormat(price)}
           </div>
         </div>
       </CardBody>
