@@ -78,9 +78,11 @@ const viewProduct = () => {
                   <thead>
                     <tr>
                       <th />
+                      <th>Brand</th>
                       <th>Credential Type</th>
-                      <th>Moment</th>
-                      <th>Source</th>
+                      <th>Date</th>
+                      <th>Merchant</th>
+                      <th>Price</th>
                       <td />
                     </tr>
                   </thead>
@@ -114,6 +116,11 @@ const viewProduct = () => {
                         </td>
                         <td>
                           <div className='fs-6'>
+                            Brand #1
+                          </div>
+                        </td>
+                        <td>
+                          <div className='fs-6'>
                             View Product
                           </div>
                         </td>
@@ -121,13 +128,20 @@ const viewProduct = () => {
                           <div>{i.issueDate.format('LLL')}</div>
                         </td>
                         <td>
-                          <a href="https://demo.omnio.xyz/" target="_blank">
+                          <a href="https://demo.omnio.xyz/" target="_blank"
+                            className={classNames('fw-bold', {
+                              'link-dark': !darkModeStatus,
+                              'link-light': darkModeStatus,
+                            })}>
                             Omnio Demo
                           </a>
                         </td>
+                        <td>
+                          $100.00
+                        </td>
                         <td className='text-end'>
                           <Button
-                            icon='MoreHoriz'
+                            icon='Delete'
                             color='dark'
                             isLight
                             shadow='sm'
