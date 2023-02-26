@@ -67,10 +67,7 @@ const Login: FC<ILoginProps> = ({ isLoginConsumer }) => {
 	}, [omnioBrandConnected, omnioConsumerConnected, navigate]);
 
 	return (
-		<PageWrapper
-			isProtected={false}
-			title='Login'
-			className={classNames({ bg: false, 'bg-light': true })}>
+		<PageWrapper isProtected={false} className={classNames({ bg: false, 'bg-light': true })}>
 			<div className='row h-100 align-items-center justify-content-center'>
 				<div className='col-xl-4 col-lg-6 col-md-8 shadow-3d-container'>
 					<Card className='shadow-3d-dark' data-tour='login-page'>

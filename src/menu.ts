@@ -46,7 +46,7 @@ export const ConsumerDataMenu = {
 				id: 'initiate-purchase',
 				text: 'Initiate Purchase',
 				path: 'initiate-purchase',
-				icon: 'ShoppingBasket',
+				icon: 'CreditCard',
 			},
 		},
 	},
